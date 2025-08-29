@@ -24,5 +24,6 @@ const voclists = [
   { filename: "a1_023_numbers100", title: "A1 023 Números 1-100 (37)", level: "A1", misc: "Isaac" },
   { filename: "a1_024_daily_routine", title: "A1 024 Rutina diaria (25)", level: "A1", misc: "Isaac" },
   { filename: "a1_025_moments", title: "A1 025 Momentos (25)", level: "A1", misc: "Isaac" },
+  { filename: "a1_026_school", title: "A1 026 La escuela (25)", level: "A1", misc: "Isaac" },
   // más listados...
 ];
