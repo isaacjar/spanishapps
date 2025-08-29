@@ -1,5 +1,7 @@
 const voclists = [
   { filename: "a1_001_basic", title: "A1 001 Básico (32)", level: "A1", misc: "Isaac" },
+  { filename: "a1_001b_pronouns", title: "A1 001b Pronombres (32)", level: "A1", misc: "Isaac" },
+  { filename: "a1_001c_basic_expressions", title: "A1 001c Expresiones (32)", level: "A1", misc: "Isaac" },
   { filename: "a1_002_verbs", title: "A1 002 Verbos (25)", level: "A1", misc: "Isaac" },
   { filename: "a1_003_adjectives", title: "A1 003 Adjetivos (25)", level: "A1", misc: "Isaac" },
   { filename: "a1_004_nouns2", title: "A1 004 Sustantivos (25)", level: "A1", misc: "Isaac" },
@@ -32,5 +34,6 @@ const voclists = [
   { filename: "a1_031_sports", title: "A1 031 Los deportes (25)", level: "A1", misc: "Isaac" },
   { filename: "a1_032_travelling", title: "A1 032 De viaje (25)", level: "A1", misc: "Isaac" },
   { filename: "a1_033_tech", title: "A1 033 Tecnología (25)", level: "A1", misc: "Isaac" },
+  { filename: "a1_034_questions", title: "A1 034 Preguntas (25)", level: "A1", misc: "Isaac" },
   // más listados...
 ];
