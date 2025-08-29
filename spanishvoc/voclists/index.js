@@ -28,5 +28,6 @@ const voclists = [
   { filename: "a1_027_formas", title: "A1 027 Formas (25)", level: "A1", misc: "Isaac" },
   { filename: "a1_028_emotions", title: "A1 028 Emociones (25)", level: "A1", misc: "Isaac" },
   { filename: "a1_029_city", title: "A1 029 La ciudad (25)", level: "A1", misc: "Isaac" },
+  { filename: "a1_030_body", title: "A1 030 El cuerpo (25)", level: "A1", misc: "Isaac" },
   // más listados...
 ];
