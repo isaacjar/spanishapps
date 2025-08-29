@@ -1,0 +1,12 @@
+[
+  { "es": "grande", "en": "big", "zh": "大", "ur": "بڑا" },
+  { "es": "pequeño", "en": "small", "zh": "小", "ur": "چھوٹا" },
+  { "es": "feliz", "en": "happy", "zh": "开心", "ur": "خوش" },
+  { "es": "triste", "en": "sad", "zh": "难过", "ur": "اداس" },
+  { "es": "rápido", "en": "fast", "zh": "快", "ur": "تیز" },
+  { "es": "lento", "en": "slow", "zh": "慢", "ur": "آہستہ" },
+  { "es": "bonito", "en": "pretty", "zh": "漂亮", "ur": "خوبصورت" },
+  { "es": "feo", "en": "ugly", "zh": "丑", "ur": "بدصورت" },
+  { "es": "limpio", "en": "clean", "zh": "干净", "ur": "صاف" },
+  { "es": "sucio", "en": "dirty", "zh": "脏", "ur": "گندا" }
+]
