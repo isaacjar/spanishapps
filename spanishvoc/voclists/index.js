@@ -1,7 +1,7 @@
 const voclists = [
   { filename: "a1_001_basic", title: "A1 001 Básico (32)", level: "A1", misc: "Isaac" },
-  { filename: "a1_001b_pronouns", title: "A1 001b Pronombres (32)", level: "A1", misc: "Isaac" },
-  { filename: "a1_001c_basic_expressions", title: "A1 001c Expresiones (32)", level: "A1", misc: "Isaac" },
+  { filename: "a1_001b_pronouns", title: "A1 001b Pronombres (12)", level: "A1", misc: "Isaac" },
+  { filename: "a1_001c_basic_expressions", title: "A1 001c Expresiones (16)", level: "A1", misc: "Isaac" },
   { filename: "a1_002_verbs", title: "A1 002 Verbos (25)", level: "A1", misc: "Isaac" },
   { filename: "a1_003_adjectives", title: "A1 003 Adjetivos (25)", level: "A1", misc: "Isaac" },
   { filename: "a1_004_nouns2", title: "A1 004 Sustantivos (25)", level: "A1", misc: "Isaac" },
