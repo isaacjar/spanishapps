@@ -1,0 +1,14 @@
+[
+  { "es": "yo", "en": "I", "zh": "我", "ur": "میں" },
+  { "es": "tú", "en": "you (informal)", "zh": "你", "ur": "تم" },
+  { "es": "usted", "en": "you (formal)", "zh": "您", "ur": "آپ" },
+  { "es": "él", "en": "he", "zh": "他", "ur": "وہ (مذکر)" },
+  { "es": "ella", "en": "she", "zh": "她", "ur": "وہ (مونث)" },
+  { "es": "nosotros", "en": "we (masculine)", "zh": "我们", "ur": "ہم (مذکر)" },
+  { "es": "nosotras", "en": "we (feminine)", "zh": "我们", "ur": "ہم (مونث)" },
+  { "es": "vosotros", "en": "you all (masculine, informal)", "zh": "你们", "ur": "تم سب (مذکر)" },
+  { "es": "vosotras", "en": "you all (feminine, informal)", "zh": "你们", "ur": "تم سب (مونث)" },
+  { "es": "ustedes", "en": "you all (formal)", "zh": "您们", "ur": "آپ سب" },
+  { "es": "ellos", "en": "they (masculine)", "zh": "他们", "ur": "وہ سب (مذکر)" },
+  { "es": "ellas", "en": "they (feminine)", "zh": "她们", "ur": "وہ سب (مونث)" }
+]
