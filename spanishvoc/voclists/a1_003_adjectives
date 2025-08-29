@@ -8,5 +8,20 @@
   { "es": "bonito", "en": "pretty", "zh": "漂亮", "ur": "خوبصورت" },
   { "es": "feo", "en": "ugly", "zh": "丑", "ur": "بدصورت" },
   { "es": "limpio", "en": "clean", "zh": "干净", "ur": "صاف" },
-  { "es": "sucio", "en": "dirty", "zh": "脏", "ur": "گندا" }
+  { "es": "sucio", "en": "dirty", "zh": "脏", "ur": "گندا" },
+  { "es": "alto", "en": "tall", "zh": "高", "ur": "لمبا" },
+  { "es": "bajo", "en": "short", "zh": "矮", "ur": "چھوٹا" },
+  { "es": "nuevo", "en": "new", "zh": "新", "ur": "نیا" },
+  { "es": "viejo", "en": "old", "zh": "旧", "ur": "پرانا" },
+  { "es": "bueno", "en": "good", "zh": "好", "ur": "اچھا" },
+  { "es": "malo", "en": "bad", "zh": "坏", "ur": "برا" },
+  { "es": "caliente", "en": "hot", "zh": "热", "ur": "گرم" },
+  { "es": "frío", "en": "cold", "zh": "冷", "ur": "ٹھنڈا" },
+  { "es": "fácil", "en": "easy", "zh": "容易", "ur": "آسان" },
+  { "es": "difícil", "en": "difficult", "zh": "难", "ur": "مشکل" },
+  { "es": "contento", "en": "content", "zh": "满意", "ur": "مطمئن" },
+  { "es": "enfermo", "en": "sick", "zh": "生病", "ur": "بیمار" },
+  { "es": "cansado", "en": "tired", "zh": "累", "ur": "تھکا ہوا" },
+  { "es": "ocupado", "en": "busy", "zh": "忙", "ur": "مصروف" },
+  { "es": "libre", "en": "free", "zh": "自由", "ur": "آزاد" }
 ]
