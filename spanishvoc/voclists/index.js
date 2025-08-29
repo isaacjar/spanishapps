@@ -19,5 +19,6 @@ const voclists = [
   { filename: "a1_018_verbs_home", title: "A1 018 Acciones en casa (25)", level: "A1", misc: "Isaac" },
   { filename: "a1_019_weather", title: "A1 019 Clima y estaciones (25)", level: "A1", misc: "Isaac" },
   { filename: "a1_020_action_verbs", title: "A1 020 Acciones físicas (25)", level: "A1", misc: "Isaac" },
+  { filename: "a1_021_animals", title: "A1 021 Los animales (25)", level: "A1", misc: "Isaac" },
   // más listados...
 ];
