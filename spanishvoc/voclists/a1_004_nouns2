@@ -1,0 +1,12 @@
+[
+  { "es": "el gato", "en": "cat", "zh": "猫", "ur": "بلی" },
+  { "es": "el perro", "en": "dog", "zh": "狗", "ur": "کتا" },
+  { "es": "el pez", "en": "fish", "zh": "鱼", "ur": "مچھلی" },
+  { "es": "el pájaro", "en": "bird", "zh": "鸟", "ur": "پرندہ" },
+  { "es": "el tren", "en": "train", "zh": "火车", "ur": "ٹرین" },
+  { "es": "el avión", "en": "airplane", "zh": "飞机", "ur": "جہاز" },
+  { "es": "el autobús", "en": "bus", "zh": "公共汽车", "ur": "بس" },
+  { "es": "el zapato", "en": "shoe", "zh": "鞋", "ur": "جوتا" },
+  { "es": "el pantalón", "en": "pants", "zh": "裤子", "ur": "پتلون" },
+  { "es": "la chaqueta", "en": "jacket", "zh": "夹克", "ur": "جیکٹ" }
+]
