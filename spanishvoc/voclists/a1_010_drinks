@@ -1,0 +1,14 @@
+[
+  { "es": "el agua", "en": "water", "zh": "水", "ur": "پانی" },
+  { "es": "el zumo de naranja", "en": "orange juice", "zh": "橙汁", "ur": "مالٹے کا رس" },
+  { "es": "el zumo de manzana", "en": "apple juice", "zh": "苹果汁", "ur": "سیب کا رس" },
+  { "es": "la leche", "en": "milk", "zh": "牛奶", "ur": "دودھ" },
+  { "es": "el batido", "en": "milkshake", "zh": "奶昔", "ur": "ملک شیک" },
+  { "es": "el té", "en": "tea", "zh": "茶", "ur": "چائے" },
+  { "es": "el café", "en": "coffee", "zh": "咖啡", "ur": "کافی" },
+  { "es": "la limonada", "en": "lemonade", "zh": "柠檬水", "ur": "لیموں پانی" },
+  { "es": "el chocolate caliente", "en": "hot chocolate", "zh": "热巧克力", "ur": "گرم چاکلیٹ" },
+  { "es": "el refresco", "en": "soft drink", "zh": "汽水", "ur": "ٹھنڈا مشروب" },
+  { "es": "la soda", "en": "soda", "zh": "苏打水", "ur": "سوڈا" },
+  { "es": "el zumo de piña", "en": "pineapple juice", "zh": "菠萝汁", "ur": "انناس کا رس" }
+]
