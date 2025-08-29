@@ -16,5 +16,6 @@ const voclists = [
   { filename: "a1_015_objects", title: "A1 015 Objetos (25)", level: "A1", misc: "Isaac" },
   { filename: "a1_016_clothes", title: "A1 016 La ropa (25)", level: "A1", misc: "Isaac" },
   { filename: "a1_017_food", title: "A1 017 La comida (25)", level: "A1", misc: "Isaac" },
+  { filename: "a1_018_verbs_home", title: "A1 018 Verbos en casa (25)", level: "A1", misc: "Isaac" },
   // más listados...
 ];
