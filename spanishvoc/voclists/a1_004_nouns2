@@ -8,5 +8,20 @@
   { "es": "el autobús", "en": "bus", "zh": "公共汽车", "ur": "بس" },
   { "es": "el zapato", "en": "shoe", "zh": "鞋", "ur": "جوتا" },
   { "es": "el pantalón", "en": "pants", "zh": "裤子", "ur": "پتلون" },
-  { "es": "la chaqueta", "en": "jacket", "zh": "夹克", "ur": "جیکٹ" }
+  { "es": "la chaqueta", "en": "jacket", "zh": "夹克", "ur": "جیکٹ" },
+  { "es": "la playa", "en": "beach", "zh": "海滩", "ur": "ساحل" },
+  { "es": "el río", "en": "river", "zh": "河", "ur": "دریا" },
+  { "es": "la montaña", "en": "mountain", "zh": "山", "ur": "پہاڑ" },
+  { "es": "el campo", "en": "countryside", "zh": "乡村", "ur": "دیہات" },
+  { "es": "la ciudad", "en": "city", "zh": "城市", "ur": "شہر" },
+  { "es": "el supermercado", "en": "supermarket", "zh": "超市", "ur": "سپر مارکیٹ" },
+  { "es": "la tienda", "en": "store", "zh": "商店", "ur": "دکان" },
+  { "es": "el hospital", "en": "hospital", "zh": "医院", "ur": "ہسپتال" },
+  { "es": "la farmacia", "en": "pharmacy", "zh": "药店", "ur": "فارمیسی" },
+  { "es": "la escuela", "en": "school", "zh": "学校", "ur": "اسکول" },
+  { "es": "el maestro", "en": "teacher", "zh": "老师", "ur": "استاد" },
+  { "es": "el alumno", "en": "student", "zh": "学生", "ur": "طالب علم" },
+  { "es": "la comida", "en": "food", "zh": "食物", "ur": "کھانا" },
+  { "es": "la bebida", "en": "drink", "zh": "饮料", "ur": "مشروب" },
+  { "es": "el desayuno", "en": "breakfast", "zh": "早餐", "ur": "ناشتہ" }
 ]
