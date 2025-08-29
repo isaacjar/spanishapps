@@ -1,0 +1,18 @@
+[
+  { "es": "por favor", "en": "please", "zh": "请", "ur": "براہ کرم" },
+  { "es": "gracias", "en": "thank you", "zh": "谢谢", "ur": "شکریہ" },
+  { "es": "lo siento", "en": "I'm sorry", "zh": "对不起", "ur": "معاف کیجیے" },
+  { "es": "de nada", "en": "you're welcome", "zh": "不客气", "ur": "کوئی بات نہیں" },
+  { "es": "hola", "en": "hello", "zh": "你好", "ur": "ہیلو / سلام" },
+  { "es": "adiós", "en": "goodbye", "zh": "再见", "ur": "الوداع" },
+  { "es": "buenos días", "en": "good morning", "zh": "早上好", "ur": "صبح بخیر" },
+  { "es": "buenas tardes", "en": "good afternoon", "zh": "下午好", "ur": "دوپہر بخیر" },
+  { "es": "buenas noches", "en": "good night", "zh": "晚上好", "ur": "شب بخیر" },
+  { "es": "¿cómo estás?", "en": "how are you?", "zh": "你好吗？", "ur": "آپ کیسے ہیں؟" },
+  { "es": "muy bien", "en": "very well", "zh": "很好", "ur": "بہت اچھا" },
+  { "es": "¿qué tal?", "en": "how's it going?", "zh": "怎么样？", "ur": "کیسا ہے؟" },
+  { "es": "hasta luego", "en": "see you later", "zh": "回头见", "ur": "پھر ملیں گے" },
+  { "es": "no entiendo", "en": "I don't understand", "zh": "我不懂", "ur": "مجھے سمجھ نہیں آئی" },
+  { "es": "sí", "en": "yes", "zh": "是", "ur": "جی ہاں" },
+  { "es": "no", "en": "no", "zh": "不", "ur": "نہیں" }
+]
