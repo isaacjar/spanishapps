@@ -8,5 +8,20 @@
   { "es": "correr", "en": "to run", "zh": "跑", "ur": "دوڑنا" },
   { "es": "caminar", "en": "to walk", "zh": "走", "ur": "چلنا" },
   { "es": "hablar", "en": "to speak", "zh": "说话", "ur": "بولنا" },
-  { "es": "escuchar", "en": "to listen", "zh": "听", "ur": "سننا" }
+  { "es": "escuchar", "en": "to listen", "zh": "听", "ur": "سننا" },
+  { "es": "ver", "en": "to see", "zh": "看", "ur": "دیکھنا" },
+  { "es": "abrir", "en": "to open", "zh": "打开", "ur": "کھولنا" },
+  { "es": "cerrar", "en": "to close", "zh": "关", "ur": "بند کرنا" },
+  { "es": "lavar", "en": "to wash", "zh": "洗", "ur": "دھونا" },
+  { "es": "cantar", "en": "to sing", "zh": "唱歌", "ur": "گانا" },
+  { "es": "bailar", "en": "to dance", "zh": "跳舞", "ur": "رقص کرنا" },
+  { "es": "trabajar", "en": "to work", "zh": "工作", "ur": "کام کرنا" },
+  { "es": "estudiar", "en": "to study", "zh": "学习", "ur": "مطالعہ کرنا" },
+  { "es": "pensar", "en": "to think", "zh": "思考", "ur": "سوچنا" },
+  { "es": "mirar", "en": "to look", "zh": "看", "ur": "دیکھنا" },
+  { "es": "esperar", "en": "to wait", "zh": "等待", "ur": "انتظار کرنا" },
+  { "es": "ayudar", "en": "to help", "zh": "帮助", "ur": "مدد کرنا" },
+  { "es": "cocinar", "en": "to cook", "zh": "做饭", "ur": "پکانا" },
+  { "es": "vivir", "en": "to live", "zh": "生活", "ur": "رہنا" },
+  { "es": "llamar", "en": "to call", "zh": "打电话", "ur": "کال کرنا" }
 ]
