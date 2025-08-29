@@ -1,0 +1,14 @@
+[
+  { "es": "enero", "en": "January", "zh": "一月", "ur": "جنوری" },
+  { "es": "febrero", "en": "February", "zh": "二月", "ur": "فروری" },
+  { "es": "marzo", "en": "March", "zh": "三月", "ur": "مارچ" },
+  { "es": "abril", "en": "April", "zh": "四月", "ur": "اپریل" },
+  { "es": "mayo", "en": "May", "zh": "五月", "ur": "مئی" },
+  { "es": "junio", "en": "June", "zh": "六月", "ur": "جون" },
+  { "es": "julio", "en": "July", "zh": "七月", "ur": "جولائی" },
+  { "es": "agosto", "en": "August", "zh": "八月", "ur": "اگست" },
+  { "es": "septiembre", "en": "September", "zh": "九月", "ur": "ستمبر" },
+  { "es": "octubre", "en": "October", "zh": "十月", "ur": "اکتوبر" },
+  { "es": "noviembre", "en": "November", "zh": "十一月", "ur": "نومبر" },
+  { "es": "diciembre", "en": "December", "zh": "十二月", "ur": "دسمبر" }
+]
