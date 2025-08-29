@@ -3,5 +3,17 @@ const voclists = [
   { filename: "a1_002_verbs", title: "A1 002 Verbos (25)", level: "A1", misc: "Isaac" },
   { filename: "a1_003_adjectives", title: "A1 003 Adjetivos (25)", level: "A1", misc: "Isaac" },
   { filename: "a1_004_nouns2", title: "A1 004 Sustantivos (25)", level: "A1", misc: "Isaac" },
+  { filename: "a1_005_family", title: "A1 005 La familia (25)", level: "A1", misc: "Isaac" },
+  { filename: "a1_006_colors", title: "A1 006 Los colores (25)", level: "A1", misc: "Isaac" },
+  { filename: "a1_007_professions", title: "A1 007 Profesiones (25)", level: "A1", misc: "Isaac" },
+  { filename: "a1_008_fruits", title: "A1 008 Frutas (25)", level: "A1", misc: "Isaac" },
+  { filename: "a1_009_vegetables", title: "A1 009 Verduras (25)", level: "A1", misc: "Isaac" },
+  { filename: "a1_010_drinks", title: "A1 010 Bebidas (25)", level: "A1", misc: "Isaac" },
+  { filename: "a1_011_days_week", title: "A1 011 Días de la semana (25)", level: "A1", misc: "Isaac" },
+  { filename: "a1_012_months", title: "A1 012 Meses del año (25)", level: "A1", misc: "Isaac" },
+  { filename: "a1_013_vehicles", title: "A1 013 Medios de transporte (25)", level: "A1", misc: "Isaac" },
+  { filename: "a1_014_verbs_class", title: "A1 014 Verbos de clase (25)", level: "A1", misc: "Isaac" },
+  { filename: "a1_015_objects", title: "A1 015 Objetos (25)", level: "A1", misc: "Isaac" },
+  { filename: "a1_016_clothes", title: "A1 016 La ropa (25)", level: "A1", misc: "Isaac" },
   // más listados...
 ];
