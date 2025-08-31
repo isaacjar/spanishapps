@@ -17,7 +17,30 @@ const UI = {
   showVoclists() {
     $("section").addClass("hidden");
     $("#voclistScreen").removeClass("hidden");
-    // cargar voclists dinámicamente aquí
+  },
+
+  renderVoclists(voclists) {
+    const container = $("#voclistContainer").empty();
+    voclists.forEach(v => {
+      const btn = $("<button>").addClass("menu-btn")
+        .text(v.title)
+        .click(()=> this.loadVoclist(v.filename));
+      container.append(btn);
+    });
+  },
+
+  async loadVoclist(filename) {
+    try {
+      const url = `https://isaacjar.github.io/spanishapps/spanishvoc/voclists/${filename}`;
+      const res = await fetch(url);
+      if (!res.ok) throw new Error("No se pudo cargar el vocabulario");
+      window.currentVoclist = await res.json();
+      this.toast(`📚 Cargado set: ${filename}`);
+      this.showMenu();
+    } catch(e) {
+      this.toast("⚠️ Error cargando lista");
+      console.error(e);
+    }
   },
 
   showGame() {
