@@ -148,17 +148,17 @@ main {
   font-size: 0.9em;
 }
 
-/* 📖 Pantalla Review */
+* 📖 Pantalla Review */
 #reviewScreen {
-  flex: 1;
+  flex: 1;              /* ocupa todo el espacio libre */
   width: 100%;
-  height: 100%;              /* ocupa toda la altura disponible */
+  height: 100%;         /* ocupa toda la altura del contenedor */
+  overflow-y: auto;
   padding: 20px;
-  background: #fff9e6;       /* 🎨 amarillo vainilla */
+  margin: 0 auto;
   text-align: left;
   line-height: 1.6em;
-  font-size: 1.3em;          /* un poquito más grande */
-  overflow-y: auto;          /* scroll si se pasa */
+  font-size: 1.1em;
 }
 
 #reviewScreen b {
