@@ -60,7 +60,22 @@ const UI = {
   showStats() {
     this.showScreen("statsScreen");
     Stats.show();
+  }, 
+  showReview() {   /* ===== Review ===== */
+    if (!window.currentVoclist || !window.currentVoclist.length) {
+      this.toast("⚠️ Primero carga una lista de vocabulario");
+      return;
+    }
+    const box = document.getElementById("reviewContent");
+    box.innerHTML = "";
+    window.currentVoclist.forEach(w => {
+      const div = document.createElement("div");
+      div.innerHTML = `<b>${w.es}</b>: ${w[Settings.data.lang]}`;
+      box.appendChild(div);
+    });
+    this.showScreen("reviewScreen");
   },
+  closeReview() { this.showMenu(); },
 
   /* ===== Voclists ===== */
   renderVoclists(voclists) {
@@ -89,23 +104,6 @@ const UI = {
       this.toast("⚠️ Error cargando lista");
     }
   },
-
-  /* ===== Review ===== */
-  showReview() {
-    if (!window.currentVoclist || !window.currentVoclist.length) {
-      this.toast("⚠️ Primero carga una lista de vocabulario");
-      return;
-    }
-    const box = document.getElementById("reviewContent");
-    box.innerHTML = "";
-    window.currentVoclist.forEach(w => {
-      const div = document.createElement("div");
-      div.innerHTML = `<b>${w.es}</b>: ${w[Settings.data.lang]}`;
-      box.appendChild(div);
-    });
-    document.getElementById("reviewModal")?.classList.remove("hidden");
-  },
-  closeReview() { document.getElementById("reviewModal")?.classList.add("hidden"); },
 
   /* ===== Settings modal ===== */
   openSettings() { document.getElementById("settingsModal")?.classList.remove("hidden"); },
