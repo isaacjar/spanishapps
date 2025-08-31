@@ -1,12 +1,13 @@
 const UI = {
   currentScreen: null,
-
+  pendingAction: null,
+  
   init() {
     // Botones menú
     const byId = id => document.getElementById(id);
     byId("btnVoclists")?.addEventListener("click", () => this.showVoclists());
-    byId("btnGame1")?.addEventListener("click", () => Game.start("es2lang"));
-    byId("btnGame2")?.addEventListener("click", () => Game.start("lang2es"));
+    byId("btnGame1")?.addEventListener("click", () => this.startGame("es2lang"));
+    byId("btnGame2")?.addEventListener("click", () => this.startGame("lang2es"));
     byId("btnStats")?.addEventListener("click", () => this.showStats());
     byId("btnReview")?.addEventListener("click", () => this.showReview());
 
@@ -66,7 +67,9 @@ const UI = {
   }, 
   showReview() {   /* ===== Review ===== */
     if (!window.currentVoclist || !window.currentVoclist.length) {
-      this.toast("⚠️ Primero carga una lista de vocabulario");
+      /*this.toast("⚠️ Primero carga una lista de vocabulario");*/
+      this.pendingAction = "review";
+      this.showVoclists();
       return;
     }
     const box = document.getElementById("reviewContent");
@@ -106,9 +109,19 @@ const UI = {
       const url = `https://isaacjar.github.io/spanishapps/spanishvoc/voclists/${filename}`;
       const res = await fetch(url);
       if (!res.ok) throw new Error("No se pudo cargar el vocabulario");
-      window.currentVoclist = await res.json();
-      this.toast(`📚 Cargado set: ${filename}`);
-      this.showMenu();
+      window.currentVoclist = await res.json();      
+      /*this.toast(`📚 Cargado set: ${filename}`);
+      this.showMenu(); CAMBIO PARA PASE AUTOMATICO DE LISTA DE VOCABULARIO A JUEGO*/
+      if (this.pendingAction) {
+        if (this.pendingAction === "review") {
+          this.showReview();
+        } else if (Array.isArray(this.pendingAction) && this.pendingAction[0] === "game") {
+          Game.start(this.pendingAction[1]);
+        }
+        this.pendingAction = null;
+      } else {
+        this.showMenu(); // comportamiento normal
+      }
     } catch (e) {
       console.error(e);
       this.toast("⚠️ Error cargando lista");
@@ -148,5 +161,13 @@ const UI = {
   toastFail() {
     const msgs = ["😅 Uy, casi...","❌ No pasa nada, ¡sigue!","🙈 ¡Fallaste!","🍂 ¡Inténtalo otra vez!","🤔 No era esa...","🌧️ Mala suerte...","🐌 ¡Se escapó esa!","🙃 Ups, ¡no!","🍄 ¡Otra oportunidad!","🐤 ¡Esa no era..."];
     this.toast(msgs[Math.floor(Math.random() * msgs.length)]);
+  },
+  startGame(mode) {
+    if (!window.currentVoclist || !window.currentVoclist.length) {
+      this.pendingAction = ["game", mode];
+      this.showVoclists();
+      return;
+    }
+    Game.start(mode);
   }
 };
