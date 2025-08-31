@@ -37,3 +37,4 @@ export const voclists = [
   { filename: "a1_034_questions", title: "A1 034 Preguntas (25)", level: "A1", misc: "Isaac" },
   // más listados...
 ];
+window.voclists = voclists;
