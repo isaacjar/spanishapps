@@ -5,9 +5,7 @@
   <title>💥 VOCABoom</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22><text y=%22.9em%22 font-size=%2290%22>💥</text></svg>">
   <link rel="stylesheet" href="css/style.css">
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <!-- Knob para tiempo -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-knob/1.2.13/jquery.knob.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 </head>
 <body>
   <!-- 🔝 Barra superior -->
@@ -46,6 +44,10 @@
     <!-- Zona de juego -->
     <section id="gameScreen" class="hidden">
       <h2 id="questionWord">Palabra</h2>
+      <!-- Barra de progreso -->
+      <div class="progress-container">
+        <div id="timeBar"></div>
+      </div>
       <div id="optionsContainer"></div>
     </section>
 
@@ -71,9 +73,10 @@
         </select>
       </label>
 
-      <label>⏱️ Tiempo preguntas:
-        <input type="text" id="timeKnob">
+      <label>⏱️ Tiempo:
+        <span id="timeLabel">10 segs.</span>
       </label>
+      <input type="range" id="timeRange" min="2" max="30" step="1" value="10">
 
       <label>❓ Número de preguntas:
         <input type="range" id="numQuestions" min="5" max="50" step="5">
