@@ -164,6 +164,24 @@ main {
 #reviewScreen b {
   color: #333;
 }
+/* 📖 Review - estilo móvil/tablet */
+@media (max-width: 1023px) {
+  #reviewScreen button {
+    margin: 6px 0; 
+    padding: 8px 10px;     /* menos margen interior */
+    text-align: left;      /* texto alineado a la izquierda */
+    width: 100%;           /* ocupan todo el ancho */
+    border-radius: 8px;
+    font-size: 1em;
+    background: #f8f8f8;
+    border: 1px solid #ccc;
+    cursor: pointer;
+  }
+
+  #reviewScreen button:hover {
+    background: #eee;
+  }
+}
 
 /* 🔻 Barra de tiempo */
 .progress-container {
