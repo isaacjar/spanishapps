@@ -1,0 +1,114 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #fefcfb;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* 🔝 Barra superior */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffe0e9;
+  padding: 10px 20px;
+  font-size: 1.2em;
+}
+
+.logo {
+  font-weight: bold;
+}
+
+.topbar-right span {
+  margin-left: 15px;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+}
+
+/* 📋 Pantallas */
+main {
+  flex: 1;
+  padding: 20px;
+  text-align: center;
+}
+
+.menu-btn {
+  display: block;
+  width: 80%;
+  margin: 10px auto;
+  padding: 15px;
+  background: #cce5ff;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.menu-btn:hover {
+  transform: scale(1.05);
+}
+
+.back-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: #ffdfba;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+#questionWord {
+  font-size: 2em;
+  margin: 20px 0;
+}
+
+#optionsContainer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+#optionsContainer button {
+  padding: 15px;
+  background: #d4f0f0;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+
+#optionsContainer button.correct { background: #b5e48c; }
+#optionsContainer button.wrong { background: #f28b82; }
+
+/* ⚙️ Modal */
+.modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  width: 300px;
+  text-align: left;
+}
+
+/* 🔻 Barra inferior */
+.bottombar {
+  background: #ffe0e9;
+  text-align: center;
+  padding: 5px;
+  font-size: 0.9em;
+}
