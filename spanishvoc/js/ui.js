@@ -105,9 +105,14 @@ const UI = {
     }
   },
 
-  /* ===== Settings modal ===== */
-  openSettings() { document.getElementById("settingsModal")?.classList.remove("hidden"); },
-  closeSettings() { document.getElementById("settingsModal")?.classList.add("hidden"); Settings.save(); },
+  /* ==== Settings Modal ==== */
+  showSettings() {
+    document.getElementById("settingsModal")?.classList.remove("hidden");
+  },
+  
+  closeSettings() {
+    document.getElementById("settingsModal")?.classList.add("hidden");
+  },
 
   /* ===== Barra superior ===== */
   updateGameStatus(state) {
