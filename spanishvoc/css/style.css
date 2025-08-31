@@ -105,6 +105,29 @@ main {
   text-align: left;
 }
 
+/* ✅ Toast */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%);
+  background: #333;
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 1rem;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  opacity: 0;
+  z-index: 3000;
+  animation: toastInOut 1.8s ease both;
+}
+@keyframes toastInOut {
+  0% { opacity: 0; transform: translate(-50%, 20px); }
+  12% { opacity: 1; transform: translate(-50%, 0); }
+  88% { opacity: 1; transform: translate(-50%, 0); }
+  100% { opacity: 0; transform: translate(-50%, -10px); }
+}
+
 /* 🔻 Barra inferior */
 .bottombar {
   background: #ffe0e9;
