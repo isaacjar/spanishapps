@@ -25,6 +25,7 @@ const Settings = {
 
     this.applyUI();
     this.bindEvents();
+    this.bindModalButtons();
   },
 
   save() {
@@ -34,19 +35,33 @@ const Settings = {
     localStorage.setItem("vocaboomb_difficulty", String(this.data.difficulty));
   },
 
+  reset() {
+    this.data = {
+      lang: "en",
+      time: 10,
+      questions: 15,
+      difficulty: 1
+    };
+    this.applyUI();
+    this.save();
+  },
+
   applyUI() {
     // Idioma
     document.querySelector("#langSelect").value = this.data.lang;
-    // Tiempo (label + slider — el slider se añade en el paso 2; de momento solo label)
+
+    // Tiempo (label + slider)
     const timeRange = document.querySelector("#timeRange");
     const timeLabel = document.querySelector("#timeLabel");
     if (timeRange) timeRange.value = this.data.time;
     if (timeLabel) timeLabel.textContent = `${this.data.time} segs.`;
+
     // Preguntas
     const nq = document.querySelector("#numQuestions");
     const nqv = document.querySelector("#numQuestionsVal");
     if (nq) nq.value = this.data.questions;
     if (nqv) nqv.textContent = this.data.questions;
+
     // Dificultad
     const sw = document.querySelector("#difficultySwitch");
     const emo = document.querySelector("#difficultyEmoji");
@@ -62,7 +77,9 @@ const Settings = {
     const nqv        = document.querySelector("#numQuestionsVal");
     const sw         = document.querySelector("#difficultySwitch");
 
-    if (langSelect) langSelect.addEventListener("change", e => { this.data.lang = e.target.value; });
+    if (langSelect) langSelect.addEventListener("change", e => { 
+      this.data.lang = e.target.value; 
+    });
 
     if (timeRange) timeRange.addEventListener("input", e => {
       this.data.time = parseInt(e.target.value);
@@ -78,6 +95,29 @@ const Settings = {
       this.data.difficulty = e.target.checked ? 2 : 1;
       const emo = document.querySelector("#difficultyEmoji");
       if (emo) emo.textContent = e.target.checked ? "🥵" : "😎";
+    });
+  },
+
+  bindModalButtons() {
+    const btnSave   = document.getElementById("btnSaveSettings");
+    const btnCancel = document.getElementById("btnCancelSettings");
+    const btnReset  = document.getElementById("btnResetSettings");
+
+    if (btnSave) btnSave.addEventListener("click", () => {
+      this.save();
+      UI.closeSettings();
+      UI.toast("✅ Configuración guardada");
+    });
+
+    if (btnCancel) btnCancel.addEventListener("click", () => {
+      this.applyUI(); // restaurar interfaz con datos actuales
+      UI.closeSettings();
+    });
+
+    if (btnReset) btnReset.addEventListener("click", () => {
+      this.reset();
+      UI.closeSettings();
+      UI.toast("🔄 Configuración restablecida");
     });
   }
 };
