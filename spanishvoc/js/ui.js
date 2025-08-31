@@ -72,6 +72,12 @@ const UI = {
       this.showVoclists();
       return;
     }
+    // Título con nombre del listado
+    const title = document.querySelector("#reviewScreen h2");
+    if (title && window.currentVoclistName) {
+      title.textContent = `📖 Review – ${window.currentVoclistName}`;
+    }
+    // Contenido
     const box = document.getElementById("reviewContent");
     box.innerHTML = "";
     window.currentVoclist.forEach(w => {
@@ -110,8 +116,10 @@ const UI = {
       const res = await fetch(url);
       if (!res.ok) throw new Error("No se pudo cargar el vocabulario");
       window.currentVoclist = await res.json();      
-      /*this.toast(`📚 Cargado set: ${filename}`);
-      this.showMenu(); CAMBIO PARA PASE AUTOMATICO DE LISTA DE VOCABULARIO A JUEGO*/
+      // 🔹 Guardar también el título del listado
+      const list = voclists.find(v => v.filename === filename);
+      window.currentVoclistName = list ? list.title : filename;
+        
       if (this.pendingAction) {
         if (this.pendingAction === "review") {
           this.showReview();
