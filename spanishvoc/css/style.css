@@ -340,3 +340,14 @@ button.reset { background: #f44336; color: #fff; }
 button.reset:hover { background: #d32f2f; }
 button.save { background: #2196f3; color: #fff; }
 button.save:hover { background: #1976d2; }
+
+#reviewContent {
+  text-align: left;
+  margin: 0;        /* quitamos posibles márgenes que desplacen */
+  padding: 0 10px;  /* un poco de aire a los lados si quieres */
+}
+#reviewContent div {
+  margin-bottom: 12px;   /* espacio entre pares de palabra-traducción */
+  line-height: 1.8em;    /* altura de línea más cómoda para leer */
+}
+
