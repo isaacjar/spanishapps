@@ -28,9 +28,9 @@
     <section id="menuScreen">
       <h1>💥 VOCABoom</h1>
       <button class="menu-btn" id="btnVoclists">📚 Listas de palabras</button>
-      <button class="menu-btn" id="btnGame1">🎮 Juego 1</button>
-      <button class="menu-btn" id="btnGame2">🎮 Juego 2</button>
       <button class="menu-btn" id="btnReview">📖 Review</button>
+      <button class="menu-btn" id="btnGame1">🎮 Juego 1</button>
+      <button class="menu-btn" id="btnGame2">🎮 Juego 2</button>      
       <button class="menu-btn" id="btnStats">📊 Estadísticas</button>
     </section>
 
@@ -41,6 +41,13 @@
       <button class="back-btn" onclick="UI.showMenu()">⬅️ Volver</button>
     </section>
 
+    <!-- Review -->
+    <section id="reviewScreen" class="hidden">
+      <h2>📖 Review</h2>
+      <div id="reviewContent"></div>
+      <button class="back-btn" onclick="UI.showMenu()">⬅️ Volver</button>
+    </section>
+      
     <!-- Zona de juego -->
     <section id="gameScreen" class="hidden">
       <h2 id="questionWord">Palabra</h2>
@@ -61,7 +68,7 @@
   </main>
 
   <!-- ⚙️ Modal Settings -->
-  <div id="settingsModal" class="hidden">
+  <div id="settingsModal" class="modal hidden">
     <div class="modal-content">
       <h2>⚙️ Configuración</h2>
 
@@ -89,15 +96,6 @@
       </label>
 
       <button onclick="UI.closeSettings()">✅ Guardar</button>
-    </div>
-  </div>
-
-  <!-- Modal Review -->
-  <div id="reviewModal" class="hidden">
-    <div class="modal-content scrollable">
-      <h2>📖 Review</h2>
-      <div id="reviewContent"></div>
-      <button onclick="UI.closeReview()">❌ Cerrar</button>
     </div>
   </div>
   
