@@ -32,6 +32,7 @@
       <button class="menu-btn" id="btnVoclists">📚 Listas de palabras</button>
       <button class="menu-btn" id="btnGame1">🎮 Juego 1</button>
       <button class="menu-btn" id="btnGame2">🎮 Juego 2</button>
+      <button class="menu-btn" id="btnReview">📖 Review</button>
       <button class="menu-btn" id="btnStats">📊 Estadísticas</button>
     </section>
 
@@ -88,6 +89,15 @@
     </div>
   </div>
 
+  <!-- Modal Review -->
+  <div id="reviewModal" class="modal hidden">
+    <div class="modal-content scrollable">
+      <h2>📖 Review</h2>
+      <div id="reviewContent"></div>
+      <button onclick="UI.closeReview()">❌ Cerrar</button>
+    </div>
+  </div>
+  
   <!-- 🔻 Barra inferior -->
   <footer class="bottombar">
     💥 VOCABoom • IJH • Made for learning joy
