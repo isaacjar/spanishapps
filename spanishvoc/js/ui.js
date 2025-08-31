@@ -1,32 +1,56 @@
 const UI = {
+  currentScreen: null,
+
   init() {
-    $("#btnVoclists").on("click", ()=> this.showVoclists());
-    $("#btnGame1").on("click", ()=> Game.start("es2lang"));
-    $("#btnGame2").on("click", ()=> Game.start("lang2es"));
-    $("#btnReview").on("click", ()=> this.showReview());
-    $("#btnStats").on("click", ()=> this.showStats());
-    $("#settingsBtn").on("click", ()=> this.openSettings());
+    // Botones menú
+    const byId = id => document.getElementById(id);
+    byId("btnVoclists")?.addEventListener("click", () => this.showVoclists());
+    byId("btnGame1")?.addEventListener("click", () => Game.start("es2lang"));
+    byId("btnGame2")?.addEventListener("click", () => Game.start("lang2es"));
+    byId("btnStats")?.addEventListener("click", () => this.showStats());
+    byId("btnReview")?.addEventListener("click", () => this.showReview());
+
+    // Settings
+    document.getElementById("settingsBtn")?.addEventListener("click", () => this.openSettings());
+
+    // Pantalla inicial
+    this.showMenu();
   },
 
+  /* ===== Pantallas ===== */
+  showScreen(id) {
+    document.querySelectorAll("main > section").forEach(s => s.classList.add("hidden"));
+    const el = document.getElementById(id);
+    if (el) el.classList.remove("hidden");
+    this.currentScreen = el;
+  },
   showMenu() {
-    $("section").addClass("hidden");
-    $("#menuScreen").removeClass("hidden");
-    $("#settingsBtn").show();
-    $("#gameStatus").hide();
+    this.showScreen("menuScreen");
+    document.getElementById("settingsBtn")?.classList.remove("hidden");
+    document.getElementById("gameStatus")?.classList.add("hidden");
+  },
+  showVoclists() { this.showScreen("voclistScreen"); },
+  showGame() {
+    this.showScreen("gameScreen");
+    document.getElementById("settingsBtn")?.classList.add("hidden");
+    document.getElementById("gameStatus")?.classList.remove("hidden");
+  },
+  showStats() {
+    this.showScreen("statsScreen");
+    Stats.show();
   },
 
-  showVoclists() {
-    $("section").addClass("hidden");
-    $("#voclistScreen").removeClass("hidden");
-  },
-
+  /* ===== Voclists ===== */
   renderVoclists(voclists) {
-    const container = $("#voclistContainer").empty();
+    const cont = document.getElementById("voclistContainer");
+    if (!cont) return;
+    cont.innerHTML = "";
     voclists.forEach(v => {
-      const btn = $("<button>").addClass("menu-btn")
-        .text(v.title)
-        .click(()=> this.loadVoclist(v.filename));
-      container.append(btn);
+      const btn = document.createElement("button");
+      btn.className = "menu-btn";
+      btn.textContent = v.title;
+      btn.addEventListener("click", () => this.loadVoclist(v.filename));
+      cont.appendChild(btn);
     });
   },
 
@@ -38,64 +62,56 @@ const UI = {
       window.currentVoclist = await res.json();
       this.toast(`📚 Cargado set: ${filename}`);
       this.showMenu();
-    } catch(e) {
-      this.toast("⚠️ Error cargando lista");
+    } catch (e) {
       console.error(e);
+      this.toast("⚠️ Error cargando lista");
     }
   },
 
-  showGame() {
-    $("section").addClass("hidden");
-    $("#gameScreen").removeClass("hidden");
-    $("#settingsBtn").hide();
-    $("#gameStatus").show();
-  },
+  /* ===== Review ===== */
   showReview() {
-    if (!window.currentVoclist || window.currentVoclist.length === 0) {
+    if (!window.currentVoclist || !window.currentVoclist.length) {
       this.toast("⚠️ Primero carga una lista de vocabulario");
       return;
     }
-    const container = $("#reviewContent").empty();
-    window.currentVoclist.forEach(word => {
-      const line = $(`<div><b>${word.es}</b>: ${word[Settings.data.lang]}</div>`);
-      container.append(line);
+    const box = document.getElementById("reviewContent");
+    box.innerHTML = "";
+    window.currentVoclist.forEach(w => {
+      const div = document.createElement("div");
+      div.innerHTML = `<b>${w.es}</b>: ${w[Settings.data.lang]}`;
+      box.appendChild(div);
     });
-    $("#reviewModal").removeClass("hidden");
+    document.getElementById("reviewModal")?.classList.remove("hidden");
   },
+  closeReview() { document.getElementById("reviewModal")?.classList.add("hidden"); },
 
-  closeReview() {
-    $("#reviewModal").addClass("hidden");
-  },
-  
-  showStats() {
-    $("section").addClass("hidden");
-    $("#statsScreen").removeClass("hidden");
-    Stats.show();
-  },
+  /* ===== Settings modal ===== */
+  openSettings() { document.getElementById("settingsModal")?.classList.remove("hidden"); },
+  closeSettings() { document.getElementById("settingsModal")?.classList.add("hidden"); Settings.save(); },
 
+  /* ===== Barra superior ===== */
   updateGameStatus(state) {
-    $("#progress").text(`🌱 ${state.currentQ}/${Settings.data.questions}`);
-    $("#score").text(`🏅 ${state.score}`);
-    $("#streak").text(`🔥 ${state.streak}`);
-    $("#lives").text(`❤️ ${state.lives}`);
+    const set = (id, txt) => { const el = document.getElementById(id); if (el) el.textContent = txt; };
+    set("progress", `🌱 ${state.currentQ}/${Settings.data.questions}`);
+    set("score",    `🏅 ${state.score}`);
+    set("streak",   `🔥 ${state.streak}`);
+    set("lives",    `❤️ ${state.lives}`);
   },
 
-  openSettings() { $("#settingsModal").removeClass("hidden"); },
-  closeSettings() { $("#settingsModal").addClass("hidden"); Settings.save(); },
-
-  // ✅ Toasts
+  /* ===== Toasts ===== */
   toast(msg) {
-    const t = $("<div>").addClass("toast").text(msg).appendTo("body");
-    setTimeout(()=>t.fadeOut(500,()=>t.remove()),1500);
+    const t = document.createElement("div");
+    t.className = "toast";
+    t.textContent = msg;
+    document.body.appendChild(t);
+    setTimeout(() => t.remove(), 1900);
   },
-
   toastSuccess() {
     const msgs = ["🐼 ¡Genial!","🎉 ¡Correcto!","🌟 ¡Bien hecho!","💡 ¡Lo pillaste!","🥳 ¡Acertaste!","🐸 ¡Perfecto!","🚀 ¡Lo clavaste!","🍀 ¡De lujo!","🦄 ¡Fantástico!","🔥 ¡Imparable!"];
-    this.toast(msgs[Math.floor(Math.random()*msgs.length)]);
+    this.toast(msgs[Math.floor(Math.random() * msgs.length)]);
   },
-
   toastFail() {
     const msgs = ["😅 Uy, casi...","❌ No pasa nada, ¡sigue!","🙈 ¡Fallaste!","🍂 ¡Inténtalo otra vez!","🤔 No era esa...","🌧️ Mala suerte...","🐌 ¡Se escapó esa!","🙃 Ups, ¡no!","🍄 ¡Otra oportunidad!","🐤 ¡Esa no era..."];
-    this.toast(msgs[Math.floor(Math.random()*msgs.length)]);
+    this.toast(msgs[Math.floor(Math.random() * msgs.length)]);
   }
 };
