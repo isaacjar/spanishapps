@@ -1,4 +1,4 @@
-var voclists = [
+export const voclists = [
   { filename: "a1_001_basic", title: "A1 001 Básico (32)", level: "A1", misc: "Isaac" },
   { filename: "a1_001b_pronouns", title: "A1 001b Pronombres (12)", level: "A1", misc: "Isaac" },
   { filename: "a1_001c_basic_expressions", title: "A1 001c Expresiones (16)", level: "A1", misc: "Isaac" },
