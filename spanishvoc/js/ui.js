@@ -19,10 +19,32 @@ const UI = {
 
   /* ===== Pantallas ===== */
   showScreen(id) {
-    document.querySelectorAll("main > section").forEach(s => s.classList.add("hidden"));
-    const el = document.getElementById(id);
-    if (el) el.classList.remove("hidden");
-    this.currentScreen = el;
+    const newEl = document.getElementById(id);
+    const current = this.currentScreen;
+  
+    if (current && current !== newEl) {
+      // salida
+      gsap.to(current, {
+        opacity: 0,
+        y: 40,
+        duration: 0.25,
+        onComplete: () => {
+          current.classList.add("hidden");
+          // entrada
+          newEl.classList.remove("hidden");
+          gsap.fromTo(newEl,
+            { opacity: 0, y: -30 },
+            { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }
+          );
+          this.currentScreen = newEl;
+        }
+      });
+    } else {
+      // primera vez o mismo panel
+      newEl.classList.remove("hidden");
+      gsap.fromTo(newEl, { opacity: 0 }, { opacity: 1, duration: 0.3 });
+      this.currentScreen = newEl;
+    }
   },
   showMenu() {
     this.showScreen("menuScreen");
