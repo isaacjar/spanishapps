@@ -288,6 +288,47 @@ main {
 }
 .switch input:checked + .slider { background-color: #2196f3; }
 .switch input:checked + .slider:before { transform: translateX(22px); }
+/* 📱 Ajustes Settings en móviles */
+@media (max-width: 1023px) {
+  #settingsModal {
+    font-size: 2em; /* duplica tamaño base */
+  }
+
+  #settingsModal h2 {
+    font-size: 2.4em; /* título más grande */
+  }
+
+  .settings-list {
+    gap: 25px; /* más espacio entre opciones */
+  }
+
+  .settings-list label {
+    font-size: 1.6em;
+  }
+
+  .settings-list select {
+    font-size: 1.4em;
+    padding: 8px;       /* más cómodo al tacto */
+  }
+
+  .settings-list input[type="range"] {
+    height: 10px;       /* barra más gruesa */
+  }
+
+  .settings-list input[type="range"]::-webkit-slider-thumb {
+    width: 24px;
+    height: 24px;       /* botón más grande */
+  }
+
+  .switch {
+    transform: scale(1.4); /* hace el switch más grande */
+  }
+
+  .modal-actions button {
+    font-size: 1.6em;
+    padding: 14px;      /* botones más cómodos */
+  }
+}
 
 /* ==== Modal ==== */
 .modal-overlay {
