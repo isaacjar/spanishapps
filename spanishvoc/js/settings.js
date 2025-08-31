@@ -1,6 +1,6 @@
 const Settings = {
   data: {
-    lang: "en",    // en|zh|ur
+    lang: "en",    // en|zh|urf
     time: 10,      // 2..30 (segundos)
     questions: 15, // 5..50
     difficulty: 1  // 1=4 opciones, 2=6 opciones
@@ -33,6 +33,7 @@ const Settings = {
     localStorage.setItem("vocaboomb_time", String(this.data.time));
     localStorage.setItem("vocaboomb_questions", String(this.data.questions));
     localStorage.setItem("vocaboomb_difficulty", String(this.data.difficulty));
+    this.applyUI(); // 🔧 refresca interfaz tras guardar
   },
 
   reset() {
@@ -104,7 +105,7 @@ const Settings = {
     const btnReset  = document.getElementById("btnResetSettings");
 
     if (btnSave) btnSave.addEventListener("click", () => {
-      this.save();
+      this.save(); // guarda en localStorage y refresca UI
       UI.closeSettings();
       UI.toast("✅ Configuración guardada");
     });
