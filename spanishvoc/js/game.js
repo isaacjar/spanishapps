@@ -1,3 +1,5 @@
+let _timerId = null; // Temporizador
+
 const Game = {
   state: { currentQ: 0, score: 0, streak: 0, lives: 3, list: [], active: false },
 
@@ -52,14 +54,45 @@ const Game = {
       btn.addEventListener("click", () => this.onAnswer(text === correct, btn));
       cont.appendChild(btn);
     });
-
+    this.startTimer(Settings.data.time); // Temporizador
     UI.updateGameStatus(this.state);
   },
 
+  // FUNCION INICIA TEMPORIZADOR
+  startTimer(seconds) {
+    clearInterval(_timerId);
+    const bar = document.getElementById("timeBar");
+    let timeLeft = seconds;
+    // Reset
+    bar.style.width = "100%";
+    bar.style.backgroundColor = "#4caf50"; // verde
+  
+    _timerId = setInterval(() => {
+      timeLeft--;
+      const percent = Math.max(0, (timeLeft / seconds) * 100);
+      bar.style.width = percent + "%";
+  
+      // Colores: >50% verde, 50–20% amarillo, <20% rojo
+      if (percent <= 20) {
+        bar.style.backgroundColor = "#f44336"; // rojo
+      } else if (percent <= 50) {
+        bar.style.backgroundColor = "#ffeb3b"; // amarillo
+      } else {
+        bar.style.backgroundColor = "#4caf50"; // verde
+      }
+  
+      if (timeLeft <= 0) {
+        clearInterval(_timerId);
+        this.onTimeUp();
+      }
+    }, 1000);
+  },
+    
   onAnswer(isCorrect, btn) {
     if (!this.state.active) return; // evitar doble
     this.state.active = false;
-
+    clearInterval(_timerId);
+    
     // Feedback visual
     btn.classList.add(isCorrect ? "correct" : "wrong");
 
