@@ -72,8 +72,9 @@ main {
 
 #optionsContainer {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* mínimo 300px */
-  gap: 25px;            /* más separación entre botones */
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); /* mínimo 400px */
+  row-gap: 40px;     /* más espacio entre filas */
+  column-gap: 20px;  /* espacio entre columnas */
   justify-content: center;
 }
 #optionsContainer button {
@@ -83,9 +84,11 @@ main {
   border-radius: 12px;
   font-size: 2.5em;
   cursor: pointer;
-  min-width: 300px;
+  min-width: 400px;
   max-width: 500px;
-  margin: 0 auto; 
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 #optionsContainer button.correct { background: #b5e48c; }
 #optionsContainer button.wrong { background: #f28b82; }
@@ -139,7 +142,7 @@ main {
   height: 32px;
   background: #eee;
   border-radius: 16px;
-  margin: 10px auto 16px;
+  margin: 10px auto 40px;
   overflow: hidden;
   box-shadow: inset 0 2px 5px rgba(0,0,0,0.08);
 }
