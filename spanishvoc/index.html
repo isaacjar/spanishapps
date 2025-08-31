@@ -68,22 +68,21 @@
   </main>
 
   <!-- ⚙️ Modal Settings -->
-  <div id="settingsModal" class="modal hidden">
-    <div class="modal-content">
+  <div id="settingsModal" class="modal-overlay hidden">
+    <div class="modal-box">
       <h2>⚙️ Configuración</h2>
+      <div class="settings-list">
+        <label>Idioma:
+          <select id="langSelect">
+            <option value="en">🇬🇧 Inglés</option>
+            <option value="zh">🇨🇳 Chino</option>
+            <option value="ur">🇵🇰 Urdu</option>
+          </select>
+        </label>
 
-      <label>Idioma:
-        <select id="langSelect">
-          <option value="en">🇬🇧 Inglés</option>
-          <option value="zh">🇨🇳 Chino</option>
-          <option value="ur">🇵🇰 Urdu</option>
-        </select>
+      <label>⏱️ Tiempo: <span id="timeLabel">10 segs.</span> 
+        <input type="range" id="timeRange" min="2" max="30" step="1" value="10">
       </label>
-
-      <label>⏱️ Tiempo:
-        <span id="timeLabel">10 segs.</span>
-      </label>
-      <input type="range" id="timeRange" min="2" max="30" step="1" value="10">
 
       <label>❓ Número de preguntas:
         <input type="range" id="numQuestions" min="5" max="50" step="5">
@@ -91,11 +90,18 @@
       </label>
 
       <label>Dificultad:
-        <input type="checkbox" id="difficultySwitch">
+        <label class="switch">
+          <input type="checkbox" id="difficultySwitch">
+          <span class="slider"></span>
+        </label>
         <span id="difficultyEmoji">😎</span>
       </label>
-
-      <button onclick="UI.closeSettings()">✅ Guardar</button>
+        
+      <div class="modal-actions">
+        <button class="cancel" onclick="UI.closeSettings()">Cancelar</button>
+        <button class="reset" onclick="Settings.reset()">Reset</button>
+        <button class="save" onclick="Settings.save()">Guardar</button>
+      </div>
     </div>
   </div>
   
