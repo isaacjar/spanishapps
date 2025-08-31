@@ -155,7 +155,8 @@ main {
   height: 100%;         /* ocupa toda la altura del contenedor */
   overflow-y: auto;
   padding: 20px;
-  margin: 0 auto;
+  margin: 0;
+  box-sizing: border-box; /* 👈 incluye el padding en el ancho total */
   text-align: left;
   line-height: 1.6em;
   font-size: 1.1em;
