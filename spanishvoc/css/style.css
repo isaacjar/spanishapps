@@ -6,6 +6,8 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  font-size: 1.5rem;    
+  line-height: 2;     
 }
 
 /* 🔝 Barra superior */
@@ -15,7 +17,7 @@ body {
   align-items: center;
   background: #ffe0e9;
   padding: 10px 20px;
-  font-size: 1.2em;
+  font-size: 2em;
 }
 
 .logo {
@@ -40,25 +42,27 @@ main {
 
 .menu-btn {
   display: block;
-  width: 80%;
-  margin: 10px auto;
-  padding: 15px;
+  width: 100%;
+  max-width: 320px; /* BOTON ANCHO */ 
+  margin: 20px auto;
+  padding: 18px 20px;
   background: #cce5ff;
   border: none;
   border-radius: 12px;
-  font-size: 1.2em;
+  font-size: 2em;
   cursor: pointer;
   transition: transform 0.2s;
 }
 .menu-btn:hover { transform: scale(1.05); }
 
 .back-btn {
-  margin-top: 20px;
-  padding: 10px 20px;
+  margin-top: 30px;
+  padding: 12px 24px;
   background: #ffdfba;
   border: none;
   border-radius: 10px;
   cursor: pointer;
+  font-size: 1.5rem;
 }
 
 #questionWord {
@@ -72,12 +76,14 @@ main {
   gap: 15px;
 }
 #optionsContainer button {
-  padding: 15px;
+  padding: 20px;
   background: #d4f0f0;
   border: none;
   border-radius: 12px;
-  font-size: 1.2em;
+  font-size: 2em;
   cursor: pointer;
+  max-width: 500px;
+  margin: 0 auto; 
 }
 #optionsContainer button.correct { background: #b5e48c; }
 #optionsContainer button.wrong { background: #f28b82; }
@@ -228,10 +234,15 @@ main {
 }
 .modal-box {
   background: #fff;
-  border-radius: 12px;
-  padding: 20px;
+  margin: 0 auto;          /* asegura centrado */
+  left: auto;              /* resetea si algún estilo previo lo empuja */
+  right: auto;
+  position: relative;
+  transform: none;  /* neutraliza desplazamientos previos */
+  border-radius: 16px;
+  padding: 30px;
   width: 90%;
-  max-width: 400px;
+  max-width: 800px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.2);
   animation: fadeIn 0.3s ease-out;
 }
