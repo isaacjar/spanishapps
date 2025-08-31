@@ -263,11 +263,7 @@ main {
 }
 .modal-box {
   background: #fff;
-  margin: 0 auto;          /* asegura centrado */
-  left: auto;              /* resetea si algún estilo previo lo empuja */
-  right: auto;
   position: relative;
-  transform: none;  /* neutraliza desplazamientos previos */
   border-radius: 16px;
   padding: 30px;
   width: 90%;
