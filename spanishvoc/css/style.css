@@ -141,15 +141,17 @@ main {
   overflow-y: auto;
 }
 
-/* Pantalla de lista de vocabulario completa */
-#reviewContent {
-  margin-top: 10px;
+/* 📖 Pantalla Review */
+#reviewScreen {
+  max-height: 70vh;
+  overflow-y: auto;
+  margin: 0 auto;
+  text-align: left;
   line-height: 1.6em;
   font-size: 1.1em;
-  text-align: left;
 }
 
-#reviewContent b {
+#reviewScreen b {
   color: #333;
 }
 
@@ -169,4 +171,171 @@ main {
   width: 100%;
   background: #4caf50; /* verde inicial */
   transition: width 1s linear, background-color 0.2s linear;
+}
+
+/* ⚙️ Settings styles */
+.settings-list label {
+  display: block;       /* cada label ocupa una línea */
+  margin: 12px 0;       /* espacio entre opciones */
+}
+
+.settings-list input,
+.settings-list select {
+  margin-top: 4px;      /* separa un poquito del texto del label */
+  display: block;       /* cada input debajo de su texto */
+}
+
+/* ==== Sliders ==== */
+.settings-list input[type="range"] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(90deg, #4cafef, #2196f3);
+  border-radius: 5px;
+  outline: none;
+  transition: background 0.3s;
+}
+
+.settings-list input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  background: #fff;
+  border: 2px solid #2196f3;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.settings-list input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+/* ==== Switch estilo iOS ==== */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 28px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 28px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 22px;
+  width: 22px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+.switch input:checked + .slider {
+  background-color: #2196f3;
+}
+
+.switch input:checked + .slider:before {
+  transform: translateX(22px);
+}
+
+/* ==== Overlay del modal ==== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+/* ==== Caja del modal ==== */
+.modal-box {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* ==== Animación ==== */
+@keyframes fadeIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* ==== Título ==== */
+.modal-box h2 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 1.4em;
+  text-align: center;
+  color: #333;
+}
+
+/* ==== Lista de configuraciones ==== */
+.settings-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* ==== Botones ==== */
+.modal-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.modal-actions button {
+  flex: 1;
+  margin: 0 5px;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+button.cancel {
+  background: #eee;
+  color: #333;
+}
+button.cancel:hover {
+  background: #ddd;
+}
+
+button.reset {
+  background: #f44336;
+  color: #fff;
+}
+button.reset:hover {
+  background: #d32f2f;
+}
+
+button.save {
+  background: #2196f3;
+  color: #fff;
+}
+button.save:hover {
+  background: #1976d2;
 }
