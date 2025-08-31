@@ -101,7 +101,7 @@ const Settings = {
 
   bindModalButtons() {
     const btnSave   = document.getElementById("btnSaveSettings");
-    const btnCancel = document.getElementById("btnCancelSettings");
+    //const btnCancel = document.getElementById("btnCancelSettings");
     const btnReset  = document.getElementById("btnResetSettings");
 
     if (btnSave) btnSave.addEventListener("click", () => {
@@ -110,10 +110,10 @@ const Settings = {
       UI.toast("✅ Configuración guardada");
     });
 
-    if (btnCancel) btnCancel.addEventListener("click", () => {
+    /*if (btnCancel) btnCancel.addEventListener("click", () => {
       this.applyUI(); // restaurar interfaz con datos actuales
       UI.closeSettings();
-    });
+    });*/
 
     if (btnReset) btnReset.addEventListener("click", () => {
       this.reset();
