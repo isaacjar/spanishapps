@@ -1,56 +1,89 @@
 const Game = {
-  state: { currentQ:0, score:0, streak:0, lives:3, list:[] },
+  state: { currentQ: 0, score: 0, streak: 0, lives: 3, list: [], active: false },
 
-  init() { },
+  init() {},
 
-  start(mode="es2lang") {
-    this.state = { currentQ:0, score:0, streak:0, lives:3, list: window.currentVoclist||[] };
+  start(mode = "es2lang") {
+    if (!window.currentVoclist || !window.currentVoclist.length) {
+      UI.toast("📚 Elige primero una lista de palabras");
+      UI.showVoclists();
+      return;
+    }
+    this.mode = mode;
+    this.state = { currentQ: 0, score: 0, streak: 0, lives: 3, list: window.currentVoclist.slice(), active: false };
     UI.showGame();
-    this.nextQuestion(mode);
+    this.nextQuestion();
   },
 
-  nextQuestion(mode) {
+  nextQuestion() {
     if (this.state.currentQ >= Settings.data.questions || this.state.lives <= 0) {
       UI.toast("🎮 Game Over");
       UI.showMenu();
       return;
     }
+
     this.state.currentQ++;
+    this.state.active = true;
 
-    const q = this.state.list[Math.floor(Math.random()*this.state.list.length)];
-    const correct = (mode==="es2lang") ? q[Settings.data.lang] : q.es;
-    const questionWord = (mode==="es2lang") ? q.es : q[Settings.data.lang];
+    const q = this.state.list[Math.floor(Math.random() * this.state.list.length)];
+    const ask = (this.mode === "es2lang") ? q.es : q[Settings.data.lang];
+    const correct = (this.mode === "es2lang") ? q[Settings.data.lang] : q.es;
 
-    $("#questionWord").text(questionWord);
+    // Palabra a preguntar
+    document.getElementById("questionWord").textContent = ask;
 
-    let opts = [correct];
-    while (opts.length < (Settings.data.difficulty===2?6:4)) {
-      const rand = this.state.list[Math.floor(Math.random()*this.state.list.length)];
-      const val = (mode==="es2lang")? rand[Settings.data.lang] : rand.es;
-      if (!opts.includes(val)) opts.push(val);
+    // Opciones
+    const optsNeeded = (Settings.data.difficulty === 2) ? 6 : 4;
+    let options = new Set([correct]);
+    while (options.size < optsNeeded) {
+      const r = this.state.list[Math.floor(Math.random() * this.state.list.length)];
+      const val = (this.mode === "es2lang") ? r[Settings.data.lang] : r.es;
+      if (val) options.add(val);
     }
-    opts = opts.sort(()=>Math.random()-0.5);
+    const optionList = Array.from(options).sort(() => Math.random() - 0.5);
 
-    const container = $("#optionsContainer").empty();
-    opts.forEach(o=>{
-      const btn = $("<button>").text(o).click(()=>{
-        if (o===correct) {
-          this.state.score++;
-          this.state.streak++;
-          UI.toastSuccess();
-          btn.addClass("correct");
-        } else {
-          this.state.lives--;
-          this.state.streak=0;
-          UI.toastFail();
-          btn.addClass("wrong");
-        }
-        UI.updateGameStatus(this.state);
-        setTimeout(()=>this.nextQuestion(mode),800);
-      });
-      container.append(btn);
+    const cont = document.getElementById("optionsContainer");
+    cont.innerHTML = "";
+    cont.classList.toggle("six", optsNeeded === 6); // útil si quieres estilos distintos
+
+    optionList.forEach(text => {
+      const btn = document.createElement("button");
+      btn.textContent = text;
+      btn.addEventListener("click", () => this.onAnswer(text === correct, btn));
+      cont.appendChild(btn);
     });
 
     UI.updateGameStatus(this.state);
+  },
+
+  onAnswer(isCorrect, btn) {
+    if (!this.state.active) return; // evitar doble
+    this.state.active = false;
+
+    // Feedback visual
+    btn.classList.add(isCorrect ? "correct" : "wrong");
+
+    // Puntuar + estadísticas
+    if (isCorrect) {
+      this.state.score++;
+      this.state.streak++;
+      UI.toastSuccess();
+      Stats.add(true);
+    } else {
+      this.state.lives--;
+      this.state.streak = 0;
+      UI.toastFail();
+      Stats.add(false);
+    }
+    UI.updateGameStatus(this.state);
+
+    // Siguiente pregunta tras pequeño delay
+    setTimeout(() => this.nextQuestion(), 700);
+  },
+
+  // Se usará en el paso 2 para la barra de tiempo:
+  onTimeUp() {
+    if (!this.state.active) return;
+    this.onAnswer(false, document.createElement("div")); // marca fallo sin botón
   }
 };
