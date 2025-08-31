@@ -154,6 +154,8 @@ main {
   text-align: center;
   padding: 5px;
   font-size: 0.9em;
+  position: relative;  /* se queda en el flujo normal */
+  z-index: 1;          /* bajo, para que el modal lo tape */
 }
 
 * 📖 Pantalla Review */
