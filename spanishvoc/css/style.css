@@ -44,12 +44,12 @@ main {
   display: block;
   width: 100%;
   max-width: 800px; /* BOTON ANCHO */ 
-  margin: 20px auto;
-  padding: 18px 20px;
+  margin: 30px auto;
+  padding: 25px;
   background: #cce5ff;
   border: none;
   border-radius: 12px;
-  font-size: 2em;
+  font-size: 1.8em;
   cursor: pointer;
   transition: transform 0.2s;
 }
