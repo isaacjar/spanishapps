@@ -13,6 +13,9 @@ const UI = {
     // Settings
     document.getElementById("settingsBtn")?.addEventListener("click", () => this.openSettings());
 
+    // 🔥 Logo vuelve al menú principal
+    document.querySelector(".logo")?.addEventListener("click", () => this.showMenu());
+    
     // Pantalla inicial
     this.showMenu();
   },
