@@ -112,3 +112,19 @@ main {
   padding: 5px;
   font-size: 0.9em;
 }
+
+.modal-content.scrollable {
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+#reviewContent {
+  margin-top: 10px;
+  line-height: 1.6em;
+  font-size: 1.1em;
+  text-align: left;
+}
+
+#reviewContent b {
+  color: #333;
+}
