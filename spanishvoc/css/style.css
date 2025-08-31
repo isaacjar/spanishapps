@@ -20,7 +20,7 @@ body {
   font-size: 1.8em;
 }
 /* Topbar más baja en pantallas grandes */
-@media (min-width: 768px) {
+@media (min-width: 1023px) {
   .topbar {
     padding: 5px 20px;   /* la mitad de alto que en móviles */
     font-size: 1em;      /* opcional: también un poco más pequeña la letra */
@@ -88,7 +88,7 @@ main {
 }
 
 #questionWord {
-  font-size: 4em;
+  font-size: clamp(1.2em, 5vw, 2.5em);
   margin: 40px 0;
 }
 
