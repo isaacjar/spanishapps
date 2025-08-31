@@ -356,24 +356,24 @@ button.save:hover { background: #1976d2; }
 
 /* 📊 Pantalla Estadísticas */
 #statsScreen {
-  font-size: 2em;        /* duplica el tamaño base del texto */
-  line-height: 1.8em;    /* mejora la legibilidad */
+  font-size: 1em;        /* duplica el tamaño base del texto */
+  line-height: 1.5em;    /* mejora la legibilidad */
   padding: 20px;         /* más espacio alrededor */
 }
 
 #statsScreen h2 {
-  font-size: 2.4em;      /* título más destacado */
+  font-size: 1.5em;      /* título más destacado */
   margin-bottom: 20px;
 }
 
 #statsScreen p,
 #statsScreen div,
 #statsScreen span {
-  font-size: 2em;        /* asegura que los párrafos, divs y spans también crezcan */
+  font-size: 1em;        /* asegura que los párrafos, divs y spans también crezcan */
 }
 
 #statsScreen button {
-  font-size: 1.8em;
+  font-size: 1.5em;
   padding: 20px 30px;
   margin-top: 20px;
 }
