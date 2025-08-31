@@ -87,24 +87,6 @@ main {
 #optionsContainer button.correct { background: #b5e48c; }
 #optionsContainer button.wrong { background: #f28b82; }
 
-/* ⚙️ Modal */
-.modal {
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.modal-content {
-  background: #fff;
-  padding: 20px;
-  border-radius: 15px;
-  width: 300px;
-  text-align: left;
-}
-
 /* ✅ Toast */
 .toast {
   position: fixed;
