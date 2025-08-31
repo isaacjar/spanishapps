@@ -151,7 +151,7 @@ main {
 .settings-list label {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start; /* alineados a la izquierda */
   gap: 10px;
 }
 .settings-list select,
