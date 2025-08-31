@@ -63,8 +63,7 @@ main {
 .menu-btn:hover { transform: scale(1.05); }
 /* 🖥️ Ajustes solo en pantallas grandes */
 @media (min-width: 1024px) {
-  .menu-btn,
-  #optionsContainer button {
+  .menu-btn {
     max-width: 700px;   /* no crecen más de esto */
     font-size: 1em;   /* texto más razonable */
     padding: 16px;      /* altura equilibrada */
@@ -72,10 +71,7 @@ main {
   .menu-btn {
     margin: 6px auto;   /* menos espacio vertical entre botones */
   }
-
-  #optionsContainer {
-    gap: 10px;          /* menos separación entre botones de opciones */
-  }
+  
 }
 .back-btn {
   margin-top: 30px;
@@ -91,13 +87,22 @@ main {
   font-size: clamp(1.2em, 5vw, 2.5em);
   margin: 40px 0;
 }
-
+/* 📱 Móviles y tablets */
 #optionsContainer {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); /* mínimo 400px */
-  row-gap: 40px;     /* más espacio entre filas */
-  column-gap: 20px;  /* espacio entre columnas */
-  justify-content: center;
+  grid-template-columns: repeat(2, 1fr); /* siempre 2 columnas */
+  gap: 20px;  /* separación más grande en móviles */
+}
+
+/* 🖥️ Pantallas grandes */
+@media (min-width: 1024px) {
+  #optionsContainer {
+    display: grid;
+    grid-template-rows: repeat(2, 1fr); /* siempre 2 filas */
+    grid-auto-flow: column; /* rellena por columnas */
+    gap: 10px;  /* menos separación */
+    justify-content: center;
+  }
 }
 #optionsContainer button {
   padding: 25px;
