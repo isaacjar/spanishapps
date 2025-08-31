@@ -76,7 +76,14 @@ const UI = {
     this.showScreen("reviewScreen");
   },
   closeReview() { this.showMenu(); },
-
+  /* ===== Settings ===== */
+  openSettings() {
+    document.getElementById("settingsModal")?.classList.remove("hidden");
+  },
+  closeSettings() {
+    document.getElementById("settingsModal")?.classList.add("hidden");
+  },
+  
   /* ===== Voclists ===== */
   renderVoclists(voclists) {
     const cont = document.getElementById("voclistContainer");
