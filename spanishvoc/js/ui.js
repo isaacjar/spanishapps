@@ -3,6 +3,7 @@ const UI = {
     $("#btnVoclists").on("click", ()=> this.showVoclists());
     $("#btnGame1").on("click", ()=> Game.start("es2lang"));
     $("#btnGame2").on("click", ()=> Game.start("lang2es"));
+    $("#btnReview").on("click", ()=> this.showReview());
     $("#btnStats").on("click", ()=> this.showStats());
     $("#settingsBtn").on("click", ()=> this.openSettings());
   },
@@ -49,7 +50,23 @@ const UI = {
     $("#settingsBtn").hide();
     $("#gameStatus").show();
   },
+  showReview() {
+    if (!window.currentVoclist || window.currentVoclist.length === 0) {
+      this.toast("⚠️ Primero carga una lista de vocabulario");
+      return;
+    }
+    const container = $("#reviewContent").empty();
+    window.currentVoclist.forEach(word => {
+      const line = $(`<div><b>${word.es}</b>: ${word[Settings.data.lang]}</div>`);
+      container.append(line);
+    });
+    $("#reviewModal").removeClass("hidden");
+  },
 
+  closeReview() {
+    $("#reviewModal").addClass("hidden");
+  },
+  
   showStats() {
     $("section").addClass("hidden");
     $("#statsScreen").removeClass("hidden");
