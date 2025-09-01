@@ -1,4 +1,3 @@
-import { voclists } from "./index.js";
 import { Game } from "./game.js";
 import { Stats } from "./stats.js";
 import { Settings } from "./settings.js";
