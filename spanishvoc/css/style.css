@@ -211,9 +211,10 @@ main {
 /* Opciones */
 #optionsContainer {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 25px;
+  grid-template-columns: 1fr;   /* móvil: una columna */
+  gap: 30px;                    /* más espacio entre botones */
 }
+
 #optionsContainer button {
   padding: 25px;
   background: #d4f0f0;
@@ -221,22 +222,22 @@ main {
   border-radius: 12px;
   font-size: 2em;
   cursor: pointer;
-  min-width: 200px;
   width: 100%;
   margin: 0 auto;
   box-sizing: border-box;
 }
+
 #optionsContainer button.correct { background: #b5e48c; }
 #optionsContainer button.wrong { background: #f28b82; }
 
 /* 🖥️ Pantallas grandes */
 @media (min-width: 1024px) {
   #optionsContainer {
-    grid-template-rows: repeat(2, 1fr);
-    grid-auto-flow: column;
-    gap: 10px;
-    justify-content: center;
+    grid-template-columns: repeat(2, 1fr); /* dos columnas */
+    gap: 20px;
+    justify-items: center;                 /* centra cada botón */
   }
+
   #optionsContainer button {
     font-size: 1.2em;
     padding: 18px;
