@@ -192,6 +192,21 @@ main {
   font-size: clamp(1em, 5vw, 2.5em);
   margin: 35px 0;
 }
+/* 📱 Móviles */
+@media (max-width: 768px) {
+  #questionWord {
+    font-size: 2.6em;   /* 🔥 un poco más grande */
+    margin: 30px 0;     /* opcional: menos aire que en escritorio */
+  }
+}
+
+/* 🖥️ Pantallas grandes */
+@media (min-width: 1200px) {
+  #questionWord {
+    font-size: 1.1em;   /* 🔥 un poco más pequeño */
+    margin: 15px 0;     /* 🔥 menos espacio arriba/abajo */
+  }
+}   
 
 /* Opciones */
 #optionsContainer {
