@@ -150,8 +150,8 @@ main {
 
 /* 🔻 Barra inferior */
 .bottombar {
-  position: fixed;
-  bottom: 10px;   /* margen inferior */
+  position: relative; /* se queda en flujo normal */
+  bottom: 0;   /* margen inferior */
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
