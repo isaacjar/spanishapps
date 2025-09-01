@@ -4,7 +4,8 @@ import { UI } from "./ui.js";
 import { Game } from "./game.js";
 import { Stats } from "./stats.js";
 import { Settings } from "./settings.js";
-import { voclists } from "https://isaacjar.github.io/spanishapps/spanishvoc/voclists/index.js";
+import("../voclists/index.js");
+//import { voclists } from "https://isaacjar.github.io/spanishapps/spanishvoc/voclists/index.js";
 
 // Exponer para depuración opcional en consola
 window.Game = Game;
