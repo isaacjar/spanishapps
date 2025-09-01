@@ -118,7 +118,7 @@ const Game = {
   onTimeUp() {
     if (!this.state.active) return;
     this.onAnswer(false, document.createElement("div")); // marca fallo sin botón
-  }
+  },
 
   // PARA EL JUEGO 🛑
   stop() {
