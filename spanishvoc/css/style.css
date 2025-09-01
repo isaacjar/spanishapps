@@ -114,6 +114,7 @@ main {
   #voclistScreen button {
     width: 80%;              /* relativo al contenedor */
     min-width: 600px;        /* ✅ nunca menos de 600px */
+    max-width: 900px;
     text-align: center;
     font-size: 1.2em;
     margin: 10px auto;
@@ -433,5 +434,5 @@ button.save { background: #2196f3; color: #fff; }
 button.save:hover { background: #1976d2; }
 
 /* Ajustes extra */
-#difficultyEmoji { margin-right: 20px; }
+#difficultyEmoji { margin-right: 40px; }
 .settings-list select option { font-size: 0.8em; }
