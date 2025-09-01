@@ -395,7 +395,12 @@ button.save:hover { background: #1976d2; }
   margin-bottom: 12px;   /* espacio entre pares de palabra-traducción */
   line-height: 1.8em;    /* altura de línea más cómoda para leer */
 }
-
+@media (min-width: 1024px) {
+  #reviewContent div {
+    margin-bottom: 6px;   /* menos separación entre ítems */
+    line-height: 1.3em;   /* más compacto que el 1.6em */
+  }
+}
 /* 📊 Pantalla Estadísticas */
 #statsScreen {
   font-size: 1.5em;        /* duplica el tamaño base del texto */
