@@ -311,7 +311,8 @@ main {
   }
 
   .settings-list label {
-    font-size: 1.1em;
+    font-size: 1.5em;
+    margin-bottom: 18px;   /* 🔥 espacio extra bajo cada ítem */
   }
 
   .settings-list select {
