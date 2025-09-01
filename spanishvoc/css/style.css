@@ -259,8 +259,8 @@ main {
 .switch {
   position: relative;
   display: inline-block;
-  width: 50px;
-  height: 28px;
+  width: 60px;
+  height: 34px;
 }
 .switch input {
   opacity: 0;
@@ -273,29 +273,30 @@ main {
   inset: 0;
   background-color: #ccc;
   transition: 0.4s;
-  border-radius: 28px;
+  border-radius: 34px;
 }
 .slider:before {
   position: absolute;
   content: "";
-  height: 22px;
-  width: 22px;
-  left: 3px;
-  bottom: 3px;
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
   background-color: white;
   border-radius: 50%;
   transition: 0.4s;
 }
 .switch input:checked + .slider { background-color: #2196f3; }
-.switch input:checked + .slider:before { transform: translateX(22px); }
+.switch input:checked + .slider:before { transform: translateX(26px); }
+
 /* 📱 Ajustes Settings en móviles */
 @media (max-width: 1023px) {
   #settingsModal {
-    font-size: 2em; /* duplica tamaño base */
+    font-size: 1.2em; /* duplica tamaño base */
   }
 
   #settingsModal h2 {
-    font-size: 2.4em; /* título más grande */
+    font-size: 1.8em; /* título más grande */
   }
 
   .settings-list {
@@ -303,29 +304,29 @@ main {
   }
 
   .settings-list label {
-    font-size: 1.6em;
+    font-size: 1.1em;
   }
 
   .settings-list select {
-    font-size: 1.4em;
+    font-size: 1.2em;
     padding: 8px;       /* más cómodo al tacto */
   }
 
   .settings-list input[type="range"] {
-    height: 10px;       /* barra más gruesa */
+    height: 15px;       /* barra más gruesa */
   }
 
   .settings-list input[type="range"]::-webkit-slider-thumb {
-    width: 24px;
-    height: 24px;       /* botón más grande */
+    width: 48px;
+    height: 48px;       /* botón más grande */
   }
 
   .switch {
-    transform: scale(1.4); /* hace el switch más grande */
+    transform: scale(1.8); /* hace el switch más grande */
   }
 
   .modal-actions button {
-    font-size: 1.6em;
+    font-size: 1em;
     padding: 14px;      /* botones más cómodos */
   }
 }
