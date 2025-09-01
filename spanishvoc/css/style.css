@@ -410,35 +410,45 @@ button.save:hover { background: #1976d2; }
 }
 /* 📊 Pantalla Estadísticas */
 #statsScreen {
-  font-size: 1.5em;        /* duplica el tamaño base del texto */
-  line-height: 1.6em;    /* mejora la legibilidad */
+  font-size: 10em;        /* duplica el tamaño base del texto */
+  line-height: 1.5em;    /* mejora la legibilidad */
   padding: 30px;         /* más espacio alrededor */
 }
 
 #statsScreen h2 {
-  font-size: 2.2em;      /* título más destacado */
-  margin-bottom: 30px;
+  font-size: 1.5em;      /* título más destacado */
+  margin-bottom: 50px;
 }
 
 #statsScreen p,
 #statsScreen div,
 #statsScreen span {
-  font-size: 1.3em;        /* asegura que los párrafos, divs y spans también crezcan */
+  font-size: 1em;        /* asegura que los párrafos, divs y spans también crezcan */
   margin-bottom: 16px;   /* 🔥 más espacio vertical entre líneas */
   display: block;        /* asegura que ocupan una línea completa */
 }
 
+/* Estilo base: móviles → botones apilados */
 #statsScreen button {
   font-size: 1.6em;
   padding: 22px 34px;
-  margin-top: 20px;
-  margin-right: 12px;   /* 👉 separación horizontal */
-  margin-bottom: 12px;  /* 👉 separación vertical */
-  display: block;        /* cada botón ocupa su línea */
-  width: 100%;           /* que todos tengan mismo ancho */
-  max-width: 400px;      /* límite para que no se estiren demasiado */
-  margin-left: auto;     /* centrado horizontal */
+  margin: 10px 0;          /* separación vertical en móviles */
+  display: block;          /* en columna */
+  width: 100%;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;      /* centrado */
   border-radius: 10px;
+}
+
+/* 🖥️ Pantallas grandes */
+@media (min-width: 1024px) {
+  #statsScreen button {
+    display: inline-block;   /* en fila */
+    width: auto;             /* ancho natural */
+    margin: 0 12px 20px 0;   /* separación horizontal + vertical */
+    vertical-align: middle;  /* alineación más limpia */
+  }
 }
 
 /* 📚 VoclistScreen en móviles */
