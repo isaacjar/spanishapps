@@ -1,6 +1,6 @@
 let _timerId = null; // Temporizador
 
-const Game = {
+export const Game = {
   state: { currentQ: 0, score: 0, streak: 0, lives: 3, list: [], active: false },
 
   init() {},
