@@ -91,13 +91,26 @@ main {
   margin: 35px 0;
 }
 
+/* BOTONES DE RESPUESTA */
 /* 📱 Móviles y tablets */
 #optionsContainer {
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* siempre 2 columnas */
-  gap: 20px;  /* separación más grande en móviles */
+  gap: 25px;  /* separación más grande en móviles */
 }
 
+#optionsContainer button {  /* MOVILES */ 
+  padding: 25px;
+  background: #d4f0f0;
+  border: none;
+  border-radius: 12px;
+  font-size: 2em;
+  cursor: pointer;
+  min-width: 200px;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
 /* 🖥️ Pantallas grandes */
 @media (min-width: 1024px) {
   #optionsContainer {
@@ -107,19 +120,12 @@ main {
     gap: 10px;  /* menos separación */
     justify-content: center;
   }
-}
-#optionsContainer button {
-  padding: 25px;
-  background: #d4f0f0;
-  border: none;
-  border-radius: 12px;
-  font-size: 1.8em;
-  cursor: pointer;
-  min-width: 400px;
-  max-width: 500px;
-  width: 100%;
-  margin: 0 auto;
-  box-sizing: border-box;
+  #optionsContainer button {
+    font-size: 1.2em;   /* más pequeño en pantallas grandes */
+    padding: 18px;
+    min-width: 300px;
+    max-width: 400px;
+  }
 }
 #optionsContainer button.correct { background: #b5e48c; }
 #optionsContainer button.wrong { background: #f28b82; }
