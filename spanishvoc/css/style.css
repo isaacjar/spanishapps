@@ -398,26 +398,32 @@ button.save:hover { background: #1976d2; }
 
 /* 📊 Pantalla Estadísticas */
 #statsScreen {
-  font-size: 1em;        /* duplica el tamaño base del texto */
-  line-height: 1.5em;    /* mejora la legibilidad */
-  padding: 20px;         /* más espacio alrededor */
+  font-size: 1.5em;        /* duplica el tamaño base del texto */
+  line-height: 1.6em;    /* mejora la legibilidad */
+  padding: 30px;         /* más espacio alrededor */
 }
 
 #statsScreen h2 {
-  font-size: 1.5em;      /* título más destacado */
-  margin-bottom: 20px;
+  font-size: 2.2em;      /* título más destacado */
+  margin-bottom: 30px;
 }
 
 #statsScreen p,
 #statsScreen div,
 #statsScreen span {
-  font-size: 1em;        /* asegura que los párrafos, divs y spans también crezcan */
+  font-size: 1.3em;        /* asegura que los párrafos, divs y spans también crezcan */
 }
 
 #statsScreen button {
-  font-size: 1.5em;
-  padding: 20px 30px;
-  margin-top: 20px;
+  font-size: 1.6em;
+  padding: 22px 34px;
+  margin: 12px 0;        /* separación arriba y abajo entre botones */
+  display: block;        /* cada botón ocupa su línea */
+  width: 100%;           /* que todos tengan mismo ancho */
+  max-width: 400px;      /* límite para que no se estiren demasiado */
+  margin-left: auto;     /* centrado horizontal */
+  margin-right: auto;
+  border-radius: 10px;
 }
 
 /* 📚 VoclistScreen en móviles */
