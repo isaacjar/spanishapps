@@ -73,9 +73,9 @@ const UI = {
       return;
     }
     // Título con nombre del listado
-    const title = document.querySelector("#reviewScreen h2");
+    const title = document.getElementById("reviewTitle");
     if (title && window.currentVoclistName) {
-      title.textContent = `📖 Review – ${window.currentVoclistName}`;
+      title.textContent = `📖 ${window.currentVoclistName}`;
     }
     // Contenido
     const box = document.getElementById("reviewContent");
