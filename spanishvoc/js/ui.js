@@ -1,6 +1,6 @@
 import { voclists } from "./index.js";
 
-const UI = {
+export const UI = {
   currentScreen: null,
   pendingAction: null,
   
