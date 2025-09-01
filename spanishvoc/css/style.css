@@ -308,7 +308,7 @@ main {
 /* 🎚️ Sliders */
 .settings-list input[type="range"] {
   -webkit-appearance: none;
-  height: 6px;
+  height: 8px;
   background: linear-gradient(90deg, #4cafef, #2196f3);
   border-radius: 5px;
   outline: none;
@@ -328,6 +328,19 @@ main {
 
 .settings-list input[type="range"]::-webkit-slider-thumb:hover {
   transform: scale(1.2);
+}
+/* 🖥️ Pantallas grandes */
+@media (min-width: 1024px) {
+  .settings-list select {
+    font-size: 1.5em;   /* 🔥 un poco más grande en escritorio */
+  }
+}
+/* 📱 Móviles */
+@media (max-width: 768px) {
+  .settings-list select {
+    font-size: 1.2em;   /* texto un poco más grande en móviles */
+    padding: 10px;      /* opcional: más aire para tocarlo mejor */
+  }
 }
 
 /* Switch estilo iOS */
