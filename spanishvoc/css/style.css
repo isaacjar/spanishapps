@@ -156,16 +156,17 @@ main {
 }
 
 /* 🔻 Barra inferior */
+/* 🔻 Barra inferior fija */
 .bottombar {
-  position: relative; /* se queda en flujo normal */
-  bottom: 0;   /* margen inferior */
-  left: 50%;
-  transform: translateX(-50%);
+  position: fixed;
+  bottom: 0;
+  left: 0;
   width: 100%;
+  background: #ffe0e9;
   text-align: center;
-  font-size: 0.85rem;
-  color: var(--text-muted, #555);
-  pointer-events: none; /* opcional: evita que tape botones si están debajo */
+  padding: 8px;
+  font-size: 0.9em;
+  z-index: 1000;   /* debajo del modal (que suele estar >2000) */
 }
 
 * 📖 Pantalla Review */
