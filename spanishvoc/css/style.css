@@ -333,8 +333,8 @@ main {
   }
 
   .modal-actions button {
-    font-size: 2em;
-    padding: 14px;      /* botones más cómodos */
+    font-size: 1.7em;
+    padding: 16px;      /* botones más cómodos */
   }
 }
 
