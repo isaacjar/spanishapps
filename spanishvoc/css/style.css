@@ -1,3 +1,6 @@
+/* ==============================
+   🌍 BASE GLOBAL
+============================== */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -6,52 +9,69 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  font-size: 1.5rem;    
-  line-height: 2;     
-}
-
-/* 🔝 Barra superior */
-.topbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #ffe0e9;
-  padding: 20px 20px;
-  font-size: 1.8em;
-}
-/* Topbar más baja en pantallas grandes */
-@media (min-width: 1023px) {
-  .topbar {
-    padding: 5px 20px;   /* la mitad de alto que en móviles */
-    font-size: 1em;      /* opcional: también un poco más pequeña la letra */
-  }
-}
-
-.logo {
-  font-weight: bold;
-}
-
-.topbar-right span {
-  margin-left: 15px;
-  cursor: pointer;
+  font-size: 1.5rem;
+  line-height: 2;
 }
 
 .hidden {
   display: none !important;
 }
 
-/* 📋 Pantallas */
+/* ==============================
+   🔝 TOPBAR (barra superior)
+============================== */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffe0e9;
+  padding: 20px;
+  font-size: 1.8em;
+}
+.logo {
+  font-weight: bold;
+}
+.topbar-right span {
+  margin-left: 15px;
+  cursor: pointer;
+}
+
+/* 🖥️ Pantallas grandes */
+@media (min-width: 1024px) {
+  .topbar {
+    padding: 5px 20px;
+    font-size: 1em;
+  }
+}
+
+/* ==============================
+   🔻 FOOTER
+============================== */
+.bottombar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #ffe0e9;
+  text-align: center;
+  padding: 8px;
+  font-size: 0.9em;
+  z-index: 1000;
+}
+
+/* ==============================
+   📋 MAIN & BOTONES MENÚ
+============================== */
 main {
   flex: 1;
   padding: 20px;
   text-align: center;
 }
 
-/* 📋 Pantallas */
 .menu-btn {
   display: block;
   width: 100%;
-  max-width: 800px; /* BOTÓN ANCHO en móviles */
+  max-width: 800px;
   margin: 30px auto;
   padding: 25px;
   background: #cce5ff;
@@ -61,46 +81,97 @@ main {
   cursor: pointer;
   transition: transform 0.2s;
 }
-
 .menu-btn:hover {
   transform: scale(1.05);
 }
 
-/* 🖥️ Ajustes solo en pantallas grandes */
+/* 🖥️ Pantallas grandes */
 @media (min-width: 1024px) {
   .menu-btn {
-    max-width: 700px;    /* no crecen más de esto */
-    font-size: 1em;      /* texto más razonable */
-    padding: 16px;       /* altura equilibrada */
-    margin: 6px auto;    /* menos espacio vertical entre botones */
+    max-width: 700px;
+    font-size: 1em;
+    padding: 16px;
+    margin: 6px auto;
   }
 }
-  
+
+/* ==============================
+   📚 VOCLISTS
+============================== */
+#voclistScreen button {
+  width: 85%;
+  text-align: left;
+  margin: 6px 0;
+  padding: 10px 14px;
+  font-size: 1em;
+  border-radius: 6px;
 }
-.back-btn {
-  margin-top: 30px;
-  padding: 12px 24px;
-  background: #ffdfba;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  font-size: 1.5rem;
+@media (min-width: 1024px) {
+  #voclistScreen button {
+    width: auto;
+    text-align: center;
+    font-size: 1.2em;
+    margin: 10px auto;
+    padding: 14px 20px;
+  }
 }
 
+/* Label listado */
+.current-list-label {
+  font-size: 1.4em;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 15px;
+  min-height: 1.5em;
+  color: #555;
+}
+
+/* ==============================
+   📖 REVIEW
+============================== */
+#reviewScreen {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  padding: 20px;
+  box-sizing: border-box;
+  text-align: left;
+  line-height: 1.6em;
+  font-size: 1.1em;
+}
+#reviewScreen b { color: #333; }
+
+#reviewContent {
+  text-align: left;
+  padding: 0 10px;
+}
+#reviewContent div {
+  margin-bottom: 12px;
+  line-height: 1.8em;
+}
+@media (min-width: 1024px) {
+  #reviewContent div {
+    margin-bottom: 6px;
+    line-height: 1.3em;
+  }
+}
+
+/* ==============================
+   🎮 GAME
+============================== */
 #questionWord {
   font-size: clamp(1.4em, 5vw, 2.2em);
   margin: 35px 0;
 }
 
-/* BOTONES DE RESPUESTA */
-/* 📱 Móviles y tablets */
+/* Opciones */
 #optionsContainer {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* siempre 2 columnas */
-  gap: 25px;  /* separación más grande en móviles */
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
 }
-
-#optionsContainer button {  /* MOVILES */ 
+#optionsContainer button {
   padding: 25px;
   background: #d4f0f0;
   border: none;
@@ -112,100 +183,26 @@ main {
   margin: 0 auto;
   box-sizing: border-box;
 }
+#optionsContainer button.correct { background: #b5e48c; }
+#optionsContainer button.wrong { background: #f28b82; }
+
 /* 🖥️ Pantallas grandes */
 @media (min-width: 1024px) {
   #optionsContainer {
-    display: grid;
-    grid-template-rows: repeat(2, 1fr); /* siempre 2 filas */
-    grid-auto-flow: column; /* rellena por columnas */
-    gap: 10px;  /* menos separación */
+    grid-template-rows: repeat(2, 1fr);
+    grid-auto-flow: column;
+    gap: 10px;
     justify-content: center;
   }
   #optionsContainer button {
-    font-size: 1.2em;   /* más pequeño en pantallas grandes */
+    font-size: 1.2em;
     padding: 18px;
     min-width: 300px;
     max-width: 400px;
   }
 }
-#optionsContainer button.correct { background: #b5e48c; }
-#optionsContainer button.wrong { background: #f28b82; }
 
-/* ✅ Toast */
-.toast {
-  position: fixed;
-  left: 50%;
-  bottom: 200px;
-  transform: translateX(-50%);
-  background: #333;
-  color: #fff;
-  padding: 25px 40px;
-  max-width: 90%;           /* ancho máximo relativo a pantalla */
-  white-space: nowrap;      /* evita salto de línea */
-  border-radius: 20px;
-  font-size: 2rem;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
-  opacity: 0;
-  z-index: 3000;
-  animation: toastInOut 1.8s ease both;
-}
-@keyframes toastInOut {
-  0% { opacity: 0; transform: translate(-50%, 20px); }
-  12% { opacity: 1; transform: translate(-50%, 0); }
-  88% { opacity: 1; transform: translate(-50%, 0); }
-  100% { opacity: 0; transform: translate(-50%, -10px); }
-}
-
-/* 🔻 Barra inferior fija */
-.bottombar {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: #ffe0e9;
-  text-align: center;
-  padding: 8px;
-  font-size: 0.9em;
-  z-index: 1000;   /* debajo del modal (que suele estar >2000) */
-}
-
-* 📖 Pantalla Review */
-#reviewScreen {
-  flex: 1;              /* ocupa todo el espacio libre */
-  width: 100%;
-  height: 100%;         /* ocupa toda la altura del contenedor */
-  overflow-y: auto;
-  padding: 20px;
-  margin: 0;
-  box-sizing: border-box; /* 👈 incluye el padding en el ancho total */
-  text-align: left;
-  line-height: 1.6em;
-  font-size: 1.1em;
-}
-
-#reviewScreen b {
-  color: #333;
-}
-/* 📖 Review - estilo móvil/tablet */
-@media (max-width: 1023px) {
-  #reviewScreen button {
-    margin: 6px 0; 
-    padding: 8px 10px;     /* menos margen interior */
-    text-align: left;      /* texto alineado a la izquierda */
-    width: 100%;           /* ocupan todo el ancho */
-    border-radius: 8px;
-    font-size: 1em;
-    background: #f8f8f8;
-    border: 1px solid #ccc;
-    cursor: pointer;
-  }
-
-  #reviewScreen button:hover {
-    background: #eee;
-  }
-}
-
-/* 🔻 Barra de tiempo */
+/* Barra de tiempo */
 .progress-container {
   width: 85%;
   max-width: 800px;
@@ -223,7 +220,53 @@ main {
   transition: width 1s linear, background-color 0.2s linear;
 }
 
-/* ⚙️ Settings styles */
+/* ==============================
+   📊 ESTADÍSTICAS
+============================== */
+#statsScreen {
+  font-size: 1.2em;
+  line-height: 1.6;
+  padding: 8px;
+}
+#statsScreen h2 {
+  font-size: 1.8em;
+  margin-bottom: 24px;
+}
+#statsContent > * {
+  margin-bottom: 18px;
+}
+
+/* 📱 Móviles */
+@media (max-width: 1023px) {
+  #statsScreen button {
+    font-size: 1.1em;
+    padding: 20px 30px;
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    margin: 12px auto;
+    border-radius: 10px;
+  }
+}
+/* 🖥️ Grandes */
+@media (min-width: 1024px) {
+  #statsScreen button {
+    font-size: 1.1em;
+    padding: 20px 30px;
+    display: inline-block;
+    width: auto;
+    margin: 0 12px 20px 0;
+    border-radius: 10px;
+    vertical-align: middle;
+  }
+  #statsContent > * {
+    margin-bottom: 24px;
+  }
+}
+
+/* ==============================
+   ⚙️ SETTINGS MODAL
+============================== */
 .settings-list {
   display: flex;
   flex-direction: column;
@@ -232,7 +275,7 @@ main {
 .settings-list label {
   display: flex;
   align-items: center;
-  justify-content: flex-start; /* alineados a la izquierda */
+  justify-content: flex-start;
   gap: 10px;
 }
 .settings-list select,
@@ -240,7 +283,7 @@ main {
   flex: 1;
 }
 
-/* ==== Sliders ==== */
+/* Sliders */
 .settings-list input[type="range"] {
   -webkit-appearance: none;
   height: 6px;
@@ -263,7 +306,7 @@ main {
   transform: scale(1.2);
 }
 
-/* ==== Switch estilo iOS ==== */
+/* Switch estilo iOS */
 .switch {
   position: relative;
   display: inline-block;
@@ -297,50 +340,25 @@ main {
 .switch input:checked + .slider { background-color: #2196f3; }
 .switch input:checked + .slider:before { transform: translateX(26px); }
 
-/* 📱 Ajustes Settings en móviles */
+/* 📱 Ajustes móviles */
 @media (max-width: 1023px) {
-  #settingsModal {
-    font-size: 1.4em; /* duplica tamaño base */
-  }
-
-  #settingsModal h2 {
-    font-size: 1.8em; /* título más grande */
-  }
-
-  .settings-list {
-    gap: 25px; /* más espacio entre opciones */
-  }
-
+  #settingsModal { font-size: 1.4em; }
+  #settingsModal h2 { font-size: 1.8em; }
+  .settings-list { gap: 25px; }
   .settings-list label {
     font-size: 1.5em;
-    margin-bottom: 18px;   /* 🔥 espacio extra bajo cada ítem */
+    margin-bottom: 18px;
   }
-
-  .settings-list select {
-    font-size: 1.2em;
-    padding: 8px;       /* más cómodo al tacto */
-  }
-
-  .settings-list input[type="range"] {
-    height: 15px;       /* barra más gruesa */
-  }
-
+  .settings-list select { font-size: 1.2em; padding: 8px; }
+  .settings-list input[type="range"] { height: 15px; }
   .settings-list input[type="range"]::-webkit-slider-thumb {
-    width: 48px;
-    height: 48px;       /* botón más grande */
+    width: 48px; height: 48px;
   }
-
-  .switch {
-    transform: scale(1.8); /* hace el switch más grande */
-  }
-
-  .modal-actions button {
-    font-size: 1.7em;
-    padding: 16px;      /* botones más cómodos */
-  }
+  .switch { transform: scale(1.8); }
+  .modal-actions button { font-size: 1.7em; padding: 16px; }
 }
 
-/* ==== Modal ==== */
+/* Modal base */
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -352,7 +370,6 @@ main {
 }
 .modal-box {
   background: #fff;
-  position: relative;
   border-radius: 16px;
   padding: 30px;
   width: 90%;
@@ -365,14 +382,13 @@ main {
   to { transform: scale(1); opacity: 1; }
 }
 .modal-box h2 {
-  margin-top: 0;
-  margin-bottom: 15px;
+  margin: 0 0 15px 0;
   font-size: 1.4em;
   text-align: center;
   color: #333;
 }
 
-/* ==== Botones modal ==== */
+/* Botones modal */
 .modal-actions {
   display: flex;
   justify-content: space-between;
@@ -386,7 +402,7 @@ main {
   border-radius: 8px;
   cursor: pointer;
   font-weight: bold;
-  font-size: 1.4em;   /* 🔥 texto más grande */
+  font-size: 1.4em;
   transition: background 0.3s;
 }
 button.cancel { background: #eee; color: #333; }
@@ -395,97 +411,7 @@ button.reset { background: #f44336; color: #fff; }
 button.reset:hover { background: #d32f2f; }
 button.save { background: #2196f3; color: #fff; }
 button.save:hover { background: #1976d2; }
-/* --- Ajustes para emoji + switch --- */
-#difficultyEmoji {
-  margin-right: 20px; /* espacio fijo entre el emoji y el switch */
-}
-/* --- Ajustes para desplegable --- */
-.settings-list select option {
-  font-size: 0.8em; /* más pequeño en la lista desplegable */
-}
 
-#reviewContent {
-  text-align: left;
-  margin: 0;        /* quitamos posibles márgenes que desplacen */
-  padding: 0 10px;  /* un poco de aire a los lados si quieres */
-}
-#reviewContent div {
-  margin-bottom: 12px;   /* espacio entre pares de palabra-traducción */
-  line-height: 1.8em;    /* altura de línea más cómoda para leer */
-}
-@media (min-width: 1024px) {
-  #reviewContent div {
-    margin-bottom: 6px;   /* menos separación entre ítems */
-    line-height: 1.3em;   /* más compacto que el 1.6em */
-  }
-}
-
-/* 📊 Pantalla Estadísticas */
-#statsScreen {
-  font-size: 1.2em;      /* tamaño razonable */
-  line-height: 1.6;      /* más aire entre líneas */
-  padding: 8px;          /* espacio interior */
-}
-
-#statsScreen h2 {
-  font-size: 1.8em;      /* título destacado */
-  margin-bottom: 24px;
-}
-
-/* 👉 Elementos dentro de statsContent */
-#statsContent > * {
-  margin-bottom: 18px;   /* separación vertical uniforme */
-}
-
-/* === 📱 Móviles / tablets === */
-@media (max-width: 1023px) {
-  #statsScreen button {
-    font-size: 1.1em;
-    padding: 20px 30px;
-    display: block;         /* en columna */
-    width: 100%;
-    max-width: 400px;
-    margin: 12px auto;      /* separación vertical entre botones */
-    border-radius: 10px;
-  }
-}
-
-/* === 🖥️ Pantallas grandes === */
-@media (min-width: 1024px) {
-  #statsScreen button {
-    font-size: 1.1em;
-    padding: 20px 30px;
-    display: inline-block;   /* en fila */
-    width: auto;
-    margin: 0 12px 20px 0;   /* espacio horizontal + un poco de vertical */
-    border-radius: 10px;
-    vertical-align: middle;
-  }
-
-  #statsContent > * {
-    margin-bottom: 24px;     /* un poco más de aire en grandes */
-  }
-}
-
-/* 📚 VoclistScreen en móviles */
-@media (max-width: 1023px) {
-  #voclistScreen button {
-    width: 85%;          /* ocupan todo el ancho */
-    text-align: left;     /* texto alineado a la izquierda */
-    margin: 6px 0;        /* menos separación vertical */
-    padding: 10px 14px;   /* menos relleno interno */
-    font-size: 1em;     /* texto cómodo pero no enorme */
-    border-radius: 6px;
-  }
-}
-
-/* LABEL NOMBRE LISTADO SOBRE MENU */
-.current-list-label {
-  font-size: 1.4em;
-  font-weight: bold;
-  text-align: center;
-  margin-bottom: 15px;
-  min-height: 1.5em;  /* mantiene espacio incluso vacío */
-  color: #555;
-}
-
+/* Ajustes extra */
+#difficultyEmoji { margin-right: 20px; }
+.settings-list select option { font-size: 0.8em; }
