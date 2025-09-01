@@ -1,3 +1,5 @@
+import { voclists } from "./index.js";
+
 const UI = {
   currentScreen: null,
   pendingAction: null,
@@ -60,7 +62,11 @@ const UI = {
     document.getElementById("settingsBtn")?.classList.remove("hidden");
     document.getElementById("gameStatus")?.classList.add("hidden");
   },
-  showVoclists() { this.showScreen("voclistScreen"); },
+  showVoclists() {
+    this.showScreen("voclistScreen");
+    const lists = getUserVoclists();   // 🔥 ahora usa el filtro por usuario
+    this.renderVoclists(lists);        // 🔥 pintamos los botones con las listas filtradas
+  },
   showGame() {
     this.showScreen("gameScreen");
     document.getElementById("settingsBtn")?.classList.add("hidden");
@@ -192,3 +198,25 @@ const UI = {
     Game.start(mode);
   }
 };
+
+// Función para obtener el usuario activo
+function getActiveUser() {
+  const params = new URLSearchParams(window.location.search);
+  const userParam = params.get("user");
+  return userParam ? userParam : "Isaac"; // si no viene, fallback a Isaac
+}
+
+// Función para filtrar listas por usuario
+function getUserVoclists() {
+  const activeUser = getActiveUser();
+
+  // Filtra por misc = userParam
+  let filtered = voclists.filter(v => v.misc === activeUser);
+
+  // Si no hay resultados, fallback a Isaac
+  if (filtered.length === 0) {
+    filtered = voclists.filter(v => v.misc === "Isaac");
+  }
+
+  return filtered;
+}
