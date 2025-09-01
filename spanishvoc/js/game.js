@@ -1,4 +1,6 @@
 import { Settings } from "./settings.js";
+import { Stats } from "./stats.js";
+import { UI } from "./ui.js";
 
 let _timerId = null; // Temporizador
 
