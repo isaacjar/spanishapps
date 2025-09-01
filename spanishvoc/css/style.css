@@ -155,7 +155,6 @@ main {
   100% { opacity: 0; transform: translate(-50%, -10px); }
 }
 
-/* 🔻 Barra inferior */
 /* 🔻 Barra inferior fija */
 .bottombar {
   position: fixed;
@@ -393,6 +392,14 @@ button.reset { background: #f44336; color: #fff; }
 button.reset:hover { background: #d32f2f; }
 button.save { background: #2196f3; color: #fff; }
 button.save:hover { background: #1976d2; }
+/* --- Ajustes para emoji + switch --- */
+#difficultyEmoji {
+  margin-right: 20px; /* espacio fijo entre el emoji y el switch */
+}
+/* --- Ajustes para desplegable --- */
+.settings-list select option {
+  font-size: 0.8em; /* más pequeño en la lista desplegable */
+}
 
 #reviewContent {
   text-align: left;
