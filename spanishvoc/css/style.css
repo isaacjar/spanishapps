@@ -177,6 +177,13 @@ main {
     line-height: 1.3em;
   }
 }
+/* 📱 Móviles */
+@media (max-width: 768px) {
+  #reviewScreen {
+    font-size: 1.2em;   /* 🔥 un poco más grande en móvil */
+    line-height: 1.4em; /* 🔥 menos espacio vertical */
+  }
+
 
 /* ==============================
    🎮 GAME
