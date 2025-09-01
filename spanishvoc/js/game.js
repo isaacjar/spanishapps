@@ -119,4 +119,22 @@ const Game = {
     if (!this.state.active) return;
     this.onAnswer(false, document.createElement("div")); // marca fallo sin botón
   }
+
+  // PARA EL JUEGO 🛑
+  stop() {
+    clearInterval(_timerId);
+    _timerId = null;
+    this.state.active = false;
+  
+    // Opcional: limpiar la UI de juego
+    const bar = document.getElementById("timeBar");
+    if (bar) {
+      bar.style.width = "100%";
+      bar.style.backgroundColor = "#4caf50";
+    }
+  
+    const cont = document.getElementById("optionsContainer");
+    if (cont) cont.innerHTML = "";
+  }
+
 };
