@@ -87,9 +87,10 @@ main {
 }
 
 #questionWord {
-  font-size: clamp(1.2em, 5vw, 2.5em);
-  margin: 40px 0;
+  font-size: clamp(1.4em, 5vw, 2.2em);
+  margin: 35px 0;
 }
+
 /* 📱 Móviles y tablets */
 #optionsContainer {
   display: grid;
