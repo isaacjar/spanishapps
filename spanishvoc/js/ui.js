@@ -122,7 +122,11 @@ const UI = {
 
       // 🆕 Actualizar etiqueta en MENU
       const label = document.getElementById("currentListLabel");
-      if (label) label.textContent = window.currentVoclistName || "";
+      if (label) {
+        label.textContent = window.currentVoclistName 
+          ? "📖 " + window.currentVoclistName 
+          : "";
+      }
         
       if (this.pendingAction) {
         if (this.pendingAction === "review") {
