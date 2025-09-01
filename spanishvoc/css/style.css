@@ -418,11 +418,12 @@ button.save:hover { background: #1976d2; }
     line-height: 1.3em;   /* más compacto que el 1.6em */
   }
 }
+
 /* 📊 Pantalla Estadísticas */
 #statsScreen {
   font-size: 1.2em;      /* tamaño razonable */
   line-height: 1.6;      /* más aire entre líneas */
-  padding: 24px;
+  padding: 8px;          /* espacio interior */
 }
 
 #statsScreen h2 {
@@ -430,29 +431,38 @@ button.save:hover { background: #1976d2; }
   margin-bottom: 24px;
 }
 
-/* Aplica separación solo a los bloques directos del contenedor de stats */
+/* 👉 Elementos dentro de statsContent */
 #statsContent > * {
-  margin-bottom: 18px;   /* separación vertical uniforme entre ítems */
+  margin-bottom: 18px;   /* separación vertical uniforme */
 }
 
-/* Botones: móvil en columna centrados */
-#statsScreen button {
-  font-size: 1.6em;
-  padding: 22px 34px;
-  display: block;
-  width: 100%;
-  max-width: 400px;
-  margin: 12px auto;     /* separación vertical entre botones */
-  border-radius: 10px;
+/* === 📱 Móviles / tablets === */
+@media (max-width: 1023px) {
+  #statsScreen button {
+    font-size: 1.1em;
+    padding: 20px 30px;
+    display: block;         /* en columna */
+    width: 100%;
+    max-width: 400px;
+    margin: 12px auto;      /* separación vertical entre botones */
+    border-radius: 10px;
+  }
 }
 
-/* 🖥️ En grande, en fila con espacio horizontal */
+/* === 🖥️ Pantallas grandes === */
 @media (min-width: 1024px) {
   #statsScreen button {
-    display: inline-block;
+    font-size: 1.1em;
+    padding: 20px 30px;
+    display: inline-block;   /* en fila */
     width: auto;
-    margin: 0 12px 20px 0;  /* horiz + un poco de vertical */
+    margin: 0 12px 20px 0;   /* espacio horizontal + un poco de vertical */
+    border-radius: 10px;
     vertical-align: middle;
+  }
+
+  #statsContent > * {
+    margin-bottom: 24px;     /* un poco más de aire en grandes */
   }
 }
 
@@ -463,14 +473,14 @@ button.save:hover { background: #1976d2; }
     text-align: left;     /* texto alineado a la izquierda */
     margin: 6px 0;        /* menos separación vertical */
     padding: 10px 14px;   /* menos relleno interno */
-    font-size: 1.1em;     /* texto cómodo pero no enorme */
+    font-size: 1em;     /* texto cómodo pero no enorme */
     border-radius: 6px;
   }
 }
 
 /* LABEL NOMBRE LISTADO SOBRE MENU */
 .current-list-label {
-  font-size: 1.2em;
+  font-size: 1.4em;
   font-weight: bold;
   text-align: center;
   margin-bottom: 15px;
