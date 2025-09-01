@@ -417,17 +417,20 @@ button.save:hover { background: #1976d2; }
 #statsScreen div,
 #statsScreen span {
   font-size: 1.3em;        /* asegura que los párrafos, divs y spans también crezcan */
+  margin-bottom: 16px;   /* 🔥 más espacio vertical entre líneas */
+  display: block;        /* asegura que ocupan una línea completa */
 }
 
 #statsScreen button {
   font-size: 1.6em;
   padding: 22px 34px;
-  margin: 12px 0;        /* separación arriba y abajo entre botones */
+  margin-top: 20px;
+  margin-right: 12px;   /* 👉 separación horizontal */
+  margin-bottom: 12px;  /* 👉 separación vertical */
   display: block;        /* cada botón ocupa su línea */
   width: 100%;           /* que todos tengan mismo ancho */
   max-width: 400px;      /* límite para que no se estiren demasiado */
   margin-left: auto;     /* centrado horizontal */
-  margin-right: auto;
   border-radius: 10px;
 }
 
