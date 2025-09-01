@@ -299,7 +299,7 @@ main {
 /* 📱 Ajustes Settings en móviles */
 @media (max-width: 1023px) {
   #settingsModal {
-    font-size: 1.2em; /* duplica tamaño base */
+    font-size: 1.4em; /* duplica tamaño base */
   }
 
   #settingsModal h2 {
