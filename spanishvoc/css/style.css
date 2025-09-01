@@ -418,3 +418,15 @@ button.save:hover { background: #1976d2; }
   padding: 20px 30px;
   margin-top: 20px;
 }
+
+/* 📚 VoclistScreen en móviles */
+@media (max-width: 1023px) {
+  #voclistScreen button {
+    width: 85%;          /* ocupan todo el ancho */
+    text-align: left;     /* texto alineado a la izquierda */
+    margin: 6px 0;        /* menos separación vertical */
+    padding: 10px 14px;   /* menos relleno interno */
+    font-size: 1.1em;     /* texto cómodo pero no enorme */
+    border-radius: 6px;
+  }
+}
