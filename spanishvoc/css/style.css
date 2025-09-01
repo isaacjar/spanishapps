@@ -112,7 +112,8 @@ main {
 /* 🖥️ Pantallas grandes */
 @media (min-width: 1024px) {
   #voclistScreen button {
-    width: auto;
+    width: 80%;              /* relativo al contenedor */
+    min-width: 600px;        /* ✅ nunca menos de 600px */
     text-align: center;
     font-size: 1.2em;
     margin: 10px auto;
