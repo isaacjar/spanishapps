@@ -73,10 +73,10 @@ const UI = {
       return;
     }
     // Título con nombre del listado
-    const title = document.getElementById("reviewTitle");
+    /*const title = document.getElementById("reviewTitle");
     if (title && window.currentVoclistName) {
       title.textContent = `📖 ${window.currentVoclistName}`;
-    }
+    }*/
     // Contenido
     const box = document.getElementById("reviewContent");
     box.innerHTML = "";
