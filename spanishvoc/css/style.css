@@ -410,44 +410,39 @@ button.save:hover { background: #1976d2; }
 }
 /* 📊 Pantalla Estadísticas */
 #statsScreen {
-  font-size: 10em;        /* duplica el tamaño base del texto */
-  line-height: 1.5em;    /* mejora la legibilidad */
-  padding: 30px;         /* más espacio alrededor */
+  font-size: 1.2em;      /* tamaño razonable */
+  line-height: 1.6;      /* más aire entre líneas */
+  padding: 24px;
 }
 
 #statsScreen h2 {
-  font-size: 1.5em;      /* título más destacado */
-  margin-bottom: 50px;
+  font-size: 1.8em;      /* título destacado */
+  margin-bottom: 24px;
 }
 
-#statsScreen p,
-#statsScreen div,
-#statsScreen span {
-  font-size: 1em;        /* asegura que los párrafos, divs y spans también crezcan */
-  margin-bottom: 16px;   /* 🔥 más espacio vertical entre líneas */
-  display: block;        /* asegura que ocupan una línea completa */
+/* Aplica separación solo a los bloques directos del contenedor de stats */
+#statsContent > * {
+  margin-bottom: 18px;   /* separación vertical uniforme entre ítems */
 }
 
-/* Estilo base: móviles → botones apilados */
+/* Botones: móvil en columna centrados */
 #statsScreen button {
   font-size: 1.6em;
   padding: 22px 34px;
-  margin: 10px 0;          /* separación vertical en móviles */
-  display: block;          /* en columna */
+  display: block;
   width: 100%;
   max-width: 400px;
-  margin-left: auto;
-  margin-right: auto;      /* centrado */
+  margin: 12px auto;     /* separación vertical entre botones */
   border-radius: 10px;
 }
 
-/* 🖥️ Pantallas grandes */
+/* 🖥️ En grande, en fila con espacio horizontal */
 @media (min-width: 1024px) {
   #statsScreen button {
-    display: inline-block;   /* en fila */
-    width: auto;             /* ancho natural */
-    margin: 0 12px 20px 0;   /* separación horizontal + vertical */
-    vertical-align: middle;  /* alineación más limpia */
+    display: inline-block;
+    width: auto;
+    margin: 0 12px 20px 0;  /* horiz + un poco de vertical */
+    vertical-align: middle;
   }
 }
 
