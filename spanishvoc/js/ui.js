@@ -14,9 +14,14 @@ const UI = {
     // Settings
     document.getElementById("settingsBtn")?.addEventListener("click", () => this.openSettings());
 
-    // 🔥 Logo vuelve al menú principal
-    document.querySelector(".logo")?.addEventListener("click", () => this.showMenu());
-    
+    // 🔥 Logo vuelve al menú principal (y detiene el juego si está en curso)
+    document.querySelector(".logo")?.addEventListener("click", () => {
+      if (typeof Game !== "undefined" && typeof Game.stop === "function") {
+        Game.stop();
+      }
+      this.showMenu();
+    });
+
     // Pantalla inicial
     this.showMenu();
   },
