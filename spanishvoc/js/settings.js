@@ -1,4 +1,4 @@
-const Settings = {
+export const Settings = {
   data: {
     lang: "en",    // en|zh|urf
     time: 10,      // 2..30 (segundos)
