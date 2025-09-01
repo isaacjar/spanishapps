@@ -1,4 +1,4 @@
-const Stats = {
+export const Stats = {
   init() {
     if (!localStorage.getItem("vocaboomb_total")) localStorage.setItem("vocaboomb_total", "0");
     if (!localStorage.getItem("vocaboomb_hits"))  localStorage.setItem("vocaboomb_hits",  "0");
