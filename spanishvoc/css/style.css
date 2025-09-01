@@ -177,13 +177,6 @@ main {
     line-height: 1.3em;
   }
 }
-/* 📱 Móviles */
-@media (max-width: 768px) {
-  #reviewScreen {
-    font-size: 1.2em;   /* 🔥 un poco más grande en móvil */
-    line-height: 1.4em; /* 🔥 menos espacio vertical */
-  }
-
 
 /* ==============================
    🎮 GAME
@@ -192,29 +185,13 @@ main {
   font-size: clamp(1em, 5vw, 2.5em);
   margin: 35px 0;
 }
-/* 📱 Móviles */
-@media (max-width: 768px) {
-  #questionWord {
-    font-size: 2.6em;   /* 🔥 un poco más grande */
-    margin: 30px 0;     /* opcional: menos aire que en escritorio */
-  }
-}
-
-/* 🖥️ Pantallas grandes */
-@media (min-width: 1200px) {
-  #questionWord {
-    font-size: 1.1em;   /* 🔥 un poco más pequeño */
-    margin: 15px 0;     /* 🔥 menos espacio arriba/abajo */
-  }
-}   
 
 /* Opciones */
 #optionsContainer {
   display: grid;
-  grid-template-columns: 1fr;   /* móvil: una columna */
-  gap: 30px;                    /* más espacio entre botones */
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
 }
-
 #optionsContainer button {
   padding: 25px;
   background: #d4f0f0;
@@ -222,22 +199,22 @@ main {
   border-radius: 12px;
   font-size: 2em;
   cursor: pointer;
+  min-width: 200px;
   width: 100%;
   margin: 0 auto;
   box-sizing: border-box;
 }
-
 #optionsContainer button.correct { background: #b5e48c; }
 #optionsContainer button.wrong { background: #f28b82; }
 
 /* 🖥️ Pantallas grandes */
 @media (min-width: 1024px) {
   #optionsContainer {
-    grid-template-columns: repeat(2, 1fr); /* dos columnas */
-    gap: 20px;
-    justify-items: center;                 /* centra cada botón */
+    grid-template-rows: repeat(2, 1fr);
+    grid-auto-flow: column;
+    gap: 10px;
+    justify-content: center;
   }
-
   #optionsContainer button {
     font-size: 1.2em;
     padding: 18px;
