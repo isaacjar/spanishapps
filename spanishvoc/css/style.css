@@ -102,7 +102,7 @@ main {
 #voclistScreen button {
   width: 95%;            
   text-align: left;      
-  margin: 6px auto;      
+  margin: 10px auto;      
   padding: 10px 14px;
   font-size: 2em;        
   line-height: 1.4;      /* 🔥 más aire vertical */
@@ -123,12 +123,26 @@ main {
 
 /* Label listado */
 .current-list-label {
-  font-size: 1.4em;
+  font-size: 1.4em;     /* valor base (para tablets/intermedios) */
   font-weight: bold;
   text-align: center;
   margin-bottom: 15px;
   min-height: 1.5em;
   color: #555;
+}
+
+/* 🖥️ Pantallas grandes */
+@media (min-width: 1024px) {
+  .current-list-label {
+    font-size: 1.2em;   /* un poco más pequeño en escritorio */
+  }
+}
+
+/* 📱 Móviles */
+@media (max-width: 768px) {
+  .current-list-label {
+    font-size: 1.6em;   /* un poco más grande en móvil */
+  }
 }
 
 /* ==============================
