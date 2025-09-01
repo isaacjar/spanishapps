@@ -1,3 +1,5 @@
+import { Settings } from "./settings.js";
+
 let _timerId = null; // Temporizador
 
 export const Game = {
