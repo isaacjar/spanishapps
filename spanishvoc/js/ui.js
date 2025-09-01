@@ -119,6 +119,10 @@ const UI = {
       // 🔹 Guardar también el título del listado
       const list = voclists.find(v => v.filename === filename);
       window.currentVoclistName = list ? list.title : filename;
+
+      // 🆕 Actualizar etiqueta en MENU
+      const label = document.getElementById("currentListLabel");
+      if (label) label.textContent = window.currentVoclistName || "";
         
       if (this.pendingAction) {
         if (this.pendingAction === "review") {
