@@ -182,7 +182,7 @@ main {
    🎮 GAME
 ============================== */
 #questionWord {
-  font-size: clamp(1.4em, 5vw, 2.2em);
+  font-size: clamp(1em, 5vw, 2.5em);
   margin: 35px 0;
 }
 
