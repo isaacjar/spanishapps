@@ -169,7 +169,8 @@ main {
 }
 #reviewContent div {
   margin-bottom: 12px;
-  line-height: 1.8em;
+  font-size: 1.4em;   /* 📱 móviles: más grande */
+   line-height: 1.4em; /* 📱 móviles: menos espaciado */
 }
 @media (min-width: 1024px) {
   #reviewContent div {
