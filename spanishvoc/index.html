@@ -90,6 +90,12 @@
         <input type="range" id="numQuestions" min="5" max="50" step="5">        
       </label>
 
+      <label class="lives-setting">
+        <span id="livesEmoji">❤️</span>
+        <span id="livesValue">5</span> <!-- aquí va el número -->
+        <input type="range" id="livesSlider" min="1" max="10" value="5">
+      </label>
+        
       <label><span id="difficultyEmoji">😎</span>
         <label class="switch">
           <input type="checkbox" id="difficultySwitch">
@@ -97,12 +103,6 @@
         </label>        
       </label>
 
-      <label class="lives-setting">
-        <span id="livesEmoji">❤️</span>
-        <span id="livesValue">5</span> <!-- aquí va el número -->
-        <input type="range" id="livesSlider" min="1" max="10" value="5">
-      </label>
-        
       <div class="modal-actions">
         <button id="btnResetSettings" class="reset">Reset</button>
         <button id="btnSaveSettings" class="save">Guardar</button>
