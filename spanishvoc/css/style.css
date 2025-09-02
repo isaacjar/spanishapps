@@ -188,40 +188,44 @@ main {
   margin: 35px 0;
 }
 
-/* Opciones */
+/* BOTONES DE JUEGO */
+/* 📱 Móviles → 2 columnas */
 #optionsContainer {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 25px;
-  justify-items: center; 
+  grid-template-columns: repeat(2, 1fr); /* siempre 2 columnas */
+  gap: 20px;
+  justify-items: center;
 }
+
 #optionsContainer button {
-  padding: 25px;
+  padding: 20px;
   background: #d4f0f0;
   border: none;
   border-radius: 12px;
-  font-size: 2em;
+  font-size: 1.6em;
   cursor: pointer;
   width: 100%;
-  min-width: 200px;
-  max-width: 500px; 
+  max-width: 220px;  /* para que no se peguen demasiado */
   box-sizing: border-box;
 }
+
 #optionsContainer button.correct { background: #b5e48c; }
 #optionsContainer button.wrong { background: #f28b82; }
 
-/* 🖥️ Pantallas grandes */
+/* 🖥️ Escritorio → 2 filas, columnas automáticas */
 @media (min-width: 1024px) {
   #optionsContainer {
-    grid-template-rows: repeat(2, 1fr);
-    grid-auto-flow: column;
-    gap: 10px;
-    justify-content: center;
+    grid-auto-flow: row;              /* rellenar por filas */
+    grid-template-rows: repeat(2, auto); /* siempre 2 filas */
+    grid-auto-columns: 1fr;           /* columnas se crean según nº botones */
+    gap: 20px;
+    justify-items: center;
   }
+
   #optionsContainer button {
     font-size: 1.2em;
     padding: 18px;
-    min-width: 300px;
+    min-width: 250px;
     max-width: 400px;
   }
 }
