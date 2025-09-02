@@ -159,7 +159,7 @@ main {
   box-sizing: border-box;
   text-align: left;
   line-height: 1.6em;
-  font-size: 1.1em;
+  font-size: 1em;
 }
 #reviewScreen b { color: #333; }
 
@@ -169,11 +169,12 @@ main {
 }
 #reviewContent div {
   margin-bottom: 12px;
-  font-size: 1.4em;   /* 📱 móviles: más grande */
+  font-size: 1.7em;   /* 📱 móviles: más grande */
    line-height: 1.4em; /* 📱 móviles: menos espaciado */
 }
 @media (min-width: 1024px) {
   #reviewContent div {
+    font-size: 1em;   /* 📱 móviles: más grande */ 
     margin-bottom: 6px;
     line-height: 1.3em;
   }
