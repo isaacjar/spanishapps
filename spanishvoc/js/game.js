@@ -38,7 +38,7 @@ export const Game = {
     // Palabra a preguntar
     document.getElementById("questionWord").textContent = ask;
 
-    // Opciones
+   // Opciones
     const optsNeeded = (Settings.data.difficulty === 2) ? 6 : 4;
     let options = new Set([correct]);
     while (options.size < optsNeeded) {
@@ -47,19 +47,28 @@ export const Game = {
       if (val) options.add(val);
     }
     const optionList = Array.from(options).sort(() => Math.random() - 0.5);
-
+    
     const cont = document.getElementById("optionsContainer");
     cont.innerHTML = "";
-    cont.classList.toggle("six", optsNeeded === 6); // útil si quieres estilos distintos
-
+    
+    // 🔧 Definir columnas según número de opciones
+    cont.classList.remove("cols-2", "cols-3");
+    if (optsNeeded === 4) {
+      cont.classList.add("cols-2");
+    } else {
+      cont.classList.add("cols-3");
+    }
+    
     optionList.forEach(text => {
       const btn = document.createElement("button");
       btn.textContent = text;
       btn.addEventListener("click", () => this.onAnswer(text === correct, btn));
       cont.appendChild(btn);
     });
+    
     this.startTimer(Settings.data.time); // Temporizador
     UI.updateGameStatus(this.state);
+    
   },
 
   // FUNCION INICIA TEMPORIZADOR
