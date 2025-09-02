@@ -228,13 +228,15 @@ main {
     gap: 25px 20px;
     justify-content: center;
     justify-items: stretch;
+    max-width: 900px; /* evita que las columnas se vayan a la izquierda */
+    margin: 0 auto;   /* centra el bloque dentro del padre */
   }
 
   /* 4 opciones → 2 columnas */
   #optionsContainer.cols-2 {
     grid-template-columns: repeat(2, minmax(280px, 1fr));
     grid-template-rows: repeat(2, auto);
-    justify-content: center; /* centrado del bloque */
+    /*justify-content: center; /* centrado del bloque */
   }
 
   /* 6 opciones → 3 columnas */
