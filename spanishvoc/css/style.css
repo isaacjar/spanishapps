@@ -189,7 +189,7 @@ main {
 }
 @media (min-width: 1200px) {
   #questionWord {
-    font-size: 2em; /* más pequeño en pantallas grandes */
+    font-size: 1.8em; /* más pequeño en pantallas grandes */
     margin: 10px 0;
   }
 }
@@ -199,7 +199,8 @@ main {
 #optionsContainer {
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* siempre 2 columnas */
-  gap: 15px;
+  row-gap: 35px;      /* espacio vertical mayor */
+  column-gap: 20px;   /* espacio horizontal igual */
   justify-items: stretch;
 }
 
