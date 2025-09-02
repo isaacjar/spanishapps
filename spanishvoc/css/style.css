@@ -265,7 +265,7 @@ main {
 #statsContent > * {
   display: flex;
   flex-direction: column;
-  gap: 18px; /* sustituye los margin-bottom */
+  gap: 18px; /* margen entre elementos */
 }
 
 /* 📱 Móviles */
