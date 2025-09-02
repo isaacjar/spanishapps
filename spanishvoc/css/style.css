@@ -213,21 +213,24 @@ main {
 #optionsContainer button.wrong { background: #f28b82; }
 
 /* 🖥️ Escritorio → 2 filas, columnas automáticas */
+/* 🖥️ Escritorio → 2 filas, columnas ajustadas */
 @media (min-width: 1024px) {
   #optionsContainer {
     display: grid;
-    grid-auto-flow: column;              /* rellena columnas */
+    grid-auto-flow: column;              /* rellenar columnas */
     grid-template-rows: repeat(2, auto); /* siempre 2 filas */
-    gap: 20px;
-    justify-items: center;               /* centra cada botón dentro de su celda */
-    justify-content: start;              /* evita que se desplace el grid entero */
+    grid-auto-columns: minmax(200px, 1fr); /* columnas flexibles */
+    gap: 15px;                           /* menos espacio horizontal */
+    justify-content: center;             /* todo centrado */
+    align-items: center;
   }
 
   #optionsContainer button {
     font-size: 1.2em;
-    padding: 18px;
-    min-width: 220px;   /* 🔥 más pequeño para que quepan más columnas */
-    max-width: 280px;
+    padding: 16px;
+    min-width: unset;   /* quita límites que empujaban columnas */
+    max-width: 280px;   /* control del ancho */
+    width: 100%;
   }
 }
 
