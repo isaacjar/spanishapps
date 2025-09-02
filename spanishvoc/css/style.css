@@ -459,6 +459,23 @@ button.reset:hover { background: #d32f2f; }
 button.save { background: #2196f3; color: #fff; }
 button.save:hover { background: #1976d2; }
 
+/* Dificultad*/
+.lives-setting {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* espacio entre emoji, número y slider */
+  font-size: 1.6em;
+}
+
+#livesEmoji {
+  font-size: 1.5em;
+}
+
+#livesValue {
+  min-width: 2ch;  /* reserva espacio para números de 1 a 10 */
+  text-align: center;
+}
+
 /* Ajustes extra */
 #difficultyEmoji { margin-right: 40px; }
 /* 📱 Móviles */
