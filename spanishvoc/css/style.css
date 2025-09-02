@@ -299,7 +299,9 @@ main {
   flex-direction: column;
   gap: 18px; /* margen entre elementos */
 }
-
+.stats-line {
+  margin-bottom: 20px; /* espacio extra debajo de las estadísticas para grandes y pequeños */
+}
 /* 📱 Móviles */
 @media (max-width: 1023px) {
   #statsScreen button {
