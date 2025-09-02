@@ -176,21 +176,40 @@ export const UI = {
   },
 
   /* ===== Toasts ===== */
-  toast(msg) {
+  toast(msg, type = "default") {
     const t = document.createElement("div");
-    t.className = "toast";
+    t.className = `toast toast-${type}`;
     t.textContent = msg;
-    document.body.appendChild(t);
-    setTimeout(() => t.remove(), 1900);
+
+    // Buscar contenedor (o crearlo)
+    let container = document.getElementById("toast-container");
+    if (!container) {
+      container = document.createElement("div");
+      container.id = "toast-container";
+      document.body.appendChild(container);
+    }
+
+    container.appendChild(t);
+    
+    // Animación entrada
+    setTimeout(() => t.classList.add("show"), 10);
+  
+    // Auto remove
+    setTimeout(() => {
+      t.classList.remove("show");
+      setTimeout(() => t.remove(), 400);
+    }, 2000);
   },
+  
   toastSuccess() {
     const msgs = ["🐼 ¡Genial!","🎉 ¡Correcto!","🌟 ¡Bien hecho!","💡 ¡Lo pillaste!","🥳 ¡Acertaste!","🐸 ¡Perfecto!","🚀 ¡Lo clavaste!","🍀 ¡De lujo!","🦄 ¡Fantástico!","🔥 ¡Imparable!"];
-    this.toast(msgs[Math.floor(Math.random() * msgs.length)]);
+    this.toast(msgs[Math.floor(Math.random() * msgs.length)], "success");
   },
   toastFail() {
     const msgs = ["😅 Uy, casi...","❌ No pasa nada, ¡sigue!","🙈 ¡Fallaste!","🍂 ¡Inténtalo otra vez!","🤔 No era esa...","🌧️ Mala suerte...","🐌 ¡Se escapó esa!","🙃 Ups, ¡no!","🍄 ¡Otra oportunidad!","🐤 ¡Esa no era..."];
-    this.toast(msgs[Math.floor(Math.random() * msgs.length)]);
+    this.toast(msgs[Math.floor(Math.random() * msgs.length)], "fail");
   },
+  
   startGame(mode) {
     if (!window.currentVoclist || !window.currentVoclist.length) {
       this.pendingAction = ["game", mode];
