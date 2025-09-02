@@ -1,9 +1,9 @@
 /* ==============================
    🌍 BASE GLOBAL
 ============================== */
-html, body {
+/*html, body {
   touch-action: manipulation;
-}
+}*/
 
 body {
   margin: 0;
