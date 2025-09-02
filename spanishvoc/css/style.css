@@ -193,8 +193,8 @@ main {
 #optionsContainer {
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* siempre 2 columnas */
-  gap: 20px;
-  justify-items: center;
+  gap: 15px;
+  justify-items: stretch;
 }
 
 #optionsContainer button {
@@ -205,7 +205,7 @@ main {
   font-size: 1.6em;
   cursor: pointer;
   width: 100%;
-  max-width: 220px;  /* para que no se peguen demasiado */
+  max-width: none; 
   box-sizing: border-box;
 }
 
@@ -217,17 +217,18 @@ main {
   #optionsContainer {
     grid-auto-flow: column;              /* rellenar columnas */
     grid-template-rows: repeat(2, auto); /* siempre 2 filas */
-    grid-auto-columns: minmax(200px, 1fr); /* columnas flexibles */
-    gap: 15px;                           /* menos hueco horizontal */
+     grid-auto-flow: column; 
+    /*grid-auto-columns: minmax(200px, 1fr); /* columnas flexibles */    
+    gap:20px;                           /* menos hueco horizontal */
     justify-content: center;             /* todo el bloque centrado */
-    justify-items: center;               /* cada botón centrado */
+    justify-items: stretch;               /* cada botón centrado */
   }
 
   #optionsContainer button {
-    font-size: 1.2em;
-    padding: 16px;
-    min-width: unset;
-    max-width: 280px;
+    font-size: 1.3em;
+    padding: 18px;
+    min-width: 300px;
+    max-width: 500px;
     width: 100%;
   }
 }
