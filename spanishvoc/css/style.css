@@ -268,10 +268,8 @@ main {
 #timeBar {
   height: 100%;
   width: 100%;
-  /*background: #4caf50;
-  transition: width 1s linear, background-color 0.2s linear;*/
-  background: linear-gradient(90deg, #4caf50, #81c784);
-  transition: width 0.1s linear, background-color 0.2s linear;
+  background: #4caf50;
+  transition: width 1s linear, background-color 0.2s linear;
 }
 
 /* ==============================
