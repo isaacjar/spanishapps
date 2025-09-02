@@ -534,7 +534,7 @@ button.save:hover { background: #1976d2; }
   opacity: 0;
   transform: translateY(-20px);
   transition: all 0.4s ease;
-  max-width: 350px;
+  max-width: 450px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 
