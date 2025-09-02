@@ -484,3 +484,44 @@ button.save:hover { background: #1976d2; }
   }
 }
 .settings-list select option { font-size: 0.8em; }
+
+/* 📦 TOASTS */
+#toast-container {
+  position: fixed;
+  top: 120px;
+  left: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* separación entre toasts */
+  z-index: 9999;
+}
+
+/* 📝 Estilo base */
+.toast {
+  background: #000;
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 12px;
+  font-size: 1.1em;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: all 0.4s ease;
+  max-width: 280px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+/* 🚀 Animación de entrada */
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ✅ Toast éxito */
+.toast-success {
+  background: #2ecc71; /* verde */
+}
+
+/* ❌ Toast fallo */
+.toast-fail {
+  background: #e74c3c; /* rojo */
+}
