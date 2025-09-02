@@ -16,7 +16,7 @@ export const Game = {
       return;
     }
     this.mode = mode;
-    this.state = { currentQ: 0, score: 0, streak: 0, lives: 3, list: window.currentVoclist.slice(), active: false };
+    this.state = { currentQ: 0, score: 0, streak: 0, lives: Settings.data.lives, list: window.currentVoclist.slice(), active: false };
     UI.showGame();
     this.nextQuestion();
   },
