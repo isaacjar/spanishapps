@@ -194,7 +194,9 @@ main {
   }
 }
 
-/* BOTONES DE JUEGO */
+/* ==============================
+  🔘  BOTONES DE JUEGO 
+============================== */
 /* 📱 Móviles → 2 columnas */
 #optionsContainer {
   display: grid;
@@ -220,16 +222,25 @@ main {
 #optionsContainer button.correct { background: #b5e48c; }
 #optionsContainer button.wrong { background: #f28b82; }
 
-/* 🖥️ Escritorio: 2 filas fijas */
+/* Base escritorio */
 @media (min-width: 1024px) {
   #optionsContainer {
-    display: grid; /*grid-auto-flow: column;*/
-    grid-template-rows: repeat(2, auto); /* siempre 2 filas */
-    grid-auto-flow: row;                     /* rellenar filas primero */
-    grid-auto-columns: minmax(280px, 1fr); /* columnas flexibles */    
-    gap: 25px 20px;                           /* menos hueco horizontal */
-    justify-content: center;             /* todo el bloque centrado */
-    justify-items: stretch;               /* cada botón centrado */
+    display: grid;
+    gap: 25px 20px;
+    justify-content: center;
+    justify-items: stretch;
+  }
+
+  /* 4 opciones → 2 columnas */
+  #optionsContainer.cols-2 {
+    grid-template-columns: repeat(2, minmax(280px, 1fr));
+    grid-template-rows: repeat(2, auto);
+  }
+
+  /* 6 opciones → 3 columnas */
+  #optionsContainer.cols-3 {
+    grid-template-columns: repeat(3, minmax(280px, 1fr));
+    grid-template-rows: repeat(2, auto);
   }
 
   #optionsContainer button {
