@@ -215,18 +215,18 @@ main {
 /* 🖥️ Escritorio → 2 filas, columnas automáticas */
 @media (min-width: 1024px) {
   #optionsContainer {
-    grid-auto-flow: row;              /* rellenar por filas */
+    display: grid;
+    grid-auto-flow: column;          /* rellena columnas */
     grid-template-rows: repeat(2, auto); /* siempre 2 filas */
-    grid-auto-columns: 1fr;           /* columnas se crean según nº botones */
     gap: 20px;
-    justify-items: center;
+    justify-content: center;
   }
 
   #optionsContainer button {
     font-size: 1.2em;
     padding: 18px;
     min-width: 250px;
-    max-width: 400px;
+    max-width: 300px;  /* ojo: bajar este valor si quieres que quepan más */
   }
 }
 
