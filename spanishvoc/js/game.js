@@ -89,7 +89,7 @@ export const Game = {
       if (percent <= 20) {
         bar.style.backgroundColor = "#f44336"; // rojo
       } else if (percent <= 50) {
-        bar.style.backgroundColor = "#ffeb3b"; // amarillo
+        bar.style.backgroundColor = "#fdd835"; // amarillo
       } else {
         bar.style.backgroundColor = "#4caf50"; // verde
       }
