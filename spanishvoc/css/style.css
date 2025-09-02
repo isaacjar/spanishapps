@@ -202,7 +202,7 @@ main {
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* siempre 2 columnas */
   row-gap: 45px;      /* espacio vertical mayor */
-  column-gap: 20px;   /* espacio horizontal igual */
+  column-gap: 30px;   /* espacio horizontal igual */
   justify-items: stretch;
 }
 
@@ -211,10 +211,10 @@ main {
   background: #d4f0f0;
   border: none;
   border-radius: 12px;
-  font-size: 1.6em;
+  font-size: 1.7em;
   cursor: pointer;
   width: 100%;
-  min-height: 80px; 
+  min-height: 100px; 
   box-sizing: border-box;
 }
 
@@ -261,9 +261,15 @@ main {
   height: 32px;
   background: #eee;
   border-radius: 16px;
-  margin: 10px auto 80px;
+  margin: 3px auto 30px;
   overflow: hidden;
   box-shadow: inset 0 2px 5px rgba(0,0,0,0.08);
+}
+/* Solo en móviles (máx 767px por ejemplo) */
+@media (max-width: 767px) {
+  .progress-container {
+    margin: 10px auto 80px; /* más espacio abajo en móviles */
+  }
 }
 #timeBar {
   height: 100%;
