@@ -129,26 +129,12 @@ main {
 
 /* Label listado */
 .current-list-label {
-  font-size: 1.4em;     /* valor base (para tablets/intermedios) */
+  font-size: 1.5em;    /* FUENTE LISTADO */  
   font-weight: bold;
   text-align: center;
   margin-bottom: 15px;
   min-height: 1.5em;
   color: #555;
-}
-
-/* 🖥️ Pantallas grandes */
-@media (min-width: 1024px) {
-  .current-list-label {
-    font-size: 1.2em;   /* un poco más pequeño en escritorio */
-  }
-}
-
-/* 📱 Móviles */
-@media (max-width: 768px) {
-  .current-list-label {
-    font-size: 1.6em;   /* un poco más grande en móvil */
-  }
 }
 
 /* ==============================
@@ -269,8 +255,8 @@ main {
   overflow: hidden;
   box-shadow: inset 0 2px 5px rgba(0,0,0,0.08);
 }
-/* Solo en móviles (máx 767px por ejemplo) */
-@media (max-width: 1024px) {
+/* Solo en pantallas alargadas 1300px */
+@media (min-height: 1300px) {
   .progress-container {
     margin: 10px auto 80px; /* más espacio abajo en móviles */
   }
