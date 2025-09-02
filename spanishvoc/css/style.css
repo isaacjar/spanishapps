@@ -207,7 +207,7 @@ main {
 }
 
 #optionsContainer button {
-  padding: 25px;
+  padding: 35px;
   background: #d4f0f0;
   border: none;
   border-radius: 12px;
@@ -215,7 +215,6 @@ main {
   cursor: pointer;
   width: 100%;
   min-height: 80px; 
-  max-width: none;  
   box-sizing: border-box;
 }
 
