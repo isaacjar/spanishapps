@@ -216,17 +216,18 @@ main {
 @media (min-width: 1024px) {
   #optionsContainer {
     display: grid;
-    grid-auto-flow: column;          /* rellena columnas */
+    grid-auto-flow: column;              /* rellena columnas */
     grid-template-rows: repeat(2, auto); /* siempre 2 filas */
     gap: 20px;
-    justify-content: center;
+    justify-items: center;               /* centra cada botón dentro de su celda */
+    justify-content: start;              /* evita que se desplace el grid entero */
   }
 
   #optionsContainer button {
     font-size: 1.2em;
     padding: 18px;
-    min-width: 250px;
-    max-width: 300px;  /* ojo: bajar este valor si quieres que quepan más */
+    min-width: 220px;   /* 🔥 más pequeño para que quepan más columnas */
+    max-width: 280px;
   }
 }
 
