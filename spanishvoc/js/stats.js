@@ -23,7 +23,8 @@ export const Stats = {
     const total = parseInt(localStorage.getItem("vocaboomb_total") || "0");
     const hits  = parseInt(localStorage.getItem("vocaboomb_hits")  || "0");
     const pct   = total ? Math.round((hits / total) * 100) : 0;
+    const pct = total > 0 ? ((hits / total) * 100).toFixed(1) : 0; 
     const box = document.getElementById("statsContent");
-    if (box) box.innerHTML = `<div>Preguntas: ${total}</div><div>✅ Aciertos: ${hits}</div><div>📈 ${pct}</div>`;  
+    if (box) box.innerHTML = `<div>❓ ${total}  •  ✅  ${hits}</div><div>  •  📈 ${pct} %</div>`;  
   }
 };
