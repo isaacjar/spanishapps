@@ -473,7 +473,7 @@ button.save:hover { background: #1976d2; }
 }
 
 #livesEmoji {
-  font-size: 1em;
+  /*font-size: 1em;*/
 }
 
 #livesValue {
