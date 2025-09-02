@@ -490,7 +490,7 @@ button.save:hover { background: #1976d2; }
   display: flex;
   align-items: center;
   gap: 15px; /* espacio entre emoji, número y slider */
-  font-size: 1.6em;
+  font-size: 1.4em;
 }
 
 #livesEmoji {
