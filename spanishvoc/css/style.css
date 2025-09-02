@@ -252,17 +252,19 @@ main {
   padding: 8px;
 }
 #statsScreen h2 {
-  font-size: 1.8em;
-  margin-bottom: 24px;
+  font-size: 1.5em;
+  margin-bottom: 20px;
 }
 #statsContent > * {
-  margin-bottom: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px; /* sustituye los margin-bottom */
 }
 
 /* 📱 Móviles */
 @media (max-width: 1023px) {
   #statsScreen button {
-    font-size: 1.1em;
+    font-size: 1.5em;
     padding: 20px 30px;
     display: block;
     width: 100%;
@@ -281,9 +283,6 @@ main {
     margin: 0 12px 20px 0;
     border-radius: 10px;
     vertical-align: middle;
-  }
-  #statsContent > * {
-    margin-bottom: 24px;
   }
 }
 
