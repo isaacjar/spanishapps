@@ -3,6 +3,7 @@ export const Settings = {
     lang: "en",    // en|zh|urf
     time: 10,      // 2..30 (segundos)
     questions: 15, // 5..50
+    lives: 3,       // 👈 número de vidas por defecto
     difficulty: 1  // 1=4 opciones, 2=6 opciones
   },
 
@@ -13,9 +14,10 @@ export const Settings = {
     if (params.has("time")) this.data.time = Math.max(2, Math.min(30, parseInt(params.get("time")) || 10));
     if (params.has("questions")) this.data.questions = Math.max(5, Math.min(50, parseInt(params.get("questions")) || 15));
     if (params.has("difficulty")) this.data.difficulty = [1,2].includes(parseInt(params.get("difficulty"))) ? parseInt(params.get("difficulty")) : 1;
+    if (params.has("lives")) this.data.lives = Math.max(1, Math.min(10, parseInt(params.get("lives")) || 3));
 
     // 2) LocalStorage (si NO viene por URL)
-    ["lang","time","questions","difficulty"].forEach(k => {
+    ["lang","time","questions","difficulty","lives"].forEach(k => {
       const key = "vocaboomb_" + k;
       const saved = localStorage.getItem(key);
       if (saved !== null && !params.has(k)) {
@@ -33,6 +35,7 @@ export const Settings = {
     localStorage.setItem("vocaboomb_time", String(this.data.time));
     localStorage.setItem("vocaboomb_questions", String(this.data.questions));
     localStorage.setItem("vocaboomb_difficulty", String(this.data.difficulty));
+    localStorage.setItem("vocaboomb_lives", String(this.data.lives));
     this.applyUI(); // 🔧 refresca interfaz tras guardar
   },
 
@@ -41,7 +44,8 @@ export const Settings = {
       lang: "en",
       time: 10,
       questions: 15,
-      difficulty: 1
+      difficulty: 1,
+      lives: 3
     };
     this.applyUI();
     this.save();
@@ -68,6 +72,13 @@ export const Settings = {
     const emo = document.querySelector("#difficultyEmoji");
     if (sw) sw.checked = this.data.difficulty === 2;
     if (emo) emo.textContent = (this.data.difficulty === 2) ? "🥵" : "😎";
+
+    // Vidas
+    const lv = document.querySelector("#livesValue");
+    const ls = document.querySelector("#livesSlider");
+    if (ls) ls.value = this.data.lives;
+    if (lv) lv.textContent = this.data.lives;
+        
   },
 
   bindEvents() {
@@ -77,6 +88,8 @@ export const Settings = {
     const nq         = document.querySelector("#numQuestions");
     const nqv        = document.querySelector("#numQuestionsVal");
     const sw         = document.querySelector("#difficultySwitch");
+    const livesSlider = document.querySelector("#livesSlider");
+    const livesValue  = document.querySelector("#livesValue");
 
     if (langSelect) langSelect.addEventListener("change", e => { 
       this.data.lang = e.target.value; 
@@ -96,6 +109,11 @@ export const Settings = {
       this.data.difficulty = e.target.checked ? 2 : 1;
       const emo = document.querySelector("#difficultyEmoji");
       if (emo) emo.textContent = e.target.checked ? "🥵" : "😎";
+    });
+
+    if (livesSlider) livesSlider.addEventListener("input", e => {
+      this.data.lives = parseInt(e.target.value);
+      if (livesValue) livesValue.textContent = this.data.lives;
     });
   },
 
