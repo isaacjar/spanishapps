@@ -36,7 +36,7 @@ export const voclists = [
   { filename: "a1_033_tech", title: "A1 033 Tecnología (25)", level: "A1", misc: "Isaac" },
   { filename: "a1_034_questions", title: "A1 034 Preguntas (25)", level: "A1", misc: "Isaac" },
   // Listados Ana
-  { filename: "a1_022_numbers10", title: "A1 022 Números 1-10 (10)", level: "A1", misc: "Ana" },
-  { filename: "a1_015_objects", title: "A1 015 Objetos (25)", level: "A1", misc: "Ana" },
+  { filename: "Ana_Adjetivos", title: "Adjetivos (25)", level: "A1", misc: "Ana" },
+  //{ filename: "a1_015_objects", title: "A1 015 Objetos (25)", level: "A1", misc: "Ana" },
 ];
 window.voclists = voclists;
