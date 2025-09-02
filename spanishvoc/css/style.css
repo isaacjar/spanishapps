@@ -234,6 +234,7 @@ main {
   #optionsContainer.cols-2 {
     grid-template-columns: repeat(2, minmax(280px, 1fr));
     grid-template-rows: repeat(2, auto);
+    justify-content: center; /* centrado del bloque */
   }
 
   /* 6 opciones → 3 columnas */
