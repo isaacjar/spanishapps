@@ -261,7 +261,7 @@ main {
   height: 32px;
   background: #eee;
   border-radius: 16px;
-  margin: 10px auto 40px;
+  margin: 10px auto 80px;
   overflow: hidden;
   box-shadow: inset 0 2px 5px rgba(0,0,0,0.08);
 }
