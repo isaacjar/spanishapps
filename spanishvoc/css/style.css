@@ -199,20 +199,21 @@ main {
 #optionsContainer {
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* siempre 2 columnas */
-  row-gap: 35px;      /* espacio vertical mayor */
+  row-gap: 45px;      /* espacio vertical mayor */
   column-gap: 20px;   /* espacio horizontal igual */
   justify-items: stretch;
 }
 
 #optionsContainer button {
-  padding: 20px;
+  padding: 25px;
   background: #d4f0f0;
   border: none;
   border-radius: 12px;
   font-size: 1.6em;
   cursor: pointer;
   width: 100%;
-  max-width: none; 
+  min-height: 80px; 
+  max-width: none;  
   box-sizing: border-box;
 }
 
