@@ -76,12 +76,12 @@ main {
   display: block;
   width: 100%;
   max-width: 800px;
-  margin: 20px auto;
-  padding: 32px;
+  margin: 40px auto;
+  padding: 50px;
   background: #cce5ff;
   border: none;
   border-radius: 12px;
-  font-size: 1.8em;
+  font-size: 2em;
   cursor: pointer;
   transition: transform 0.2s;
 }
