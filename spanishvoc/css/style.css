@@ -192,6 +192,7 @@ main {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 25px;
+  justify-items: center; 
 }
 #optionsContainer button {
   padding: 25px;
@@ -200,9 +201,9 @@ main {
   border-radius: 12px;
   font-size: 2em;
   cursor: pointer;
-  min-width: 200px;
   width: 100%;
-  margin: 0 auto;
+  min-width: 200px;
+  max-width: 500px; 
   box-sizing: border-box;
 }
 #optionsContainer button.correct { background: #b5e48c; }
