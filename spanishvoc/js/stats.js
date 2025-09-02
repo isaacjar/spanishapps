@@ -24,6 +24,6 @@ export const Stats = {
     const hits  = parseInt(localStorage.getItem("vocaboomb_hits")  || "0");
     const pct   = total ? Math.round((hits / total) * 100) : 0;
     const box = document.getElementById("statsContent");
-    if (box) box.innerHTML = `Preguntas: ${total}<br>✅ Aciertos: ${hits}<br>📈 ${pct}%`;
+    if (box) box.innerHTML = `<div>Preguntas: ${total}</div><div>✅ Aciertos: ${hits}</div><div>📈 ${pct}</div>`;  
   }
 };
