@@ -217,6 +217,25 @@ export const UI = {
       return;
     }
     Game.start(mode);
+  },
+
+  // Pantalla Fin del Juego
+  showGameOver(state) {
+    // Rellenar datos
+    document.getElementById("finalScore").textContent = state.score;
+    document.getElementById("finalQuestions").textContent = state.currentQ;
+    document.getElementById("finalFails").textContent = Settings.data.questions - state.score;
+    document.getElementById("finalStreak").textContent = state.streak;
+  
+    this.showScreen("gameOverScreen");
+  
+    // Botones
+    document.getElementById("btnRestart").onclick = () => {
+      Game.start(Game.mode); // reinicia con el mismo modo
+    };
+    document.getElementById("btnBackMenu").onclick = () => {
+      this.showMenu();
+    };
   }
 };
 
