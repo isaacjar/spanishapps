@@ -224,7 +224,6 @@ export const UI = {
     // Rellenar datos
     document.getElementById("finalScore").textContent = state.score;
     document.getElementById("finalQuestions").textContent = state.currentQ;
-    //document.getElementById("finalFails").textContent = Settings.data.questions - state.score;
     document.getElementById("finalStreak").textContent = state.streak;
   
     this.showScreen("gameOverScreen");
