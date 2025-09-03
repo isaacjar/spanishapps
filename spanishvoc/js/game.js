@@ -24,7 +24,8 @@ export const Game = {
   nextQuestion() {
     if (this.state.currentQ >= Settings.data.questions || this.state.lives <= 0) {
       UI.toast("🎮 Game Over");
-      UI.showMenu();
+      // UI.showMenu();
+      UI.showGameOver(this.state);
       return;
     }
 
