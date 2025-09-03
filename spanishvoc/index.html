@@ -69,7 +69,19 @@
       <button class="back-btn" onclick="UI.showMenu()">⬅️ Volver</button>
     </section>
   </main>
-
+  <!-- Pantalla de Fin de Juego -->
+  <div id="gameOverScreen" class="hidden game-over">
+    <h1>🎮 FIN DEL JUEGO</h1>
+    <p>Puntuación final: <span id="finalScore">0</span></p>
+    <p>Preguntas: <span id="finalQuestions">0</span></p>
+    <p>🔥 Mejor racha: <span id="finalStreak">0</span></p>
+  
+    <div class="buttons">
+      <button id="btnRestart">🔄 Reiniciar</button>
+      <button id="btnBackMenu">🏠 Volver al menú</button>
+    </div>
+  </div>
+    
   <!-- ⚙️ Modal Settings -->
   <div id="settingsModal" class="modal-overlay hidden">
     <div class="modal-box">
