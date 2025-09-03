@@ -22,13 +22,18 @@ export const Game = {
   },
 
   nextQuestion() {
-    if (this.state.currentQ >= Settings.data.questions || this.state.lives <= 0) {
-      UI.toast("🎮 Game Over");
-      // UI.showMenu();
+      if (this.state.currentQ >= Settings.data.questions) {
+      // ✅ Juego terminado normalmente (todas las preguntas)
       UI.showGameOver(this.state);
       return;
     }
 
+    if (this.state.lives <= 0) {
+      // ❌ Derrota por perder vidas
+      UI.toast("🎮 Game Over");
+      UI.showGameOver(this.state);
+      return;
+    }
     this.state.currentQ++;
     this.state.active = true;
 
