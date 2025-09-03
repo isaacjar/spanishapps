@@ -16,7 +16,7 @@ export const Game = {
       return;
     }
     this.mode = mode;
-    this.state = { currentQ: 0, score: 0, streak: 0, lives: Settings.data.lives, list: window.currentVoclist.slice(), active: false };
+    this.state = { currentQ: 0, score: 0, streak: 0, bestStreak: 0, lives: Settings.data.lives, list: window.currentVoclist.slice(), active: false };
     UI.showGame();
     this.nextQuestion();
   },
@@ -114,6 +114,9 @@ export const Game = {
     if (isCorrect) {
       this.state.score++;
       this.state.streak++;
+      if (this.state.streak > this.state.bestStreak) {
+        this.state.bestStreak = this.state.streak;   // 👈 actualiza mejor racha
+      }
       UI.toastSuccess();
       Stats.add(true);
     } else {
