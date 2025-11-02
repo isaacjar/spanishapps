@@ -1,10 +1,10 @@
 [
-  { "es": "la semana", "en": "week", "zh": "星期 / 周", "ur": "ہفتہ" },
-  { "es": "lunes", "en": "Monday", "zh": "星期一", "ur": "پیر" },
-  { "es": "martes", "en": "Tuesday", "zh": "星期二", "ur": "منگل" },
-  { "es": "miércoles", "en": "Wednesday", "zh": "星期三", "ur": "بدھ" },
-  { "es": "jueves", "en": "Thursday", "zh": "星期四", "ur": "جمعرات" },
-  { "es": "viernes", "en": "Friday", "zh": "星期五", "ur": "جمعہ" },
-  { "es": "sábado", "en": "Saturday", "zh": "星期六", "ur": "ہفتہ" },
-  { "es": "domingo", "en": "Sunday", "zh": "星期日", "ur": "اتوار" }
+  { "es": "la semana", "en": "week", "zh": "星期 / 周", "fr": "la semaine" },
+  { "es": "lunes", "en": "Monday", "zh": "星期一", "fr": "lundi" },
+  { "es": "martes", "en": "Tuesday", "zh": "星期二", "fr": "mardi" },
+  { "es": "miércoles", "en": "Wednesday", "zh": "星期三", "fr": "mercredi" },
+  { "es": "jueves", "en": "Thursday", "zh": "星期四", "fr": "jeudi" },
+  { "es": "viernes", "en": "Friday", "zh": "星期五", "fr": "vendredi" },
+  { "es": "sábado", "en": "Saturday", "zh": "星期六", "fr": "samedi" },
+  { "es": "domingo", "en": "Sunday", "zh": "星期日", "fr": "dimanche" }
 ]
