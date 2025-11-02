@@ -35,6 +35,8 @@ export const voclists = [
   { filename: "a1_032_travelling", title: "A1 032 De viaje (25)", level: "A1", misc: "Isaac" },
   { filename: "a1_033_tech", title: "A1 033 Tecnología (25)", level: "A1", misc: "Isaac" },
   { filename: "a1_034_questions", title: "A1 034 Preguntas (25)", level: "A1", misc: "Isaac" },
+  // Listados A2
+  { filename: "a2_musical_inst", title: "A2 012 Instrumentos musicales (25)", level: "A2", misc: "Isaac" },
   // Listados Ana
   { filename: "Ana_Adjetivos", title: "Adjetivos (25)", level: "A1", misc: "Ana" },
   //{ filename: "a1_015_objects", title: "A1 015 Objetos (25)", level: "A1", misc: "Ana" },
