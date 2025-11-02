@@ -36,7 +36,21 @@ export const voclists = [
   { filename: "a1_032_travelling", title: "A1 032 De viaje (25)", level: "A1", misc: "Isaac" },
   { filename: "a1_033_tech", title: "A1 033 Tecnología (25)", level: "A1", misc: "Isaac" },
   { filename: "a1_034_questions", title: "A1 034 Preguntas (25)", level: "A1", misc: "Isaac" },
+  { filename: "a1_035_beverages", title: "A1 035 Las bebidas (25)", level: "A1", misc: "Isaac" },
+  { filename: "a1_036_restaurant", title: "A1 036 En el restaurante (25)", level: "A1", misc: "Isaac" },
+  
   // Listados A2
+  { filename: "a2_001_nature", title: "A2 001 La naturaleza (30)", level: "A2", misc: "Isaac" },
+  { filename: "a2_002_dessert", title: "A2 002 Los postres (25)", level: "A2", misc: "Isaac" },
+  { filename: "a2_003_space", title: "A2 003 El espacio (25)", level: "A2", misc: "Isaac" },
+  { filename: "a2_004_furniture", title: "A2 004 Los muebles (25)", level: "A2", misc: "Isaac" },
+  { filename: "a2_005_toys", title: "A2 005 Los juguetes (25)", level: "A2", misc: "Isaac" },
+  { filename: "a2_006_prepositions", title: "A2 006 Las preposiciones (20)", level: "A2", misc: "Isaac" },
+  { filename: "a2_007_appliances", title: "A2 007 Los electrodomésticos (20)", level: "A2", misc: "Isaac" },
+  { filename: "a2_008_hobbies", title: "A2 008 Aficiones (27)", level: "A2", misc: "Isaac" },
+  { filename: "a2_009_infrastructure", title: "A2 009 Las infraestructuras (25)", level: "A2", misc: "Isaac" },
+  { filename: "a2_010_shop", title: "A2 010 La tienda (25)", level: "A2", misc: "Isaac" },
+  { filename: "a2_011_office", title: "A2 011 La oficina (25)", level: "A2", misc: "Isaac" },
   { filename: "a2_012_musical_inst", title: "A2 012 Instrumentos musicales (25)", level: "A2", misc: "Isaac" },
   { filename: "a2_013_geometric", title: "A2 013 Geometría (25)", level: "A2", misc: "Isaac" },
   // Listados Ana
