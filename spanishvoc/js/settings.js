@@ -1,6 +1,6 @@
 export const Settings = {
   data: {
-    lang: "en",    // en|zh|urf
+    lang: "en",    // en|zh|fr
     time: 10,      // 2..30 (segundos)
     questions: 15, // 5..50
     lives: 3,       // 👈 número de vidas por defecto
