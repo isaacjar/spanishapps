@@ -24,6 +24,7 @@ export const voclists = [
   { filename: "a1_021_animals", title: "A1 021 Los animales (25)", level: "A1", misc: "Isaac" },
   { filename: "a1_022_numbers10", title: "A1 022 Números 1-10 (10)", level: "A1", misc: "Isaac" },
   { filename: "a1_023_numbers100", title: "A1 023 Números 1-100 (37)", level: "A1", misc: "Isaac" },
+  { filename: "a1_023b_numbers100full", title: "A1 023 Números 1-100 Full (100)", level: "A1", misc: "Isaac" },
   { filename: "a1_024_daily_routine", title: "A1 024 Rutina diaria (25)", level: "A1", misc: "Isaac" },
   { filename: "a1_025_moments", title: "A1 025 Momentos (25)", level: "A1", misc: "Isaac" },
   { filename: "a1_026_school", title: "A1 026 La escuela (42)", level: "A1", misc: "Isaac" },
