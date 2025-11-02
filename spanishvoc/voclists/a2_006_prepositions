@@ -1,0 +1,22 @@
+[
+  { "es": "a", "en": "to", "zh": "到", "fr": "à" },
+  { "es": "de", "en": "from / of", "zh": "从 / 的", "fr": "de" },
+  { "es": "en", "en": "in / on", "zh": "在", "fr": "dans / sur" },
+  { "es": "con", "en": "with", "zh": "跟 / 和", "fr": "avec" },
+  { "es": "sin", "en": "without", "zh": "没有", "fr": "sans" },
+  { "es": "por", "en": "by / through / for", "zh": "通过 / 为了", "fr": "par / pour" },
+  { "es": "para", "en": "for / in order to", "zh": "为了", "fr": "pour" },
+  { "es": "sobre", "en": "on / about", "zh": "在…上 / 关于", "fr": "sur / à propos de" },
+  { "es": "entre", "en": "between / among", "zh": "在…之间", "fr": "entre" },
+  { "es": "hasta", "en": "until / up to", "zh": "直到", "fr": "jusqu'à" },
+  { "es": "desde", "en": "from / since", "zh": "从", "fr": "depuis" },
+  { "es": "cerca de", "en": "near", "zh": "附近", "fr": "près de" },
+  { "es": "lejos de", "en": "far from", "zh": "远离", "fr": "loin de" },
+  { "es": "debajo de", "en": "under", "zh": "在…下面", "fr": "sous" },
+  { "es": "encima de", "en": "above / on top of", "zh": "在…上面", "fr": "au-dessus de" },
+  { "es": "delante de", "en": "in front of", "zh": "在…前面", "fr": "devant" },
+  { "es": "detrás de", "en": "behind", "zh": "在…后面", "fr": "derrière" },
+  { "es": "al lado de", "en": "next to / beside", "zh": "在…旁边", "fr": "à côté de" },
+  { "es": "dentro de", "en": "inside", "zh": "在…里面", "fr": "à l'intérieur de" },
+  { "es": "fuera de", "en": "outside", "zh": "在…外面", "fr": "à l'extérieur de" }
+]
