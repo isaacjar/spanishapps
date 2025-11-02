@@ -1,12 +1,12 @@
 [
-  { "es": "uno", "en": "one", "zh": "一", "ur": "ایک" },
-  { "es": "dos", "en": "two", "zh": "二", "ur": "دو" },
-  { "es": "tres", "en": "three", "zh": "三", "ur": "تین" },
-  { "es": "cuatro", "en": "four", "zh": "四", "ur": "چار" },
-  { "es": "cinco", "en": "five", "zh": "五", "ur": "پانچ" },
-  { "es": "seis", "en": "six", "zh": "六", "ur": "چھ" },
-  { "es": "siete", "en": "seven", "zh": "七", "ur": "سات" },
-  { "es": "ocho", "en": "eight", "zh": "八", "ur": "آٹھ" },
-  { "es": "nueve", "en": "nine", "zh": "九", "ur": "نو" },
-  { "es": "diez", "en": "ten", "zh": "十", "ur": "دس" }
+  { "es": "uno", "en": "one", "zh": "一", "fr": "un" },
+  { "es": "dos", "en": "two", "zh": "二", "fr": "deux" },
+  { "es": "tres", "en": "three", "zh": "三", "fr": "trois" },
+  { "es": "cuatro", "en": "four", "zh": "四", "fr": "quatre" },
+  { "es": "cinco", "en": "five", "zh": "五", "fr": "cinq" },
+  { "es": "seis", "en": "six", "zh": "六", "fr": "six" },
+  { "es": "siete", "en": "seven", "zh": "七", "fr": "sept" },
+  { "es": "ocho", "en": "eight", "zh": "八", "fr": "huit" },
+  { "es": "nueve", "en": "nine", "zh": "九", "fr": "neuf" },
+  { "es": "diez", "en": "ten", "zh": "十", "fr": "dix" }
 ]
