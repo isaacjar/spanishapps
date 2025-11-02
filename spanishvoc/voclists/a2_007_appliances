@@ -1,0 +1,22 @@
+[
+  { "es": "nevera", "en": "fridge", "zh": "冰箱", "fr": "frigo" },
+  { "es": "congelador", "en": "freezer", "zh": "冷冻柜", "fr": "congélateur" },
+  { "es": "microondas", "en": "microwave", "zh": "微波炉", "fr": "micro-ondes" },
+  { "es": "horno", "en": "oven", "zh": "烤箱", "fr": "four" },
+  { "es": "lavadora", "en": "washing machine", "zh": "洗衣机", "fr": "machine à laver" },
+  { "es": "secadora", "en": "dryer", "zh": "烘干机", "fr": "sèche-linge" },
+  { "es": "lavavajillas", "en": "dishwasher", "zh": "洗碗机", "fr": "lave-vaisselle" },
+  { "es": "aspiradora", "en": "vacuum cleaner", "zh": "吸尘器", "fr": "aspirateur" },
+  { "es": "plancha", "en": "iron", "zh": "熨斗", "fr": "fer à repasser" },
+  { "es": "ventilador", "en": "fan", "zh": "风扇", "fr": "ventilateur" },
+  { "es": "calefactor", "en": "heater", "zh": "取暖器", "fr": "chauffage" },
+  { "es": "aire acondicionado", "en": "air conditioner", "zh": "空调", "fr": "climatiseur" },
+  { "es": "televisor", "en": "television", "zh": "电视", "fr": "téléviseur" },
+  { "es": "radio", "en": "radio", "zh": "收音机", "fr": "radio" },
+  { "es": "batidora", "en": "blender", "zh": "搅拌机", "fr": "mixeur" },
+  { "es": "tostadora", "en": "toaster", "zh": "烤面包机", "fr": "grille-pain" },
+  { "es": "cafetera", "en": "coffee maker", "zh": "咖啡机", "fr": "cafetière" },
+  { "es": "hervidor", "en": "kettle", "zh": "电水壶", "fr": "bouilloire" },
+  { "es": "licuadora", "en": "juicer", "zh": "榨汁机", "fr": "centrifugeuse" },
+  { "es": "freidora", "en": "fryer", "zh": "油炸锅", "fr": "friteuse" }
+]
