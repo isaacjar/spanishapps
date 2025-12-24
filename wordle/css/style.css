@@ -133,3 +133,57 @@ footer {
   from { transform: scale(.9); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
 }
+
+/* =========================
+   FLIP WORDLE
+========================= */
+
+.cell {
+  perspective: 600px;
+}
+
+.cell-inner {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.55s ease;
+}
+
+.cell.flip .cell-inner {
+  transform: rotateX(180deg);
+}
+
+.cell-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backface-visibility: hidden;
+  font-weight: bold;
+  font-size: 1.4em;
+  border-radius: var(--radius);
+}
+
+.cell-front {
+  background: var(--card);
+  border: 2px solid var(--accent-2);
+}
+
+.cell-back {
+  transform: rotateX(180deg);
+  color: white;
+}
+
+/* Estados Wordle */
+.cell.correct .cell-back {
+  background: #6aaa64;
+}
+
+.cell.present .cell-back {
+  background: #c9b458;
+}
+
+.cell.absent .cell-back {
+  background: #787c7e;
+}
