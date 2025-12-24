@@ -1,220 +1,53 @@
-:root {
-  --bg: #f7f6f3;
-  --card: #ffffff;
-  --primary: #a5b4fc;
-  --success: #6aaa64;
-  --warn: #c9b458;
-  --fail: #787c7e;
-  --text: #1f2937;
-  --radius: 14px;
-  --shadow: 0 4px 12px rgba(0,0,0,.08);
-}
+:root{--bg:#f7f6f3;--card:#ffffff;--primary:#a5b4fc;--success:#6aaa64;--warn:#c9b458;--fail:#787c7e;--text:#1f2937;--radius:14px;--shadow:0 4px 12px rgba(0,0,0,.08);}
 
-/* =========================
-   BASE
-========================= */
+/* BASE [tipografía, box-sizing, body] */
+*{box-sizing:border-box;font-family:"Inter","Roboto",sans-serif;}
+body{margin:0;display:flex;flex-direction:column;min-height:100vh;background:var(--bg);color:var(--text);}
 
-* {
-  box-sizing: border-box;
-  font-family: "Inter", "Roboto", sans-serif;
-}
+/* TOPBAR [layout horizontal, padding, fondo, sombra] */
+.topbar{display:flex;justify-content:space-between;align-items:center;padding:10px 16px;background:var(--card);box-shadow:var(--shadow);}
+.logo-title{display:flex;align-items:center;gap:8px;font-size:1.5em;font-weight:bold;}
+.top-buttons{display:flex;align-items:center;gap:8px;}
 
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
+/* BOTONES TOPBAR [+WORD verde GitHub, icono] */
+.btn-primary{padding:8px 16px;border-radius:var(--radius);background:#28a745;color:#fff;font-weight:600;font-size:1em;border:none;box-shadow:0 4px 12px rgba(0,0,0,0.08);cursor:pointer;transition:transform .15s ease,box-shadow .15s ease,background .15s ease;}
+.btn-primary:hover{background:#218838;transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.12);}
+.btn-icon{padding:8px 12px;border-radius:var(--radius);background:var(--card);border:1px solid #ccc;font-size:1.2em;cursor:pointer;transition:background .15s ease,transform .15s ease;}
+.btn-icon:hover{background:var(--primary);color:#fff;transform:translateY(-2px);}
 
-/* =========================
-   TOPBAR
-========================= */
+/* BOARD [grid layout, gap, margen] */
+#board{display:grid;gap:8px;justify-content:center;margin:16px 0;}
+.row{display:grid;gap:8px;}
 
-.topbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 16px;
-  background: var(--card);
-  box-shadow: var(--shadow);
-}
+/* CELL + FLIP [tamaño, perspectiva, transición] */
+.cell{width:52px;height:52px;perspective:600px;position:relative;}
+.cell-inner{width:100%;height:100%;transform-style:preserve-3d;transition:transform .55s ease;border-radius:var(--radius);}
+.cell.flip .cell-inner{transform:rotateX(180deg);}
+.cell.flip{animation:pop .15s ease;}
+@keyframes pop{50%{transform:scale(1.05);}}
 
-/* =========================
-   BOARD
-========================= */
+/* CELL FACE [front/back, posición, texto, sombra] */
+.cell-face{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;backface-visibility:hidden;font-size:26px;font-weight:600;border-radius:var(--radius);box-shadow:var(--shadow);}
+.cell-front{background:var(--card);border:2px solid #d1d5db;}
+.cell-back{transform:rotateX(180deg);color:white;}
 
-#board {
-  display: grid;
-  gap: 8px;
-  justify-content: center;
-  margin: 16px 0;
-}
+/* ESTADOS WORDLE [correct, present, absent] */
+.cell.correct .cell-back{background:var(--success);}
+.cell.present .cell-back{background:var(--warn);}
+.cell.absent .cell-back{background:var(--fail);}
 
-.row {
-  display: grid;
-  gap: 8px;
-}
+/* KEYBOARD [grid, gap, padding] */
+#keyboard{display:grid;grid-template-columns:repeat(10,1fr);gap:6px;padding:12px;}
+.key{padding:14px;border-radius:var(--radius);background:var(--primary);text-align:center;cursor:pointer;user-select:none;box-shadow:var(--shadow);font-weight:600;}
+.key.ok{grid-column:span 2;}
 
-/* =========================
-   CELL + FLIP
-========================= */
+/* FOOTER [centrado, padding, tamaño fuente] */
+footer{margin-top:auto;text-align:center;padding:10px;font-size:14px;}
 
-.cell {
-  width: 52px;
-  height: 52px;
-  perspective: 600px;
-}
-
-.cell-inner {
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
-  transition: transform 0.55s ease;
-  border-radius: var(--radius);
-}
-
-.cell.flip .cell-inner {
-  transform: rotateX(180deg);
-}
-
-/* BONUS: rebote */
-.cell.flip {
-  animation: pop 0.15s ease;
-}
-
-@keyframes pop {
-  50% { transform: scale(1.05); }
-}
-
-/* =========================
-   CARAS
-========================= */
-
-.cell-face {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  backface-visibility: hidden;
-  font-size: 26px;
-  font-weight: 600;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-}
-
-/* Frente (antes del flip) */
-.cell-front {
-  background: var(--card);
-  border: 2px solid #d1d5db;
-}
-
-/* Dorso (color Wordle) */
-.cell-back {
-  transform: rotateX(180deg);
-  color: white;
-}
-
-/* =========================
-   ESTADOS WORDLE
-========================= */
-
-.cell.correct .cell-back {
-  background: var(--success);
-}
-
-.cell.present .cell-back {
-  background: var(--warn);
-}
-
-.cell.absent .cell-back {
-  background: var(--fail);
-}
-
-/* =========================
-   KEYBOARD
-========================= */
-
-#keyboard {
-  display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  gap: 6px;
-  padding: 12px;
-}
-
-.key {
-  padding: 14px;
-  border-radius: var(--radius);
-  background: var(--primary);
-  text-align: center;
-  cursor: pointer;
-  user-select: none;
-  box-shadow: var(--shadow);
-  font-weight: 600;
-}
-
-.key.ok {
-  grid-column: span 2;
-}
-
-/* =========================
-   FOOTER
-========================= */
-
-footer {
-  margin-top: auto;
-  text-align: center;
-  padding: 10px;
-  font-size: 14px;
-}
-
-/* =========================
-   POPUP
-========================= */
-
-#popup {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,.25);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-}
-
-#popup.hidden {
-  display: none;
-}
-
-.popup-card {
-  background: var(--card);
-  padding: 20px;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  width: min(90%, 420px);
-  animation: popIn .2s ease-out;
-}
-
-.popup-card h2 {
-  margin-top: 0;
-  text-align: center;
-}
-
-.popup-list button {
-  width: 100%;
-  margin: 8px 0;
-  padding: 12px;
-  border-radius: var(--radius);
-  border: none;
-  background: var(--primary);
-  cursor: pointer;
-  box-shadow: var(--shadow);
-  font-size: 16px;
-}
-
-@keyframes popIn {
-  from { transform: scale(.9); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
-}
+/* POPUP [fondo semi-transparente, centrado] */
+#popup{position:fixed;inset:0;background:rgba(0,0,0,.25);display:flex;align-items:center;justify-content:center;z-index:1000;}
+#popup.hidden{display:none;}
+.popup-card{background:var(--card);padding:20px;border-radius:var(--radius);box-shadow:var(--shadow);width:min(90%,420px);animation:popIn .2s ease-out;}
+.popup-card h2{margin-top:0;text-align:center;}
+.popup-list button{width:100%;margin:8px 0;padding:12px;border-radius:var(--radius);border:none;background:var(--primary);cursor:pointer;box-shadow:var(--shadow);font-size:16px;}
+@keyframes popIn{from{transform:scale(.9);opacity:0;}to{transform:scale(1);opacity:1;}}
