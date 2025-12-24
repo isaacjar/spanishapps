@@ -176,3 +176,33 @@ const UI = {
   }
 
 };
+
+UI.showVocabPopup = function (lists, onSelect) {
+  const popup = document.getElementById("popup");
+  popup.innerHTML = "";
+
+  const card = document.createElement("div");
+  card.className = "popup-card";
+
+  const title = document.createElement("h2");
+  title.textContent = window.i18n.selectList;
+  card.appendChild(title);
+
+  const listBox = document.createElement("div");
+  listBox.className = "popup-list";
+
+  lists.forEach(v => {
+    const btn = document.createElement("button");
+    btn.textContent = v.title;
+    btn.onclick = () => {
+      popup.classList.add("hidden");
+      onSelect(v);
+    };
+    listBox.appendChild(btn);
+  });
+
+  card.appendChild(listBox);
+  popup.appendChild(card);
+  popup.classList.remove("hidden");
+};
+
