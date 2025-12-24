@@ -1,4 +1,4 @@
-[
+export default [
 "abajo","abrir","acaba","actúa","adiós","aguas","amaba","amado","amiga","amigo",
 "andar","antes","apaga","apego","apoya","apoyo","árbol","arena","arroz","autos",
 "avión","ayuda","baila","baile","bajos","bajar","banco","barco","barra","bebes",
@@ -36,5 +36,4 @@
 "votar","votos","yegua","yemas","yerno","yogur","yoyos",
 "yugos","zafar","zanja","zarpa","cebra","zonas","zorro",
 "zorra","zueco","zumba","zumbo","zurda","zurdo"
-
-]
+];
