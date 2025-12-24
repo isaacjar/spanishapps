@@ -34,9 +34,8 @@
   ========================= */
 
   window.addEventListener("keydown", e => {
-    if (Game.finished) return;
+    if (!window.Game || Game.finished) return;
 
-    // Letras (incluye ñ)
     if (/^[a-zñ]$/i.test(e.key)) {
       UI.handleInput(normalize(e.key));
       return;
@@ -59,7 +58,7 @@
   ========================= */
 
   document.getElementById("btnNew")?.addEventListener("click", () => {
-    if (!Game.finished && Game.row > 0) {
+    if (Game.row > 0 && !Game.finished) {
       UI.toast(t.confirmNew || "¿Desea terminar la partida actual?");
       return;
     }
@@ -73,55 +72,59 @@
   });
 
   /* =========================
-     CARGA VOCABULARIO
+     FLUJO PRINCIPAL
   ========================= */
 
-  if (!settings.voclist) {
-    UI.toast(t.selectList);
-    return;
+  if (settings.voclist) {
+    const direct = voclists.find(v => v.filename === settings.voclist);
+    if (direct) {
+      startGame(direct, settings);
+      return;
+    }
   }
+
+  // Si no hay voclist → popup
+  UI.showVocabPopup(voclists, selected => {
+    startGame(selected, settings);
+  });
+
+})();
+
+/* =========================
+   FUNCIÓN ÚNICA DE ARRANQUE
+========================= */
+
+async function startGame(voc, settings) {
 
   let vocModule, valModule;
 
   try {
-    vocModule = await import(`./data/${settings.voclist}.js`);
+    vocModule = await import(`./data/${voc.filename}.js`);
+    valModule = await import(`./data/${voc.val}.js`);
   } catch (e) {
-    console.error("Archivo de vocabulario no encontrado", e);
-    UI.toast(t.vocabError || "❌ Error cargando vocabulario");
+    console.error(e);
+    UI.toast(window.i18n.vocabError || "❌ Error cargando vocabulario");
     return;
   }
 
-  if (!vocModule.default || !vocModule.default.length) {
-    UI.toast(t.vocabEmpty || "📭 Vocabulario vacío");
+  if (!vocModule.default?.length) {
+    UI.toast(window.i18n.vocabEmpty || "📭 Vocabulario vacío");
     return;
   }
 
-  try {
-    valModule = await import(`./data/${vocModule.val}.js`);
-  } catch (e) {
-    console.error("Archivo de validación no encontrado", e);
-    UI.toast(t.validationError || "❌ Error cargando validación");
+  if (!valModule.default?.length) {
+    UI.toast(window.i18n.validationEmpty || "📭 Validación vacía");
     return;
   }
-
-  if (!valModule.default || !valModule.default.length) {
-    UI.toast(t.validationEmpty || "📭 Validación vacía");
-    return;
-  }
-
-  /* =========================
-     INICIALIZACIÓN JUEGO
-  ========================= */
 
   Game.init(
     vocModule.default,
     valModule.default,
-    Number(vocModule.num),
+    Number(voc.num),
     Number(settings.numint)
   );
 
-  UI.renderBoard(settings.numint, vocModule.num);
+  UI.renderBoard(Game.attempts, Game.numLetters);
   UI.renderKeyboard(settings.lang);
   UI.updateBoard();
-
-})();
+}
