@@ -5,13 +5,11 @@
   /* =========================
      CARGA SETTINGS
   ========================= */
-
   const settings = Settings.load();
 
   /* =========================
      CARGA IDIOMAS
   ========================= */
-
   let langData;
   try {
     langData = await fetch("lang.json").then(r => r.json());
@@ -32,10 +30,10 @@
   /* =========================
      TECLADO FÍSICO
   ========================= */
-
   window.addEventListener("keydown", e => {
     if (!window.Game || Game.finished) return;
 
+    // Letras (A-Z + ñ)
     if (/^[a-zñ]$/i.test(e.key)) {
       UI.handleInput(normalize(e.key));
       return;
@@ -56,7 +54,6 @@
   /* =========================
      BOTONES SUPERIORES
   ========================= */
-
   document.getElementById("btnNew")?.addEventListener("click", () => {
     if (Game.row > 0 && !Game.finished) {
       UI.toast(t.confirmNew || "¿Desea terminar la partida actual?");
@@ -74,7 +71,6 @@
   /* =========================
      FLUJO PRINCIPAL
   ========================= */
-
   if (settings.voclist) {
     const direct = voclists.find(v => v.filename === settings.voclist);
     if (direct) {
@@ -93,7 +89,6 @@
 /* =========================
    FUNCIÓN ÚNICA DE ARRANQUE
 ========================= */
-
 async function startGame(voc, settings) {
 
   let vocModule, valModule;
@@ -117,6 +112,7 @@ async function startGame(voc, settings) {
     return;
   }
 
+  // Inicializa juego
   Game.init(
     vocModule.default,
     valModule.default,
@@ -124,6 +120,7 @@ async function startGame(voc, settings) {
     Number(settings.numint)
   );
 
+  // Renderiza tablero y teclado
   UI.renderBoard(Game.attempts, Game.numLetters);
   UI.renderKeyboard(settings.lang);
   UI.updateBoard();
