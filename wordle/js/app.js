@@ -94,8 +94,8 @@ async function startGame(voc, settings) {
   let vocModule, valModule;
 
   try {
-    vocModule = await import(`./data/${voc.filename}.js`);
-    valModule = await import(`./data/${voc.val}.js`);
+    vocModule = await import(`../data/${voc.filename}.js`);
+    valModule = await import(`../data/${voc.val}.js`);
   } catch (e) {
     console.error(e);
     UI.toast(window.i18n.vocabError || "❌ Error cargando vocabulario");
