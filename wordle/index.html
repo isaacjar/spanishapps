@@ -1,3 +1,38 @@
-<html><body>
-  WORDLE
-</body></html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Aletrix</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22><text y=%221em%22 font-size=%2216%22>🅰️</text></svg>">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+<header class="topbar">
+  <div class="left">
+    <button id="btnNew">+ <span data-i18n="newWord"></span></button>
+  </div>
+  <h1>🅰️ Aletrix</h1>
+  <button id="btnSettings">⚙️</button>
+</header>
+
+<main id="gameScreen">
+  <section id="board"></section>
+  <div id="messageBox"></div>
+  <section id="keyboard"></section>
+</main>
+
+<footer>
+  <strong>Aletrix</strong> 🅰️ IJH 🅱️ Made for learning joy
+</footer>
+
+<div id="popup"></div>
+
+<script src="data/index.js"></script>
+<script src="js/settings.js"></script>
+<script src="js/game.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
