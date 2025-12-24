@@ -1,4 +1,4 @@
-[
+export default [
 "about","above","after","again","apple","begin","black","brain","bread","break",
 "bring","brown","build","chair","child","clock","cloud","coach","color","could",
 "daily","dance","dream","drink","earth","email","every","faith","field","first",
@@ -11,4 +11,4 @@
 "sound","south","space","speak","spend","sport","spring","stand","stone","story",
 "sugar","sunny","table","thank","thing","think","today","train","under","until",
 "water","watch","wheel","where","which","woman","world","write","wrong","young"
-]
+];
