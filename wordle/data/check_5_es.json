@@ -1,4 +1,4 @@
-[
+export default [
 "abajo", "abana", "abate", "abeto", "abono", "abras", "abrir", "abril", "abría", "abuso", "acaba", "acabo", "acaso", "acera", "acero", "acoge", "acoso", "actúa", "acude", "acudo",
 "adela", "adema", "adios", "adobe", "adobo", "adora", "adore", "adoro", "adula", "adule", "adulo", "aduos", "aerea", "aereo", "afila", "afile", "afilo", "afina", "afine", "afino",
 "aforo", "afuer", "agita", "agite", "agito", "aguda", "agudo", "aguas", "agudo", "ahora", "ahogo", "ahora", "airea", "airee", "aireo", "aisla", "aisle", "aislo", "ajena", "ajeno",
@@ -146,4 +146,4 @@
 "rata","raya","remar","rendir","rienda","rincón","rocio","rodear","rostro","ruso","ruta","sable","sello","semana","senda","seno","servir","sesión","siglo","simple",
 "soler","sombra","sordo","suerte","sufrir","suma","super","tanque","tedio","teja","tema","templo","tigre","toser","traje","trampa","tratar","trepar","tribu","viral",
 "visión","visita","volver","vuelo","vuelta","yeso","yodo","zafiro","zapato","zona"
-]
+];
