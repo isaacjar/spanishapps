@@ -23,6 +23,7 @@ const Game = {
 
     this.last = null;
     this.reset();
+    console.log("📝 ", this.solution);
   },
 
   reset() {
