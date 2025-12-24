@@ -1,0 +1,18 @@
+{
+  "es": {
+    "newWord": "PALABRA",
+    "wordTooShort": "❗ Palabra incompleta",
+    "notValid": "❌ Palabra no válida",
+    "selectList": "Selecciona vocabulario",
+    "success": ["🎉 ¡Genial!", "🥳 ¡Acertaste!", "🚀 ¡Lo clavaste!"],
+    "fail": ["🙈 ¡Fallaste!", "🍂 Inténtalo otra vez"]
+  },
+  "en": {
+    "newWord": "WORD",
+    "wordTooShort": "❗ Word too short",
+    "notValid": "❌ Not a valid word",
+    "selectList": "Select vocabulary",
+    "success": ["🎉 Great!", "🥳 Correct!", "🚀 Nailed it!"],
+    "fail": ["🙈 Missed!", "🍂 Try again"]
+  }
+}
