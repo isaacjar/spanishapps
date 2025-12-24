@@ -84,3 +84,52 @@ footer {
   padding: 10px;
   font-size: 14px;
 }
+
+/* =========================
+   POPUP
+========================= */
+
+#popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+#popup.hidden {
+  display: none;
+}
+
+.popup-card {
+  background: var(--card);
+  padding: 20px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  width: min(90%, 420px);
+  animation: popIn .2s ease-out;
+}
+
+.popup-card h2 {
+  margin-top: 0;
+  text-align: center;
+}
+
+.popup-list button {
+  width: 100%;
+  margin: 8px 0;
+  padding: 12px;
+  border-radius: var(--radius);
+  border: none;
+  background: var(--primary);
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  font-size: 16px;
+}
+
+@keyframes popIn {
+  from { transform: scale(.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
