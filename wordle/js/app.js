@@ -1,5 +1,4 @@
 // app.js
-
 (async function () {
 
   /* =========================
@@ -33,9 +32,11 @@
   window.addEventListener("keydown", e => {
     if (!window.Game || Game.finished) return;
 
-    // Letras (A-Z + ñ)
-    if (/^[a-zñ]$/i.test(e.key)) {
-      UI.handleInput(normalize(e.key));
+    const key = e.key.toUpperCase();
+
+    // Letras (A-Z + Ñ)
+    if (/^[A-ZÑ]$/.test(key)) {
+      UI.handleInput(key);
       return;
     }
 
@@ -72,7 +73,7 @@
      FLUJO PRINCIPAL
   ========================= */
   if (settings.voclist) {
-    const direct = voclists.find(v => v.filename === settings.voclist);
+    const direct = window.voclists?.find(v => v.filename === settings.voclist);
     if (direct) {
       startGame(direct, settings);
       return;
@@ -80,9 +81,13 @@
   }
 
   // Si no hay voclist → popup
-  UI.showVocabPopup(voclists, selected => {
-    startGame(selected, settings);
-  });
+  if (window.voclists?.length) {
+    UI.showVocabPopup(window.voclists, selected => {
+      startGame(selected, settings);
+    });
+  } else {
+    UI.toast(t.vocabError || "❌ No hay vocabularios disponibles");
+  }
 
 })();
 
