@@ -2,15 +2,22 @@
   --bg: #f7f6f3;
   --card: #ffffff;
   --primary: #a5b4fc;
-  --success: #86efac;
-  --warn: #fde68a;
-  --fail: #d1d5db;
+  --success: #6aaa64;
+  --warn: #c9b458;
+  --fail: #787c7e;
   --text: #1f2937;
   --radius: 14px;
   --shadow: 0 4px 12px rgba(0,0,0,.08);
 }
 
-* { box-sizing: border-box; font-family: "Inter", "Roboto", sans-serif; }
+/* =========================
+   BASE
+========================= */
+
+* {
+  box-sizing: border-box;
+  font-family: "Inter", "Roboto", sans-serif;
+}
 
 body {
   margin: 0;
@@ -21,6 +28,10 @@ body {
   min-height: 100vh;
 }
 
+/* =========================
+   TOPBAR
+========================= */
+
 .topbar {
   display: flex;
   align-items: center;
@@ -29,6 +40,10 @@ body {
   background: var(--card);
   box-shadow: var(--shadow);
 }
+
+/* =========================
+   BOARD
+========================= */
 
 #board {
   display: grid;
@@ -42,22 +57,85 @@ body {
   gap: 8px;
 }
 
+/* =========================
+   CELL + FLIP
+========================= */
+
 .cell {
   width: 52px;
   height: 52px;
+  perspective: 600px;
+}
+
+.cell-inner {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.55s ease;
   border-radius: var(--radius);
-  background: var(--card);
-  box-shadow: var(--shadow);
+}
+
+.cell.flip .cell-inner {
+  transform: rotateX(180deg);
+}
+
+/* BONUS: rebote */
+.cell.flip {
+  animation: pop 0.15s ease;
+}
+
+@keyframes pop {
+  50% { transform: scale(1.05); }
+}
+
+/* =========================
+   CARAS
+========================= */
+
+.cell-face {
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  backface-visibility: hidden;
   font-size: 26px;
   font-weight: 600;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
 }
 
-.cell.correct { background: var(--success); }
-.cell.present { background: var(--warn); }
-.cell.absent { background: var(--fail); }
+/* Frente (antes del flip) */
+.cell-front {
+  background: var(--card);
+  border: 2px solid #d1d5db;
+}
+
+/* Dorso (color Wordle) */
+.cell-back {
+  transform: rotateX(180deg);
+  color: white;
+}
+
+/* =========================
+   ESTADOS WORDLE
+========================= */
+
+.cell.correct .cell-back {
+  background: var(--success);
+}
+
+.cell.present .cell-back {
+  background: var(--warn);
+}
+
+.cell.absent .cell-back {
+  background: var(--fail);
+}
+
+/* =========================
+   KEYBOARD
+========================= */
 
 #keyboard {
   display: grid;
@@ -74,9 +152,16 @@ body {
   cursor: pointer;
   user-select: none;
   box-shadow: var(--shadow);
+  font-weight: 600;
 }
 
-.key.ok { grid-column: span 2; }
+.key.ok {
+  grid-column: span 2;
+}
+
+/* =========================
+   FOOTER
+========================= */
 
 footer {
   margin-top: auto;
@@ -132,58 +217,4 @@ footer {
 @keyframes popIn {
   from { transform: scale(.9); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
-}
-
-/* =========================
-   FLIP WORDLE
-========================= */
-
-.cell {
-  perspective: 600px;
-}
-
-.cell-inner {
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
-  transition: transform 0.55s ease;
-}
-
-.cell.flip .cell-inner {
-  transform: rotateX(180deg);
-}
-
-.cell-face {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  backface-visibility: hidden;
-  font-weight: bold;
-  font-size: 1.4em;
-  border-radius: var(--radius);
-}
-
-.cell-front {
-  background: var(--card);
-  border: 2px solid var(--accent-2);
-}
-
-.cell-back {
-  transform: rotateX(180deg);
-  color: white;
-}
-
-/* Estados Wordle */
-.cell.correct .cell-back {
-  background: #6aaa64;
-}
-
-.cell.present .cell-back {
-  background: #c9b458;
-}
-
-.cell.absent .cell-back {
-  background: #787c7e;
 }
