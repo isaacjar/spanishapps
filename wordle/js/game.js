@@ -47,9 +47,8 @@ const Game = {
   },
 
   /* =========================
-     INPUT
+     INPUT DE LETRAS
   ========================= */
-
   inputLetter(letter) {
     if (this.finished) return;
     if (this.col >= this.numLetters) return;
@@ -68,22 +67,18 @@ const Game = {
 
   /* =========================
      ENVÍO DE PALABRA
+     Devuelve array de estados para animación FLIP
   ========================= */
-
   submit() {
     if (this.finished) return "finished";
 
     // Palabra incompleta
-    if (this.col < this.numLetters) {
-      return "short";
-    }
+    if (this.col < this.numLetters) return "short";
 
     const word = this.grid[this.row].join("");
 
-    // Validación
-    if (!this.valid.includes(normalize(word))) {
-      return "invalid";
-    }
+    // Validación con vocabulario permitido
+    if (!this.valid.includes(normalize(word))) return "invalid";
 
     const result = this.check(word);
 
@@ -92,6 +87,7 @@ const Game = {
       this.finished = true;
     }
 
+    // Avanza fila
     this.row++;
     this.col = 0;
 
@@ -100,14 +96,13 @@ const Game = {
       this.finished = true;
     }
 
-    return result;
+    return result; // <-- array ["correct","present","absent"...] para UI.animateRow()
   },
 
   /* =========================
      COMPARACIÓN WORDLE REAL
-     (maneja letras repetidas)
+     Maneja letras repetidas
   ========================= */
-
   check(word) {
     const sol = normalize(this.solution).split("");
     const guess = normalize(word).split("");
