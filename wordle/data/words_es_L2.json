@@ -1,4 +1,4 @@
-[
+export default [
 "acero","aguda","aires","altar","altos","amada","amado","amiga","amigo","apaga",
 "apoyo","arroz","atado","ayuda","azote","baila","bajos","banda","bañar","barco",
 "basta","bello","besar","blusa","bomba","brazo","breve","broma","bruja","bueno",
@@ -52,4 +52,4 @@
 "verso","viaje","viejo","vigor","villa","viral","virus",
 "vista","vital","vivir","voces","votar","vuelo","yacer","yegua",
 "yemas","yerno","yesos","yodos","yogur","zonas","zorro"
-]
+];
