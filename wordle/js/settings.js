@@ -25,3 +25,6 @@ const Settings = {
     if (s.numint) localStorage.numint = s.numint;
   }
 };
+
+// Exponer globalmente para que app.js lo pueda usar
+window.Settings = Settings;
