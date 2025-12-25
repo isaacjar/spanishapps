@@ -82,7 +82,7 @@ export default [
 "nojes", "norma", "norme", "normo", "notar", "notas", "noten", "notes", "novia", "novio", "nubes", "nudos", "nuera", "nueve", "nueva", "nuevo", "nunca", "nutre", "nutro", "obeso",
 "obras", "obrar", "obras", "obren", "obres", "obvio", "ocaso", "ocena", "ocena", "ocupa", "ocupe", "ocupo", "odiar", "odias", "odien", "odies", "oeste", "oídos", "oigan", "oigas",
 "oímos", "oírán", "oírás", "oíste", "ojear", "ojeas", "ojeen", "ojees", "ojera", "ojito", "olear", "oleas", "oleen", "olees", "oliva", "olivo", "ollar", "ollas", "ollos",
-"olían", "olías", "omiso", "omita", "omite", "omito", "ondas", "ondea", "ondee", "ondeo", "ondra", "opaco", "opina", "opine", "opino", "optar", "optas", "opten",
+"olían", "olías", "omiso", "omita", "omite", "omito", "ondas", "ondea", "ondee", "ondeo", "ondra", "opaco", "opina", "opine", "opino", "optar", "optas", "opten", "ratos", 
 "optes", "orden", "oreja", "orear", "oreas", "oreen", "orees", "orgía", "orina", "orine", "orino", "orlas", "ornar", "ornas", "ornen", "ornes", "oroña", "oruga", "osada", "osado",
 "oscar", "oseas", "oseen", "osees", "osera", "osero", "otras", "otros", "ovino", "ovulo", "oxear", "oxean", "oxees", "oxida", "oxide", "oxido", "oyera", "oyere", "oyero", "ozono",
 "pacto", "padre", "pagar", "pagas", "pagos", "pajar", "pajas", "palen", "pales", "palma", "palme", "palmo", "palos", "panes", "pansa", "panto", "papas", "papel", "parar", "paras",
