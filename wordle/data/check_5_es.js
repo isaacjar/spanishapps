@@ -144,7 +144,8 @@ export default [
 "rocio", "rusos", "rutas", "sable", "sello", "semen", "senda", "senos", "siglo", "soler", "sordo", "super", "tedio", "tejas", "temas", "tigre", "toser", "traje", "tribu", "viral",
 "vuelo", "yesos", "yodos", "zonas", "añejo", "añora", "añoro", "árida", "árido", "ébano", "éxito", "élite", "icono", "íñigo", "óvalo", "ópera", "óxido", "orden", "orgía", "útero",
 "túnel", "póker", "pómez", "fácil", "débil", "dócil", "tórax", "tótem", "tóner", "pesar", "pesca", "pelis", "parra", "píxel", "polen", "púgil", "remar", "rítmo", "rotan", "rotas", 
-"sanar", "sanes", "sánen", "solió", "súper", "tésis", "tibia", "tibio", "tilde", "tóner", "tórax", "verte", "verbo", "ictus", "pollo", "metas", "ceras", "telón"
+"sanar", "sanes", "sanen", "solió", "súper", "tésis", "tibia", "tibio", "tilde", "tóner", "tórax", "verte", "verbo", "ictus", "pollo", "metas", "ceras", "telón", "cresa", "tersa",
+"lelos", "lelas"
 ];
 
 
