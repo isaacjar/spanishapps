@@ -134,3 +134,5 @@ const Game = {
   }
 
 };
+
+window.Game = Game;
