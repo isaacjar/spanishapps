@@ -46,19 +46,21 @@
       return;
     }
   
+    const startNew = () => {
+      Game.resetWord();
+      UI.focusOkKey(); // mueve foco al botón OK
+      // UI.toast("📝 " + Game.solution); // opcional
+    };
+  
     // Si hay una partida en curso
     if (!Game.finished && Game.row > 0) {
       UI.showConfirmPopup(
-        window.i18n.confirmNewWord,
-        () => { // Confirmar nueva palabra
-          Game.resetWord();
-          //UI.toast("📝 " + Game.solution);
-        },
-        () => {} // Cancelar → no hace nada
+        window.i18n.confirmNewWord || "¿Desea terminar la partida en curso?",
+        startNew,  // Confirmar
+        () => {}   // Cancelar → no hace nada
       );
     } else {
-      Game.resetWord();
-      //UI.toast("📝 " + Game.solution);
+      startNew(); // empieza directamente
     }
   });
 
