@@ -117,7 +117,7 @@ const UI = {
     return key;
   },
 
-  handleInput(input) {
+ handleInput(input) {
     if (!Game.words || !Game.words.length) {
       UI.toast(window.i18n.noVocabulary || "No vocabulary loaded");
       return;
@@ -148,50 +148,45 @@ const UI = {
       const row = document.querySelectorAll(".row")[rowIndex];
       if (!row) return;
   
-      // Animación tipo Wordle con delay y coloreado correcto
       [...row.children].forEach((cell, i) => {
         const inner = cell.querySelector(".cell-inner");
         const front = cell.querySelector(".cell-front");
         const back = cell.querySelector(".cell-back");
   
         back.textContent = front.textContent;
-  
-        // Normaliza resultado a minúsculas para coincidir con CSS
-        const status = result[i]?.toLowerCase(); // "correct", "present" o "absent"
         cell.classList.remove("correct", "present", "absent");
-        if (["correct","present","absent"].includes(status)) cell.classList.add(status);
+        inner.classList.remove("flip", "bounce");
   
-        // Forzar repaint antes de animar (evita problemas en algunos navegadores)
-        void inner.offsetWidth;
-  
-        setTimeout(() => inner.classList.add("flip"), i * 300);
+        setTimeout(() => {
+          const status = result[i]?.toLowerCase();
+          if (["correct","present","absent"].includes(status)) {
+            cell.classList.add(status);
+          }
+          inner.classList.add("flip", "bounce");
+        }, i * 300); // delay escalonado tipo Wordle
       });
   
-      // Esperar a que termine la animación antes de continuar
+      // Espera a que terminen todos los flips
       setTimeout(() => {
-        // Victoria
         if (normalize(Game.grid[rowIndex].join("")) === normalize(Game.solution)) {
           UI.toast(UI.randomMessage("success"));
           UI.celebrate();
           return;
         }
   
-        // Último intento fallido
         if (Game.row >= Game.attempts && !Game.finished) {
           UI.toast(UI.randomMessage("fail") + " → " + Game.solution);
           return;
         }
   
-        // Avanzar fila
         Game.row++;
         Game.col = 0;
-      }, result.length * 300 + 100);
+      }, result.length * 300 + 700);
   
       return;
     }
   
-    // Letras
-    if (/^[A-ZÑ]$/.test(input)) {
+    if (/^[A-ZÑ]$/i.test(input)) {
       Game.inputLetter(input);
       UI.updateBoard();
     }
