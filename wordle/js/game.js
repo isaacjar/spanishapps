@@ -24,6 +24,11 @@ const Game = {
     this.last = null;
     this.reset();
     console.log("📝 ", this.solution);
+
+    // Inicializar estadísticas si no existen
+    if (!localStorage.getItem("stats")) {
+      localStorage.setItem("stats", JSON.stringify({ played: 0, won: 0 }));
+    }
   },
 
   reset() {
@@ -45,6 +50,17 @@ const Game = {
       { length: this.attempts },
       () => Array(this.numLetters).fill("")
     );
+  },
+
+  /* =========================
+     Reinicia solo la palabra manteniendo intentos
+  ========================= */
+  resetWord() {
+    this.reset();
+    if (window.UI) {
+      UI.renderBoard(this.attempts, this.numLetters);
+      UI.updateBoard();
+    }
   },
 
   /* =========================
@@ -73,12 +89,10 @@ const Game = {
   submit() {
     if (this.finished) return "finished";
 
-    // Palabra incompleta
     if (this.col < this.numLetters) return "short";
 
     const word = this.grid[this.row].join("");
 
-    // Validación con vocabulario permitido
     if (!this.valid.includes(normalize(word))) return "invalid";
 
     const result = this.check(word);
@@ -86,34 +100,38 @@ const Game = {
     // Victoria
     if (normalize(word) === normalize(this.solution)) {
       this.finished = true;
+
+      // Guardar estadísticas
+      const stats = JSON.parse(localStorage.getItem("stats") || '{"played":0,"won":0}');
+      stats.played++;
+      stats.won++;
+      localStorage.setItem("stats", JSON.stringify(stats));
+    } else if (this.row + 1 >= this.attempts) {
+      // Último intento fallido
+      this.finished = true;
+      const stats = JSON.parse(localStorage.getItem("stats") || '{"played":0,"won":0}');
+      stats.played++;
+      localStorage.setItem("stats", JSON.stringify(stats));
     }
 
-    // Avanza fila
     this.row++;
     this.col = 0;
 
-    // Último intento
-    if (this.row >= this.attempts && !this.finished) {
-      this.finished = true;
-    }
-
-    return result; // <-- array ["correct","present","absent"...] para UI.animateRow()
+    return result;
   },
 
   /* =========================
      COMPARACIÓN WORDLE REAL
-     Maneja letras repetidas
   ========================= */
   check(word) {
     const sol = normalize(this.solution).split("");
     const guess = normalize(word).split("");
     const res = Array(this.numLetters).fill("absent");
 
-    // Conteo de letras de la solución
     const counts = {};
     sol.forEach(l => counts[l] = (counts[l] || 0) + 1);
 
-    // 1ª pasada: correctas
+    // Correctas
     guess.forEach((l, i) => {
       if (l === sol[i]) {
         res[i] = "correct";
@@ -121,7 +139,7 @@ const Game = {
       }
     });
 
-    // 2ª pasada: presentes
+    // Presentes
     guess.forEach((l, i) => {
       if (res[i] === "correct") return;
       if (counts[l] > 0) {
