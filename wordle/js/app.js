@@ -45,9 +45,21 @@
       UI.toast(window.i18n.noVocabulary || "No vocabulary loaded");
       return;
     }
-    // Genera nueva palabra sin reiniciar tablero ni teclado
-    Game.resetWord();
-    UI.toast("📝 " + Game.solution);
+  
+    // Si hay una partida en curso
+    if (!Game.finished && Game.row > 0) {
+      UI.showConfirmPopup(
+        window.i18n.confirmNewWord,
+        () => { // Confirmar nueva palabra
+          Game.resetWord();
+          UI.toast("📝 " + Game.solution);
+        },
+        () => {} // Cancelar → no hace nada
+      );
+    } else {
+      Game.resetWord();
+      UI.toast("📝 " + Game.solution);
+    }
   });
 
   document.getElementById("btnSettings")?.addEventListener("click", () => {
