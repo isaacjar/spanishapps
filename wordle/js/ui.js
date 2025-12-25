@@ -297,4 +297,4 @@ UI.showVocabPopup = function (lists, onSelect) {
   popup.classList.remove("hidden");
 };
 
-
+window.UI = UI;
