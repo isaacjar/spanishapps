@@ -136,3 +136,4 @@ const Game = {
 };
 
 window.Game = Game;
+window.normalize = normalize;
