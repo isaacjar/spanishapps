@@ -36,6 +36,46 @@
 
 <div id="popup"></div>
 
+<div id="settingsPopup" class="popup hidden">
+  <div class="popup-card">
+
+    <h2>⚙️ Opciones</h2>
+
+    <!-- IDIOMA -->
+    <label>
+      Idioma
+      <select id="setLang">
+        <option value="es">Español</option>
+        <option value="en">English</option>
+      </select>
+    </label>
+
+    <!-- INTENTOS -->
+    <label>
+      Intentos: <span id="setNumVal">6</span>
+      <input id="setNum" type="range" min="4" max="10" step="1">
+    </label>
+
+    <hr>
+
+    <!-- STATS -->
+    <div class="stats">
+      <p>🧠 Palabras jugadas: <span id="statPlayed">0</span></p>
+      <p>🎯 Palabras acertadas: <span id="statWon">0</span></p>
+    </div>
+
+    <hr>
+
+    <!-- BOTONES -->
+    <div class="popup-actions">
+      <button id="setSave" class="btn-primary">💾 Guardar</button>
+      <button id="setReset" class="btn-icon">🔄 Resetear</button>
+      <button id="setCancel" class="btn-icon">Cancelar</button>
+    </div>
+
+  </div>
+</div>
+
 <script type="module" src="data/index.js"></script>
 <script type="module" src="js/settings.js"></script>
 <script type="module" src="js/game.js"></script>
