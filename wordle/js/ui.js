@@ -4,6 +4,7 @@
    UI & ANIMACIONES
 ========================= */
 const UI = {
+
   renderBoard(rows, cols) {
     const board = document.getElementById("board");
     board.innerHTML = "";
@@ -30,7 +31,6 @@ const UI = {
         inner.appendChild(front);
         inner.appendChild(back);
         cell.appendChild(inner);
-
         row.appendChild(cell);
       }
       board.appendChild(row);
@@ -46,24 +46,26 @@ const UI = {
   },
 
   paintRow(result) {
-    const rowIndex = Game.row - 1; // fila correcta
+    const rowIndex = Game.row;
     const row = document.querySelectorAll(".row")[rowIndex];
     if (!row) return;
 
     [...row.children].forEach((cell, i) => {
       const inner = cell.querySelector(".cell-inner");
       const back = cell.querySelector(".cell-back");
+      const front = cell.querySelector(".cell-front");
 
-      back.textContent = cell.querySelector(".cell-front").textContent;
+      back.textContent = front.textContent;
 
-      // aplicar clase correcta a la celda
-      cell.classList.remove("correct", "present", "absent");
+      // limpiar clases anteriores
+      cell.classList.remove("correct", "present", "absent", "flip");
+
+      // añadir clase de estado
       cell.classList.add(result[i]);
 
       // reiniciar animación flip
-      inner.classList.remove("flip");
-      void inner.offsetWidth; // fuerza reflow
-      setTimeout(() => inner.classList.add("flip"), i * 300);
+      void cell.offsetWidth; // fuerza reflow
+      setTimeout(() => cell.classList.add("flip"), i * 300);
     });
   },
 
@@ -145,7 +147,6 @@ const UI = {
       // esperar animación y avanzar fila
       setTimeout(() => {
         const currentWord = Game.grid[Game.row].join("");
-
         if (normalize(currentWord) === normalize(Game.solution)) {
           UI.toast(UI.randomMessage("success"));
           UI.celebrate();
@@ -414,6 +415,7 @@ const UI = {
     const ok = document.querySelector(".key.ok");
     if (ok) ok.focus();
   }
+
 };
 
 window.UI = UI;
