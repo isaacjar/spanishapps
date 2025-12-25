@@ -23,7 +23,6 @@ const Game = {
 
     this.last = null;
     this.reset();
-    console.log("📝 ", this.solution);
 
     // Inicializar estadísticas si no existen
     if (!localStorage.getItem("stats")) {
@@ -41,7 +40,8 @@ const Game = {
     } while (this.solution === this.last && this.words.length > 1);
 
     this.last = this.solution;
-
+    console.log("📝 ", this.solution);
+     
     this.row = 0;
     this.col = 0;
     this.finished = false;
