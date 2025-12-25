@@ -117,68 +117,89 @@ const UI = {
     return key;
   },
 
- handleInput(input) {
+handleInput(input) {
     if (!Game.words || !Game.words.length) {
       UI.toast(window.i18n.noVocabulary || "No vocabulary loaded");
       return;
     }
   
+    // Borrar letra
     if (input === "BACK") {
-      Game.backspace();
-      UI.updateBoard();
+      if (Game.col > 0) {
+        Game.backspace();
+        UI.updateBoard();
+      }
       return;
     }
   
+    // Enviar palabra
     if (input === "ENTER") {
       const result = Game.submit();
   
-      if (result === "short") { UI.toast(window.i18n.wordTooShort); UI.shakeRow(); return; }
-      if (result === "invalid") { UI.toast(window.i18n.notValid); UI.shakeRow(); return; }
+      if (result === "short") {
+        UI.toast(window.i18n.wordTooShort);
+        UI.shakeRow();
+        return;
+      }
   
-      const rowIndex = Game.row - 1;
+      if (result === "invalid") {
+        UI.toast(window.i18n.notValid);
+        UI.shakeRow();
+        return;
+      }
+  
+      const rowIndex = Game.row;
       const row = document.querySelectorAll(".row")[rowIndex];
       if (!row) return;
   
-      // Aplica clases y contenido antes del flip
-      [...row.children].forEach((cell,i)=>{
+      // Animación tipo Wordle escalonada
+      [...row.children].forEach((cell, i) => {
         const inner = cell.querySelector(".cell-inner");
         const back = cell.querySelector(".cell-back");
         back.textContent = cell.querySelector(".cell-front").textContent;
+  
+        // Quitar clases anteriores y aplicar la clase de estado en la CELDA
         cell.classList.remove("correct","present","absent");
         cell.classList.add(result[i]);
-        inner.classList.remove("flip");
+  
+        setTimeout(()=>inner.classList.add("flip"), i*300);
       });
   
-      // Flip escalonado tipo Wordle
-      [...row.children].forEach((cell,i)=>{
-        setTimeout(()=>cell.querySelector(".cell-inner").classList.add("flip"), i*250);
-      });
+      // Esperar a que termine la animación antes de continuar
+      setTimeout(() => {
+        const currentWord = Game.grid[rowIndex].join("");
   
-      // Espera animación completa antes de avanzar
-      setTimeout(()=>{
         // Victoria
-        if (normalize(Game.grid[rowIndex].join("")) === normalize(Game.solution)) {
+        if (normalize(currentWord) === normalize(Game.solution)) {
           UI.toast(UI.randomMessage("success"));
           UI.celebrate();
+          Game.finished = true;
           return;
         }
+  
         // Último intento fallido
-        if (Game.row >= Game.attempts && !Game.finished) {
+        if (Game.row >= Game.attempts - 1 && !Game.finished) {
           UI.toast(UI.randomMessage("fail")+" → "+Game.solution);
+          Game.finished = true;
           return;
         }
+  
         // Avanzar fila
         Game.row++;
-        Game.col=0;
-      }, result.length*250 + 300);
+        Game.col = 0;
+        if (!Game.grid[Game.row]) Game.grid[Game.row] = Array(Game.numLetters).fill("");
+        UI.updateBoard();
+      }, result.length * 300 + 100);
   
       return;
     }
   
     // Letras
     if (/^[A-ZÑ]$/.test(input)) {
-      Game.inputLetter(input);
-      UI.updateBoard();
+      if (Game.col < Game.numLetters) {
+        Game.inputLetter(input);
+        UI.updateBoard();
+      }
     }
   },
 
