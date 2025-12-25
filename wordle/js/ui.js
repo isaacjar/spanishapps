@@ -19,7 +19,6 @@ const UI = {
         const cell = document.createElement("div");
         cell.className = "cell";
 
-        // FLIP structure
         const inner = document.createElement("div");
         inner.className = "cell-inner";
 
@@ -48,9 +47,6 @@ const UI = {
     });
   },
 
-  /* =========================
-     PINTAR FILA CON FLIP
-  ========================= */
   paintRow(result) {
     const rowIndex = Game.row - 1;
     const row = document.querySelectorAll(".row")[rowIndex];
@@ -63,7 +59,6 @@ const UI = {
       back.textContent = cell.querySelector(".cell-front").textContent;
       back.className = "cell-face cell-back " + result[i];
 
-      // Trigger flip con retraso para efecto tipo Wordle
       setTimeout(() => inner.classList.add("flip"), i * 200);
     });
   },
@@ -75,11 +70,9 @@ const UI = {
     setTimeout(() => row.classList.remove("shake"), 300);
   },
 
-  /* =========================
-     TOAST / MENSAJES
-  ========================= */
   toast(msg) {
     const box = document.getElementById("messageBox");
+    if (!box) return;
     box.textContent = msg;
     box.classList.add("show");
     clearTimeout(this._toastTimer);
@@ -91,9 +84,6 @@ const UI = {
     return arr[Math.floor(Math.random() * arr.length)];
   },
 
-  /* =========================
-     TECLADO DINÁMICO
-  ========================= */
   renderKeyboard(lang) {
     const kb = document.getElementById("keyboard");
     kb.innerHTML = "";
@@ -126,9 +116,6 @@ const UI = {
     return key;
   },
 
-  /* =========================
-     INPUT CENTRALIZADO
-  ========================= */
   handleInput(input) {
     if (!Game.words || !Game.words.length) {
       UI.toast(window.i18n.noVocabulary || "No vocabulary loaded");
@@ -180,17 +167,12 @@ const UI = {
     }
   },
 
-  /* =========================
-     CELEBRACIÓN / CONFETI
-  ========================= */
   celebrate() {
-    // Rebote teclado
     document.querySelectorAll(".key").forEach((k, i) => {
       setTimeout(() => k.classList.add("jump"), i * 20);
       setTimeout(() => k.classList.remove("jump"), 600);
     });
 
-    // Confeti canvas
     const canvas = document.createElement("canvas");
     canvas.id = "confetti";
     canvas.style.position = "fixed";
@@ -208,7 +190,6 @@ const UI = {
 
     const confetti = [];
     const colors = ["#FFB6C1","#FFD700","#87CEFA","#98FB98","#FFA07A"];
-
     for (let i = 0; i < 150; i++) {
       confetti.push({
         x: Math.random() * canvas.width,
@@ -243,7 +224,6 @@ const UI = {
         f.y += (Math.cos(angle + f.d) + 3 + f.r / 2) / 2;
         f.x += Math.sin(angle);
         f.tilt = Math.sin(f.tiltAngle) * 15;
-
         if (f.y > canvas.height) f.y = -10;
         if (f.x > canvas.width) f.x = 0;
         if (f.x < 0) f.x = canvas.width;
@@ -260,7 +240,7 @@ const UI = {
     setTimeout(() => {
       cancelAnimationFrame(confettiAnim);
       canvas.remove();
-    }, 4000); // duración 4s
+    }, 4000);
   }
 
 };
@@ -268,7 +248,7 @@ const UI = {
 /* =========================
    POPUP VOCABULARIO
 ========================= */
-UI.showVocabPopup = function (lists, onSelect) {
+UI.showVocabPopup = function(lists, onSelect) {
   const popup = document.getElementById("popup");
   popup.innerHTML = "";
 
@@ -293,6 +273,93 @@ UI.showVocabPopup = function (lists, onSelect) {
   });
 
   card.appendChild(listBox);
+  popup.appendChild(card);
+  popup.classList.remove("hidden");
+};
+
+/* =========================
+   POPUP SETTINGS CON ESTADÍSTICAS
+========================= */
+UI.showSettingsPopup = function() {
+  const popup = document.getElementById("popup");
+  popup.innerHTML = "";
+
+  const card = document.createElement("div");
+  card.className = "popup-card";
+
+  const title = document.createElement("h2");
+  title.textContent = "Opciones";
+  card.appendChild(title);
+
+  // Idioma
+  const langLabel = document.createElement("label");
+  langLabel.textContent = "Idioma:";
+  langLabel.style.display = "block";
+  langLabel.style.marginTop = "8px";
+  const langSelect = document.createElement("select");
+  ["es","en"].forEach(l => {
+    const opt = document.createElement("option");
+    opt.value = l;
+    opt.textContent = l.toUpperCase();
+    if (Settings.load().lang === l) opt.selected = true;
+    langSelect.appendChild(opt);
+  });
+  card.appendChild(langLabel);
+  card.appendChild(langSelect);
+
+  // Número de intentos
+  const attemptsLabel = document.createElement("label");
+  attemptsLabel.textContent = "Intentos:";
+  attemptsLabel.style.display = "block";
+  attemptsLabel.style.marginTop = "8px";
+  const attemptsInput = document.createElement("input");
+  attemptsInput.type = "range";
+  attemptsInput.min = 4;
+  attemptsInput.max = 10;
+  attemptsInput.value = Settings.load().numint;
+  attemptsInput.style.width = "100%";
+  card.appendChild(attemptsLabel);
+  card.appendChild(attemptsInput);
+
+  // Estadísticas
+  const statsDiv = document.createElement("div");
+  statsDiv.style.marginTop = "12px";
+  function updateStats() {
+    const stats = JSON.parse(localStorage.getItem("stats")||'{"played":0,"won":0}');
+    statsDiv.innerHTML = `Palabras jugadas: ${stats.played}<br>Palabras acertadas: ${stats.won}`;
+  }
+  updateStats();
+  card.appendChild(statsDiv);
+
+  // Botones
+  const btnSave = document.createElement("button");
+  btnSave.textContent = "💾 Guardar";
+  btnSave.style.marginRight = "6px";
+  btnSave.onclick = () => {
+    Settings.save({lang: langSelect.value, numint: attemptsInput.value});
+    popup.classList.add("hidden");
+    location.reload();
+  };
+
+  const btnReset = document.createElement("button");
+  btnReset.textContent = "🔄 Resetear";
+  btnReset.style.marginRight = "6px";
+  btnReset.onclick = () => {
+    localStorage.clear();
+    location.reload();
+  };
+
+  const btnCancel = document.createElement("button");
+  btnCancel.textContent = "✖ Cancelar";
+  btnCancel.onclick = () => popup.classList.add("hidden");
+
+  const btnDiv = document.createElement("div");
+  btnDiv.style.marginTop = "12px";
+  btnDiv.appendChild(btnSave);
+  btnDiv.appendChild(btnReset);
+  btnDiv.appendChild(btnCancel);
+
+  card.appendChild(btnDiv);
   popup.appendChild(card);
   popup.classList.remove("hidden");
 };
