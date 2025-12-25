@@ -41,22 +41,20 @@
      BOTONES SUPERIORES
   ========================= */
   document.getElementById("btnNew")?.addEventListener("click", () => {
-    if (Game.row > 0 && !Game.finished) {
-      UI.toast(t.confirmNew || "¿Desea terminar la partida actual?");
+    if (!Game.words?.length) {
+      UI.toast(window.i18n.noVocabulary || "No vocabulary loaded");
       return;
     }
-    Game.reset();
-    UI.renderBoard(Game.attempts, Game.numLetters);
-    UI.updateBoard();
+    // Genera nueva palabra sin reiniciar tablero ni teclado
+    Game.resetWord();
+    UI.toast("📝 " + Game.solution);
   });
 
   document.getElementById("btnSettings")?.addEventListener("click", () => {
-    // Mostrar popup de configuración
     UI.showSettingsPopup(settings, updated => {
-      // Guardar settings actualizados
       Settings.save(updated);
 
-      // Reiniciar juego si cambió algo relevante
+      // Si cambió algo relevante (idioma, numint), reiniciar juego
       if (Game.words?.length) {
         Game.reset();
         UI.renderBoard(Game.attempts, Game.numLetters);
@@ -120,4 +118,8 @@ async function startGame(voc, settings) {
   UI.renderBoard(Game.attempts, Game.numLetters);
   UI.renderKeyboard(settings.lang);
   UI.updateBoard();
+
+  // Mostrar palabra actual en consola y toast
+  console.log("📝", Game.solution);
+  UI.toast("📝 " + Game.solution);
 }
