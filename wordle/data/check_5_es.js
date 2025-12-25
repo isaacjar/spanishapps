@@ -113,7 +113,7 @@ export default [
 "sirvo", "sismo", "sitio", "sobar", "sobas", "sobeo", "sobro", "sobra", "sobre", "sobro", "socar", "socas", "socia", "socio", "sodas", "sodio", "sofas", "soñar", "soñas", "soñen",
 "soñes", "solar", "solas", "soles", "solía", "solio", "solos", "solta", "solte", "solto", "somos", "sonar", "sonas", "sonda", "sonde", "sondo", "sones", "sonre", "sonro", "sopas",
 "sopla", "sople", "soplo", "sopón", "sopas", "sorna", "sorte", "sorto", "sosas", "sosos", "sotar", "sotas", "soten", "sotes", "sotos", "suave", "suban", "subas", "suben", "subes",
-"subía", "subió", "suelo", "suena", "suene", "sueno", "sueña", "sueñe", "sueño", "sufra", "sufre", "sufrí", "sufro", "sugar", "suges", "sugir", "sugió", "suiza", "suizo", "sujec",
+"subía", "subió", "suele", "suelo", "suena", "suene", "sueno", "sueña", "sueñe", "sueño", "sufra", "sufre", "sufrí", "sufro", "suiza", "suizo", 
 "sulas", "suman", "sumas", "sumen", "sumes", "sumía", "sumió", "súper", "supón", "surco", "surca", "surce", "surco", "surgí", "surja", "surjo", "susto",
 "sutil", "suyas", "suyos", "tabas", "taber", "tabla", "table", "tablo", "tacos", "tacto", "talar", "talas", "talen", "tales", "talón", "talla", "talle", "tallo", "talpa", "tambo",
 "tanda", "tango", "tanjo", "tanto", "tapas", "tapar", "tapen", "tapes", "tapón", "tarde", "tardo", "tarea", "tarja", "tarje", "tarjo", "tarro", "tarta", "tasar", "tasas", "tasen",
