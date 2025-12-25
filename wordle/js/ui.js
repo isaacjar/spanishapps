@@ -91,7 +91,8 @@ const UI = {
     const rows = [
       "QWERTYUIOP",
       "ASDFGHJKL",
-      lang === "es" ? "ZXCVBNMÑ" : "ZXCVBNM"
+      "ZXCVBNMÑ"
+      //lang === "es" ? "ZXCVBNMÑ" : "ZXCVBNM"
     ];
 
     rows.forEach(row => {
