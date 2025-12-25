@@ -280,7 +280,7 @@ UI.showVocabPopup = function(lists, onSelect) {
 /* =========================
    POPUP SETTINGS CON ESTADÍSTICAS
 ========================= */
-UI.showSettingsPopup = function() {
+UI.showSettingsPopup = function(currentSettings, onUpdate) {
   const popup = document.getElementById("popup");
   popup.innerHTML = "";
 
@@ -301,7 +301,7 @@ UI.showSettingsPopup = function() {
     const opt = document.createElement("option");
     opt.value = l;
     opt.textContent = l.toUpperCase();
-    if (Settings.load().lang === l) opt.selected = true;
+    if (currentSettings.lang === l) opt.selected = true;
     langSelect.appendChild(opt);
   });
   card.appendChild(langLabel);
@@ -316,7 +316,7 @@ UI.showSettingsPopup = function() {
   attemptsInput.type = "range";
   attemptsInput.min = 4;
   attemptsInput.max = 10;
-  attemptsInput.value = Settings.load().numint;
+  attemptsInput.value = currentSettings.numint;
   attemptsInput.style.width = "100%";
   card.appendChild(attemptsLabel);
   card.appendChild(attemptsInput);
@@ -325,7 +325,7 @@ UI.showSettingsPopup = function() {
   const statsDiv = document.createElement("div");
   statsDiv.style.marginTop = "12px";
   function updateStats() {
-    const stats = JSON.parse(localStorage.getItem("stats")||'{"played":0,"won":0}');
+    const stats = JSON.parse(localStorage.getItem("stats") || '{"played":0,"won":0}');
     statsDiv.innerHTML = `Palabras jugadas: ${stats.played}<br>Palabras acertadas: ${stats.won}`;
   }
   updateStats();
@@ -336,9 +336,13 @@ UI.showSettingsPopup = function() {
   btnSave.textContent = "💾 Guardar";
   btnSave.style.marginRight = "6px";
   btnSave.onclick = () => {
-    Settings.save({lang: langSelect.value, numint: attemptsInput.value});
+    const updated = {
+      lang: langSelect.value,
+      numint: Number(attemptsInput.value)
+    };
+    Settings.save(updated);
     popup.classList.add("hidden");
-    location.reload();
+    if (onUpdate) onUpdate(updated);
   };
 
   const btnReset = document.createElement("button");
@@ -346,7 +350,8 @@ UI.showSettingsPopup = function() {
   btnReset.style.marginRight = "6px";
   btnReset.onclick = () => {
     localStorage.clear();
-    location.reload();
+    popup.classList.add("hidden");
+    if (onUpdate) onUpdate(Settings.defaults);
   };
 
   const btnCancel = document.createElement("button");
