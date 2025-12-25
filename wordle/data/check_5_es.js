@@ -59,7 +59,7 @@ export default [
 "hipar", "hipas", "hipen", "híper", "hipes", "hipos", "hitos", "hogar", "hojas", "hojea", "hojee", "hojeo", "honda", "hondo", "honor", "horas", "horca", "horco", "horda", "horma",
 "horne", "horno", "hoyos", "hueco", "huele", "huelo", "hueso", "huevo", "huida", "huido", "huían", "huías", "huira", "huirá", "hulla", "human", "humor", "hunda", "hunde", "hundí",
 "hundo", "hurga", "hurgo", "hurta", "hurte", "hurto", "husos", "ibais", "ideal", "ideas", "idolo", "igles", "igual", "ilesa", "ileso", "ilusa", "iluso", "imita", "imite", "hurón", 
-"imito", "impón", "impar", "insta", "inste", "insto", "inter", "intra", "iréis", "irían", "irías", "islas", "islam", "jaleo", "jalea", 
+"imito", "impón", "impar", "insta", "inste", "insto", "inter", "intra", "iréis", "irían", "irías", "islas", "islam", "jaleo", "jalea", "vivaz", 
 "jabal", "jabón", "jacta", "jacte", "jacto", "jadea", "jadee", "jadeo", "jaque", "jarra", "jarro", "jaspe", "jaula", "jefas", "jefes", "jerga", "jerez", "jesús", "joven", "joyas",
 "jueza", "juezo", "jugar", "jugas", "jugen", "jugos", "julia", "junio", "junta", "junte", "junto", "jurar", "juras", "juren", "jures", "justa", "justo", "juzga", "juzgo",
 "labio", "labor", "lacha", "lacho", "lacio", "lados", "ladra", "ladre", "ladro", "lagar", "lagos", "laico", "laics", "lamas", "lamer", "lames", "lamía", "lamió", "lanza", "lanzo",
