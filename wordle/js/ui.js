@@ -148,32 +148,43 @@ const UI = {
       const row = document.querySelectorAll(".row")[rowIndex];
       if (!row) return;
   
-      // Animación tipo Wordle con delay
+      // Animación tipo Wordle con delay y coloreado correcto
       [...row.children].forEach((cell, i) => {
         const inner = cell.querySelector(".cell-inner");
         const back = cell.querySelector(".cell-back");
         back.textContent = cell.querySelector(".cell-front").textContent;
-        back.className = "cell-face cell-back " + result[i];
+  
+        // Quitar clases anteriores y aplicar la clase de estado en la CELDA
+        cell.classList.remove("correct", "present", "absent");
+        cell.classList.add(result[i]);
+  
         setTimeout(() => inner.classList.add("flip"), i * 300);
       });
   
       // Esperar a que termine la animación antes de continuar
       setTimeout(() => {
+        // Victoria
         if (normalize(Game.grid[rowIndex].join("")) === normalize(Game.solution)) {
           UI.toast(UI.randomMessage("success"));
           UI.celebrate();
           return;
         }
+  
+        // Último intento fallido
         if (Game.row >= Game.attempts && !Game.finished) {
           UI.toast(UI.randomMessage("fail") + " → " + Game.solution);
           return;
         }
+  
+        // Avanzar fila
         Game.row++;
         Game.col = 0;
       }, result.length * 300 + 100);
+  
       return;
     }
   
+    // Letras
     if (/^[A-ZÑ]$/.test(input)) {
       Game.inputLetter(input);
       UI.updateBoard();
