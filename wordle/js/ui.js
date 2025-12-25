@@ -280,37 +280,43 @@ const UI = {
   /* =========================
      POPUP CONFIRMACIÓN
   ========================= */
-  showConfirmPopup(message, onConfirm, onCancel) {
+  showConfirmPopup(message, onConfirm, onCancel) { 
     UI._clearPopup();
-
+  
     const popup = document.getElementById("popup");
     const card = document.createElement("div");
     card.className = "popup-card";
-
+  
     const p = document.createElement("p");
     p.textContent = message;
     p.style.textAlign = "center";
+    p.style.fontSize = "18px";
+    p.style.fontWeight = "600";
     card.appendChild(p);
-
+  
     const btnDiv = document.createElement("div");
-    btnDiv.className = "popup-actions";
-
+    btnDiv.style.display = "flex";
+    btnDiv.style.justifyContent = "center";
+    btnDiv.style.gap = "20px";
+    btnDiv.style.marginTop = "16px";
+  
     const yesBtn = document.createElement("button");
     yesBtn.textContent = window.i18n.yes || "✅";
+    yesBtn.className = "confirm-btn confirm-yes";
     yesBtn.onclick = () => { popup.classList.add("hidden"); if(onConfirm) onConfirm(); };
-
+  
     const noBtn = document.createElement("button");
     noBtn.textContent = window.i18n.no || "❌";
+    noBtn.className = "confirm-btn confirm-no";
     noBtn.onclick = () => { popup.classList.add("hidden"); if(onCancel) onCancel(); };
-
+  
     btnDiv.appendChild(yesBtn);
     btnDiv.appendChild(noBtn);
     card.appendChild(btnDiv);
-
+  
     popup.appendChild(card);
     popup.classList.remove("hidden");
   }
-
 };
 
 /* =========================
