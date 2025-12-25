@@ -1,7 +1,5 @@
 // ui.js
-
 const UI = {
-
   /* =========================
      TABLERO DINÁMICO CON FLIP
   ========================= */
@@ -42,24 +40,7 @@ const UI = {
     const cells = document.querySelectorAll(".cell");
     const flat = Game.grid.flat();
     cells.forEach((cell, i) => {
-      const front = cell.querySelector(".cell-front");
-      front.textContent = flat[i] || "";
-    });
-  },
-
-  paintRow(result) {
-    const rowIndex = Game.row - 1;
-    const row = document.querySelectorAll(".row")[rowIndex];
-    if (!row) return;
-
-    [...row.children].forEach((cell, i) => {
-      const inner = cell.querySelector(".cell-inner");
-      const back = cell.querySelector(".cell-back");
-
-      back.textContent = cell.querySelector(".cell-front").textContent;
-      back.className = "cell-face cell-back " + result[i];
-
-      setTimeout(() => inner.classList.add("flip"), i * 200);
+      cell.querySelector(".cell-front").textContent = flat[i] || "";
     });
   },
 
@@ -87,18 +68,10 @@ const UI = {
   renderKeyboard(lang) {
     const kb = document.getElementById("keyboard");
     kb.innerHTML = "";
-
-    const rows = [
-      "QWERTYUIOP",
-      "ASDFGHJKL",
-      "ZXCVBNMÑ"
-      //lang === "es" ? "ZXCVBNMÑ" : "ZXCVBNM"
-    ];
-
+    const rows = ["QWERTYUIOP", "ASDFGHJKL", "ZXCVBNMÑ"];
     rows.forEach(row => {
       [...row].forEach(letter => kb.appendChild(this.createKey(letter)));
     });
-
     kb.appendChild(this.createKey("🔙", "BACK"));
     kb.appendChild(this.createKey("✅", "ENTER", true));
   },
@@ -109,96 +82,81 @@ const UI = {
     if (wide) key.classList.add("ok");
     key.textContent = label;
     key.dataset.key = value;
-
-    key.addEventListener("click", () => {
-      UI.handleInput(value);
-    });
-
+    key.addEventListener("click", () => this.handleInput(value));
     return key;
   },
 
-handleInput(input) {
+  handleInput(input) {
     if (!Game.words || !Game.words.length) {
-      UI.toast(window.i18n.noVocabulary || "No vocabulary loaded");
+      this.toast(window.i18n.noVocabulary || "No vocabulary loaded");
       return;
     }
-  
-    // Borrar letra
+
     if (input === "BACK") {
       if (Game.col > 0) {
         Game.backspace();
-        UI.updateBoard();
+        this.updateBoard();
       }
       return;
     }
-  
-    // Enviar palabra
+
     if (input === "ENTER") {
       const result = Game.submit();
-  
       if (result === "short") {
-        UI.toast(window.i18n.wordTooShort);
-        UI.shakeRow();
+        this.toast(window.i18n.wordTooShort);
+        this.shakeRow();
         return;
       }
-  
       if (result === "invalid") {
-        UI.toast(window.i18n.notValid);
-        UI.shakeRow();
+        this.toast(window.i18n.notValid);
+        this.shakeRow();
         return;
       }
-  
+
       const rowIndex = Game.row;
       const row = document.querySelectorAll(".row")[rowIndex];
       if (!row) return;
-  
-      // Animación tipo Wordle escalonada
+
       [...row.children].forEach((cell, i) => {
         const inner = cell.querySelector(".cell-inner");
         const back = cell.querySelector(".cell-back");
         back.textContent = cell.querySelector(".cell-front").textContent;
-  
-        // Quitar clases anteriores y aplicar la clase de estado en la CELDA
-        cell.classList.remove("correct","present","absent");
+
+        cell.classList.remove("correct", "present", "absent");
         cell.classList.add(result[i]);
-  
-        setTimeout(()=>inner.classList.add("flip"), i*300);
+
+        setTimeout(() => inner.classList.add("flip"), i * 150);
       });
-  
-      // Esperar a que termine la animación antes de continuar
+
       setTimeout(() => {
         const currentWord = Game.grid[rowIndex].join("");
-  
-        // Victoria
+
         if (normalize(currentWord) === normalize(Game.solution)) {
-          UI.toast(UI.randomMessage("success"));
-          UI.celebrate();
+          this.toast(this.randomMessage("success"));
+          this.celebrate();
           Game.finished = true;
           return;
         }
-  
-        // Último intento fallido
+
         if (Game.row >= Game.attempts - 1 && !Game.finished) {
-          UI.toast(UI.randomMessage("fail")+" → "+Game.solution);
+          this.toast(this.randomMessage("fail") + " → " + Game.solution);
           Game.finished = true;
           return;
         }
-  
-        // Avanzar fila
+
         Game.row++;
         Game.col = 0;
         if (!Game.grid[Game.row]) Game.grid[Game.row] = Array(Game.numLetters).fill("");
-        UI.updateBoard();
-      }, result.length * 300 + 100);
-  
+        this.updateBoard();
+      }, result.length * 150 + 600);
+
       return;
     }
-  
-    // Letras
+
     if (/^[A-ZÑ]$/.test(input)) {
       if (Game.col < Game.numLetters) {
         Game.inputLetter(input);
-        UI.updateBoard();
+        this.updateBoard();
       }
     }
   },
@@ -225,7 +183,7 @@ handleInput(input) {
     canvas.height = window.innerHeight;
 
     const confetti = [];
-    const colors = ["#FFB6C1","#FFD700","#87CEFA","#98FB98","#FFA07A"];
+    const colors = ["#FFB6C1", "#FFD700", "#87CEFA", "#98FB98", "#FFA07A"];
     for (let i = 0; i < 150; i++) {
       confetti.push({
         x: Math.random() * canvas.width,
@@ -280,7 +238,7 @@ handleInput(input) {
   },
 
   /* =========================
-     POPUP HELP: limpiar antes de mostrar
+     POPUP HELP
   ========================= */
   _clearPopup() {
     const popup = document.getElementById("popup");
@@ -289,171 +247,151 @@ handleInput(input) {
     popup.classList.add("hidden");
   },
 
-  /* =========================
-     POPUP CONFIRMACIÓN
-  ========================= */
-  showConfirmPopup(message, onConfirm, onCancel) { 
-    UI._clearPopup();
-  
+  showConfirmPopup(message, onConfirm, onCancel) {
+    this._clearPopup();
     const popup = document.getElementById("popup");
     const card = document.createElement("div");
     card.className = "popup-card";
-  
+
     const p = document.createElement("p");
     p.textContent = message;
     p.style.textAlign = "center";
     p.style.fontSize = "18px";
     p.style.fontWeight = "600";
     card.appendChild(p);
-  
+
     const btnDiv = document.createElement("div");
     btnDiv.style.display = "flex";
     btnDiv.style.justifyContent = "center";
     btnDiv.style.gap = "20px";
     btnDiv.style.marginTop = "16px";
-  
+
     const yesBtn = document.createElement("button");
     yesBtn.textContent = window.i18n.yes || "✅";
     yesBtn.className = "confirm-btn confirm-yes";
     yesBtn.onclick = () => { popup.classList.add("hidden"); if(onConfirm) onConfirm(); };
-  
+
     const noBtn = document.createElement("button");
     noBtn.textContent = window.i18n.no || "❌";
     noBtn.className = "confirm-btn confirm-no";
     noBtn.onclick = () => { popup.classList.add("hidden"); if(onCancel) onCancel(); };
-  
+
     btnDiv.appendChild(yesBtn);
     btnDiv.appendChild(noBtn);
     card.appendChild(btnDiv);
-  
     popup.appendChild(card);
     popup.classList.remove("hidden");
-  }
-};
+  },
 
-/* =========================
-   POPUP VOCABULARIO
-========================= */
-UI.showVocabPopup = function(lists, onSelect) {
-  UI._clearPopup();
+  showVocabPopup(lists, onSelect) {
+    this._clearPopup();
+    const popup = document.getElementById("popup");
+    const card = document.createElement("div");
+    card.className = "popup-card";
 
-  const popup = document.getElementById("popup");
-  const card = document.createElement("div");
-  card.className = "popup-card";
+    const title = document.createElement("h2");
+    title.textContent = window.i18n.selectList;
+    card.appendChild(title);
 
-  const title = document.createElement("h2");
-  title.textContent = window.i18n.selectList;
-  card.appendChild(title);
+    const listBox = document.createElement("div");
+    listBox.className = "popup-list";
 
-  const listBox = document.createElement("div");
-  listBox.className = "popup-list";
+    lists.forEach(v => {
+      const btn = document.createElement("button");
+      btn.textContent = v.title;
+      btn.onclick = () => { popup.classList.add("hidden"); onSelect(v); };
+      listBox.appendChild(btn);
+    });
 
-  lists.forEach(v => {
-    const btn = document.createElement("button");
-    btn.textContent = v.title;
-    btn.onclick = () => {
+    card.appendChild(listBox);
+    popup.appendChild(card);
+    popup.classList.remove("hidden");
+  },
+
+  showSettingsPopup(currentSettings, onUpdate) {
+    this._clearPopup();
+    const popup = document.getElementById("popup");
+    const card = document.createElement("div");
+    card.className = "popup-card";
+
+    const title = document.createElement("h2");
+    title.textContent = "Opciones";
+    card.appendChild(title);
+
+    // Idioma
+    const langLabel = document.createElement("label");
+    langLabel.textContent = "Idioma:";
+    langLabel.style.display = "block";
+    langLabel.style.marginTop = "8px";
+    const langSelect = document.createElement("select");
+    ["es","en"].forEach(l => {
+      const opt = document.createElement("option");
+      opt.value = l; opt.textContent = l.toUpperCase();
+      if (currentSettings.lang === l) opt.selected = true;
+      langSelect.appendChild(opt);
+    });
+    card.appendChild(langLabel);
+    card.appendChild(langSelect);
+
+    // Intentos
+    const attemptsLabel = document.createElement("label");
+    attemptsLabel.textContent = "Intentos:";
+    attemptsLabel.style.display = "block";
+    attemptsLabel.style.marginTop = "8px";
+    const attemptsInput = document.createElement("input");
+    attemptsInput.type = "range";
+    attemptsInput.min = 4;
+    attemptsInput.max = 10;
+    attemptsInput.value = currentSettings.numint;
+    attemptsInput.style.width = "100%";
+    card.appendChild(attemptsLabel);
+    card.appendChild(attemptsInput);
+
+    // Estadísticas
+    const statsDiv = document.createElement("div");
+    statsDiv.style.marginTop = "12px";
+    function updateStats() {
+      const stats = JSON.parse(localStorage.getItem("stats") || '{"played":0,"won":0}');
+      statsDiv.innerHTML = `Palabras jugadas: ${stats.played}<br>Palabras acertadas: ${stats.won}`;
+    }
+    updateStats();
+    card.appendChild(statsDiv);
+
+    // Botones
+    const btnSave = document.createElement("button");
+    btnSave.textContent = "💾 Guardar";
+    btnSave.style.marginRight = "6px";
+    btnSave.onclick = () => {
+      const updated = { lang: langSelect.value, numint: attemptsInput.value };
+      Settings.save(updated);
+      if (onUpdate) onUpdate(updated);
       popup.classList.add("hidden");
-      onSelect(v);
     };
-    listBox.appendChild(btn);
-  });
 
-  card.appendChild(listBox);
-  popup.appendChild(card);
-  popup.classList.remove("hidden");
-};
+    const btnReset = document.createElement("button");
+    btnReset.textContent = "🔄 Resetear";
+    btnReset.style.marginRight = "6px";
+    btnReset.onclick = () => { localStorage.clear(); location.reload(); };
 
-/* =========================
-   POPUP SETTINGS CON ESTADÍSTICAS
-========================= */
-UI.showSettingsPopup = function(currentSettings, onUpdate) {
-  UI._clearPopup();
+    const btnCancel = document.createElement("button");
+    btnCancel.textContent = "✖ Cancelar";
+    btnCancel.onclick = () => popup.classList.add("hidden");
 
-  const popup = document.getElementById("popup");
-  const card = document.createElement("div");
-  card.className = "popup-card";
+    const btnDiv = document.createElement("div");
+    btnDiv.style.marginTop = "12px";
+    btnDiv.appendChild(btnSave);
+    btnDiv.appendChild(btnReset);
+    btnDiv.appendChild(btnCancel);
 
-  const title = document.createElement("h2");
-  title.textContent = "Opciones";
-  card.appendChild(title);
+    card.appendChild(btnDiv);
+    popup.appendChild(card);
+    popup.classList.remove("hidden");
+  },
 
-  // Idioma
-  const langLabel = document.createElement("label");
-  langLabel.textContent = "Idioma:";
-  langLabel.style.display = "block";
-  langLabel.style.marginTop = "8px";
-  const langSelect = document.createElement("select");
-  ["es","en"].forEach(l => {
-    const opt = document.createElement("option");
-    opt.value = l;
-    opt.textContent = l.toUpperCase();
-    if (currentSettings.lang === l) opt.selected = true;
-    langSelect.appendChild(opt);
-  });
-  card.appendChild(langLabel);
-  card.appendChild(langSelect);
-
-  // Número de intentos
-  const attemptsLabel = document.createElement("label");
-  attemptsLabel.textContent = "Intentos:";
-  attemptsLabel.style.display = "block";
-  attemptsLabel.style.marginTop = "8px";
-  const attemptsInput = document.createElement("input");
-  attemptsInput.type = "range";
-  attemptsInput.min = 4;
-  attemptsInput.max = 10;
-  attemptsInput.value = currentSettings.numint;
-  attemptsInput.style.width = "100%";
-  card.appendChild(attemptsLabel);
-  card.appendChild(attemptsInput);
-
-  // Estadísticas
-  const statsDiv = document.createElement("div");
-  statsDiv.style.marginTop = "12px";
-  function updateStats() {
-    const stats = JSON.parse(localStorage.getItem("stats")||'{"played":0,"won":0}');
-    statsDiv.innerHTML = `Palabras jugadas: ${stats.played}<br>Palabras acertadas: ${stats.won}`;
+  focusOkKey() {
+    const ok = document.querySelector(".key.ok");
+    if(ok) ok.focus();
   }
-  updateStats();
-  card.appendChild(statsDiv);
-
-  // Botones
-  const btnSave = document.createElement("button");
-  btnSave.textContent = "💾 Guardar";
-  btnSave.style.marginRight = "6px";
-  btnSave.onclick = () => {
-    const updated = { lang: langSelect.value, numint: attemptsInput.value };
-    Settings.save(updated);
-    if (onUpdate) onUpdate(updated);
-    popup.classList.add("hidden");
-  };
-
-  const btnReset = document.createElement("button");
-  btnReset.textContent = "🔄 Resetear";
-  btnReset.style.marginRight = "6px";
-  btnReset.onclick = () => {
-    localStorage.clear();
-    location.reload();
-  };
-
-  const btnCancel = document.createElement("button");
-  btnCancel.textContent = "✖ Cancelar";
-  btnCancel.onclick = () => popup.classList.add("hidden");
-
-  const btnDiv = document.createElement("div");
-  btnDiv.style.marginTop = "12px";
-  btnDiv.appendChild(btnSave);
-  btnDiv.appendChild(btnReset);
-  btnDiv.appendChild(btnCancel);
-
-  card.appendChild(btnDiv);
-  popup.appendChild(card);
-  popup.classList.remove("hidden");
-};
-
-UI.focusOkKey = function() {
-  const ok = document.querySelector(".key.ok");
-  if(ok) ok.focus();
 };
 
 window.UI = UI;
