@@ -125,7 +125,7 @@ export default [
 "tomar", "tomas", "tomen", "tomes", "tomos", "tonal", "tonel", "tonos", "tonta", "tonto", "topar", "topas", "topen", "topes", "topos", "toral", "torax", "torce", "toril", "torna",
 "torne", "torno", "toros", "torpe", "torre", "torso", "torta", "torte", "torto", "tosca", "tosco", "total", "tótem", "tours", "traba", "trabe", "trabo", "traer", "traes", "traía",
 "trajo", "trama", "trame", "tramo", "trapo", "traza", "trazo", "trece", "trepa", "trepe", "trepo", "trigo", "tripa", "tripe", "tripo", "trono", "tropa", "trota", "trote", "troto",
-"truco", "trufa", "trufe", "trufo", "trusa", "tubos", "tumba", "tumbe", "tumbo", "tunar", "tunas", "tunen", "tunes", "tupir", "tupía", "tupió", "turba", "turbe", "turbo",
+"truco", "trufa", "trufe", "trufo", "trusa", "tubos", "tumba", "tumbe", "tumbo", "tunar", "tunas", "tunen", "tunes", "tupir", "tupía", "tupió", "turba", "turbe", "turbo", "veros", 
 "turno", "tutor", "ubica", "ubico", "ufano", "ufana", "ujier", "ultra", "umbra", "unica", "unico", "unida", "unido", "unión", "untar", "untas", "unten", "untes", "urdir", "urdía",
 "urdió", "urgir", "urgía", "urgió", "urnas", "usaba", "usada", "usado", "usais", "usara", "usare", "usase", "usted", "usual", "usura", "útero", "útils", "uvada", "vacas", "vagar",
 "vagas", "vagos", "vaina", "valer", "vales", "valía", "valió", "valle", "valor", "vamos", "vapor", "varas", "vario", "varía", "varió", "vasos", "vasto", "vasta", "vayan", "vayas",
@@ -138,12 +138,11 @@ export default [
 "zafar", "zafas", "zafen", "zafes", "zafra", "zagal", "zamba", "zambo", "zanco", "zanja", "zanje", "zanjo", "zarpa", "zarpe", "zarpo", "zarza", "zarzo", "zebra", "zenit", "zocar",
 "zocas", "zoclo", "zofra", "zombi", "zompa", "zompo", "zonas", "zopas", "zoplo", "zorra", "zorro", "zotal", "zotes", "zuavo", "zueco", "zuela", "zuiza", "zumba", "zumbe", "zumbo",
 "zurra", "zurre", "zurro", "zurza", "zurzo", "zuzar", "zuzas", "zuzen", "zuzes", "ñandú", "ñapas", "ñique", "ñoñez", "ñoños", "ñoras", "ñuble", "ñudos", "ñusta", "ñuzco", "ñuzga",
-"ñuzgo", "meros", 
-"aires","calvo","cauce","celda","común","crece","cruel","droga","echar","eleva","enema","enero","enfad","enfer","enjoy","escas","esos","facha","falla","falso",
-"falta","fibra","fijo","fines","flojo","focos","freno","graja","gusta","hadas","hallar","hambre","héroe","hierro","horta","imagen","indio","infiel","inicio","juego",
-"láser","latas","lavar","leyes","liso","lleva","local","locura","lograr","marta","mesa","monje","naval","nadie","nivel","norte","oficio","orilla","oscuro","otoño",
-"oveja","pared","peaje","peces","pelea","pelo","pena","pensar","perder","pizza","placa","precio","probar","propio","pueblo","puente","puerta","radio","raíz","rapaz",
-"rata","raya","remar","rendir","rienda","rincón","rocio","rodear","rostro","ruso","ruta","sable","sello","semana","senda","seno","servir","sesión","siglo","simple",
-"soler","sombra","sordo","suerte","sufrir","suma","super","tanque","tedio","teja","tema","templo","tigre","toser","traje","trampa","tratar","trepar","tribu","viral",
-"visión","visita","volver","vuelo","vuelta","yeso","yodo","zafiro","zapato","zona"
+"ñuzgo", "meros", "aires", "calvo", "cauce", "celda", "común", "crece", "cruel", "droga", "echar", "eleva", "enema", "enero", "facha", "falla", "falso", "falta", "fibra", "fines",
+"flojo", "focos", "freno", "graja", "gusta", "hadas", "héroe", "horta", "indio", "juego", "láser", "latas", "lavar", "leyes", "lisos", "lleva", "local", "marta", "mesas", "romos", 
+"monje", "naval", "nadie", "nivel", "norte", "otoño", "oveja", "pared", "peaje", "peces", "pelea", "pelos", "penas", "pizza", "placa", "radio", "rapaz", "ratas", "rayas", "remar", 
+"rocio", "rusos", "rutas", "sable", "sello", "semen", "senda", "senos", "siglo", "soler", "sordo", "super", "tedio", "tejas", "temas", "tigre", "toser", "traje", "tribu", "viral",
+"vuelo", "yesos", "yodos", "zonas", "añejo", "añora", "añoro", "árida", "árido", "ébano", "éxito", "élite", "icono", "íñigo", "óvalo", "ópera", "óxido", "orden", "orgía", "útero",
+"túnel", "póker", "pómez", "fácil", "débil", "dócil", "tórax", "tótem", "tóner", "pesar", "pesca", "pelis", "parra", "píxel", "polen", "púgil", "remar", "rítmo", "rotan", "rotas", 
+"sanar", "sanes", "sánen", "solió", "súper", "tésis", "tibia", "tibio", "tilde", "tóner", "tórax", "verte", "verbo"
 ];
