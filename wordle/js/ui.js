@@ -145,14 +145,12 @@ const UI = {
 
       UI.paintRow(result);
 
-      // Victoria
       if (normalize(Game.grid[Game.row - 1].join("")) === normalize(Game.solution)) {
         UI.toast(UI.randomMessage("success"));
         UI.celebrate();
         return;
       }
 
-      // Último intento fallido
       if (Game.row >= Game.attempts) {
         UI.toast(UI.randomMessage("fail") + " → " + Game.solution);
       }
@@ -160,7 +158,6 @@ const UI = {
       return;
     }
 
-    // Letras
     if (/^[A-ZÑ]$/.test(input)) {
       Game.inputLetter(input);
       UI.updateBoard();
@@ -336,10 +333,7 @@ UI.showSettingsPopup = function(currentSettings, onUpdate) {
   btnSave.textContent = "💾 Guardar";
   btnSave.style.marginRight = "6px";
   btnSave.onclick = () => {
-    const updated = {
-      lang: langSelect.value,
-      numint: Number(attemptsInput.value)
-    };
+    const updated = { lang: langSelect.value, numint: Number(attemptsInput.value) };
     Settings.save(updated);
     popup.classList.add("hidden");
     if (onUpdate) onUpdate(updated);
