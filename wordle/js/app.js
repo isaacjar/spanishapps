@@ -121,5 +121,5 @@ async function startGame(voc, settings) {
 
   // Mostrar palabra actual en consola y toast
   console.log("📝", Game.solution);
-  UI.toast("📝 " + Game.solution);
+  //UI.toast("📝 " + Game.solution);
 }
