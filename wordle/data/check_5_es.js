@@ -138,7 +138,7 @@ export default [
 "zafar", "zafas", "zafen", "zafes", "zafra", "zagal", "zamba", "zambo", "zanco", "zanja", "zanje", "zanjo", "zarpa", "zarpe", "zarpo", "zarza", "zarzo", "zebra", "zenit", "zocar",
 "zocas", "zoclo", "zofra", "zombi", "zompa", "zompo", "zonas", "zopas", "zoplo", "zorra", "zorro", "zotal", "zotes", "zuavo", "zueco", "zuela", "zuiza", "zumba", "zumbe", "zumbo",
 "zurra", "zurre", "zurro", "zurza", "zurzo", "zuzar", "zuzas", "zuzen", "zuzes", "ñandú", "ñapas", "ñique", "ñoñez", "ñoños", "ñoras", "ñuble", "ñudos", "ñusta", "ñuzco", "ñuzga",
-"ñuzgo", 
+"ñuzgo", "meros", 
 "aires","calvo","cauce","celda","común","crece","cruel","droga","echar","eleva","enema","enero","enfad","enfer","enjoy","escas","esos","facha","falla","falso",
 "falta","fibra","fijo","fines","flojo","focos","freno","graja","gusta","hadas","hallar","hambre","héroe","hierro","horta","imagen","indio","infiel","inicio","juego",
 "láser","latas","lavar","leyes","liso","lleva","local","locura","lograr","marta","mesa","monje","naval","nadie","nivel","norte","oficio","orilla","oscuro","otoño",
