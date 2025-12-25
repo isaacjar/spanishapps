@@ -132,61 +132,51 @@ const UI = {
     if (input === "ENTER") {
       const result = Game.submit();
   
-      if (result === "short") {
-        UI.toast(window.i18n.wordTooShort);
-        UI.shakeRow();
-        return;
-      }
-  
-      if (result === "invalid") {
-        UI.toast(window.i18n.notValid);
-        UI.shakeRow();
-        return;
-      }
+      if (result === "short") { UI.toast(window.i18n.wordTooShort); UI.shakeRow(); return; }
+      if (result === "invalid") { UI.toast(window.i18n.notValid); UI.shakeRow(); return; }
   
       const rowIndex = Game.row - 1;
       const row = document.querySelectorAll(".row")[rowIndex];
       if (!row) return;
   
-      [...row.children].forEach((cell, i) => {
+      // Aplica clases y contenido antes del flip
+      [...row.children].forEach((cell,i)=>{
         const inner = cell.querySelector(".cell-inner");
-        const front = cell.querySelector(".cell-front");
         const back = cell.querySelector(".cell-back");
-  
-        back.textContent = front.textContent;
-        cell.classList.remove("correct", "present", "absent");
-        inner.classList.remove("flip", "bounce");
-  
-        setTimeout(() => {
-          const status = result[i]?.toLowerCase();
-          if (["correct","present","absent"].includes(status)) {
-            cell.classList.add(status);
-          }
-          inner.classList.add("flip", "bounce");
-        }, i * 300); // delay escalonado tipo Wordle
+        back.textContent = cell.querySelector(".cell-front").textContent;
+        cell.classList.remove("correct","present","absent");
+        cell.classList.add(result[i]);
+        inner.classList.remove("flip");
       });
   
-      // Espera a que terminen todos los flips
-      setTimeout(() => {
+      // Flip escalonado tipo Wordle
+      [...row.children].forEach((cell,i)=>{
+        setTimeout(()=>cell.querySelector(".cell-inner").classList.add("flip"), i*250);
+      });
+  
+      // Espera animación completa antes de avanzar
+      setTimeout(()=>{
+        // Victoria
         if (normalize(Game.grid[rowIndex].join("")) === normalize(Game.solution)) {
           UI.toast(UI.randomMessage("success"));
           UI.celebrate();
           return;
         }
-  
+        // Último intento fallido
         if (Game.row >= Game.attempts && !Game.finished) {
-          UI.toast(UI.randomMessage("fail") + " → " + Game.solution);
+          UI.toast(UI.randomMessage("fail")+" → "+Game.solution);
           return;
         }
-  
+        // Avanzar fila
         Game.row++;
-        Game.col = 0;
-      }, result.length * 300 + 700);
+        Game.col=0;
+      }, result.length*250 + 300);
   
       return;
     }
   
-    if (/^[A-ZÑ]$/i.test(input)) {
+    // Letras
+    if (/^[A-ZÑ]$/.test(input)) {
       Game.inputLetter(input);
       UI.updateBoard();
     }
