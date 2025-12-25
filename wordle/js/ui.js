@@ -439,4 +439,9 @@ UI.showSettingsPopup = function(currentSettings, onUpdate) {
   popup.classList.remove("hidden");
 };
 
+UI.focusOkKey = function() {
+  const ok = document.querySelector(".key.ok");
+  if(ok) ok.focus();
+};
+
 window.UI = UI;
