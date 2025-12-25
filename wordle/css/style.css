@@ -32,3 +32,7 @@ footer{margin-top:auto;text-align:center;padding:10px;font-size:14px;}
 .popup-list button{width:100%;margin:8px 0;padding:12px;border-radius:var(--radius);border:none;background:var(--primary);cursor:pointer;box-shadow:var(--shadow);font-size:16px;}
 @keyframes popIn{from{transform:scale(.9);opacity:0;}to{transform:scale(1);opacity:1;}}
 .topbar .top-buttons .btn-primary{margin-left:auto;}
+.popup label{display:flex;flex-direction:column;gap:6px;margin:12px 0;}
+.popup select,.popup input[type=range]{padding:6px;border-radius:8px;}
+.popup-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:12px;}
+.stats{font-size:14px;color:#444;}
