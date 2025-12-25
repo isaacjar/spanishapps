@@ -118,8 +118,4 @@ async function startGame(voc, settings) {
   UI.renderBoard(Game.attempts, Game.numLetters);
   UI.renderKeyboard(settings.lang);
   UI.updateBoard();
-
-  // Mostrar palabra actual en consola y toast
-  console.log("📝", Game.solution);
-  //UI.toast("📝 " + Game.solution);
 }
