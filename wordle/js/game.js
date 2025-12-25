@@ -22,7 +22,7 @@ const Game={
     if(!this.words.length) return;
     do{this.solution=this.words[Math.floor(Math.random()*this.words.length)];}while(this.solution===this.last&&this.words.length>1);
     this.last=this.solution;
-    console.log("📝 Solution:",this.solution);
+    console.log("📝 ",this.solution);
     this.row=0;
     this.col=0;
     this.finished=false;
