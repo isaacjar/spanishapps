@@ -43,3 +43,76 @@ footer{margin-top:auto;text-align:center;padding:10px;font-size:14px;}
 .confirm-btn:hover{transform:translateY(-2px);}
 .confirm-yes{background:var(--success);color:#fff;border:none;}
 .confirm-no{background:var(--fail);color:#fff;border:none;}
+/* =========================
+   TABLERO Y ANIMACIONES
+========================= */
+#board {
+  display: grid;
+  gap: 8px;
+  justify-content: center;
+  margin: 16px 0;
+}
+
+.row {
+  display: grid;
+  gap: 8px;
+  grid-auto-flow: column; /* aseguramos que las celdas estén en fila */
+}
+
+.cell {
+  width: 52px;
+  height: 52px;
+  perspective: 600px;
+  position: relative;
+}
+
+.cell-inner {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4,0,0.2,1);
+  border-radius: var(--radius);
+}
+
+.cell.flip .cell-inner {
+  transform: rotateX(180deg);
+}
+
+.cell-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backface-visibility: hidden;
+  font-size: 26px;
+  font-weight: 600;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.cell-front {
+  background: var(--card);
+  border: 2px solid #d1d5db;
+}
+
+.cell-back {
+  transform: rotateX(180deg);
+  color: #fff;
+}
+
+/* Colores de estado */
+.cell.correct .cell-back { background: var(--success); }
+.cell.present .cell-back { background: var(--warn); }
+.cell.absent  .cell-back { background: var(--fail); }
+
+/* Animación shake */
+.row.shake {
+  animation: shakeRow 0.3s ease;
+}
+
+@keyframes shakeRow {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-8px); }
+  40%, 80% { transform: translateX(8px); }
+}
