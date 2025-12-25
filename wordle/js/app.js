@@ -52,13 +52,13 @@
         window.i18n.confirmNewWord,
         () => { // Confirmar nueva palabra
           Game.resetWord();
-          UI.toast("📝 " + Game.solution);
+          //UI.toast("📝 " + Game.solution);
         },
         () => {} // Cancelar → no hace nada
       );
     } else {
       Game.resetWord();
-      UI.toast("📝 " + Game.solution);
+      //UI.toast("📝 " + Game.solution);
     }
   });
 
