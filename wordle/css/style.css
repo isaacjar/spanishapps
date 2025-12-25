@@ -1,3 +1,4 @@
+/* style.css */
 :root{--bg:#f7f6f3;--card:#ffffff;--primary:#a5b4fc;--success:#6aaa64;--warn:#c9b458;--fail:#787c7e;--text:#1f2937;--radius:14px;--shadow:0 4px 12px rgba(0,0,0,.08);}
 *{box-sizing:border-box;font-family:"Inter","Roboto",sans-serif;}
 body{margin:0;display:flex;flex-direction:column;min-height:100vh;background:var(--bg);color:var(--text);}
