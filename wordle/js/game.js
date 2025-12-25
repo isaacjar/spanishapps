@@ -3,7 +3,7 @@
 /* =========================
    NORMALIZACIÓN CENTRAL
 ========================= */
-function normalize(str){return str.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toUpperCase();}
+function normalize(str) {return str.normalize("NFD").replace(/([^\u00F1\u00D1])[\u0300-\u036f]/g, "$1").toUpperCase();}
 
 /* =========================
    LÓGICA DEL JUEGO
