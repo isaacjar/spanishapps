@@ -151,12 +151,18 @@ const UI = {
       // Animación tipo Wordle con delay y coloreado correcto
       [...row.children].forEach((cell, i) => {
         const inner = cell.querySelector(".cell-inner");
+        const front = cell.querySelector(".cell-front");
         const back = cell.querySelector(".cell-back");
-        back.textContent = cell.querySelector(".cell-front").textContent;
   
-        // Quitar clases anteriores y aplicar la clase de estado en la CELDA
+        back.textContent = front.textContent;
+  
+        // Normaliza resultado a minúsculas para coincidir con CSS
+        const status = result[i]?.toLowerCase(); // "correct", "present" o "absent"
         cell.classList.remove("correct", "present", "absent");
-        cell.classList.add(result[i]);
+        if (["correct","present","absent"].includes(status)) cell.classList.add(status);
+  
+        // Forzar repaint antes de animar (evita problemas en algunos navegadores)
+        void inner.offsetWidth;
   
         setTimeout(() => inner.classList.add("flip"), i * 300);
       });
