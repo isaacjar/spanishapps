@@ -1,5 +1,5 @@
 export default [
-"abajo", "abana", "abate", "abeto", "abono", "abras", "abrir", "abril", "abría", "abuso", "acaba", "acabo", "acaso", "acera", "acero", "acoge", "acoso", "actúa", "acude", "acudo",
+"abajo", "ávaro", "abate", "abeto", "abono", "abras", "abrir", "abril", "abría", "abuso", "acaba", "acabo", "acaso", "acera", "acero", "acoge", "acoso", "actúa", "acude", "acudo",
 "adela", "adema", "adios", "adobe", "adobo", "adora", "adore", "adoro", "adula", "adule", "adulo", "aduos", "aerea", "aereo", "afila", "afile", "afilo", "afina", "afine", "afino",
 "aforo", "fuero", "agita", "agite", "agito", "aguda", "agudo", "aguas", "agudo", "ahora", "ahogo", "airea", "airee", "aireo", "aisla", "aisle", "aislo", "ajena", "ajeno", "roces", 
 "alado", "alamo", "albor", "alcaz", "alcea", "aldea", "alega", "alego", "aleja", "aleje", "alejo", "alero", "aleta", "aleto", "alfil", "algún", "alima", "aliso", "altar", "altas",
@@ -26,9 +26,9 @@ export default [
 "celar", "celas", "celen", "celes", "celos", "cenas", "cenar", "cenen", "cenes", "cenit", "ceñir", "ceñis", "ceñía", "cerca", "cerco", "cerdo", "ceros", "cerro", "risas", "lisas",  
 "cesar", "cesas", "cesen", "ceses", "cesta", "cesto", "chafa", "chafe", "chafo", "chapa", "chape", "chapo", "chato", "chica", "chico", "chile", "china", "chino", "choca", "choco",
 "choza", "chozo", "chulo", "chula", "chupa", "chupe", "chupo", "ciclo", "ciega", "ciego", "cielo", "cifra", "cifre", "cifro", "cimas", "cinco", "cinta", "cinto", "circo", "lisos", 
-"citar", "citas", "citen", "cites", "civis", "clara", "claro", "clase", "clave", "clavo", "clima", "cloro", "cobre", "cobro", "cobro", "cocer", "coces", "cocía", "coció", "cocos",
+"citar", "citas", "citen", "cites", "citan", "clara", "claro", "clase", "clave", "clavo", "clima", "cloro", "cobre", "cobro", "cobro", "cocer", "coces", "cocía", "coció", "cocos",
 "codal", "codas", "codea", "codee", "codeo", "cofre", "coger", "coges", "cogía", "cogió", "cojas", "cojan", "cojes", "cojen", "cojín", "colas", "colar", "colen", "coles", "colmo",
-"colon", "color", "coman", "comas", "comen", "comes", "comía", "comió", "compa", "conde", "conga", "congo", "conos", "conté", "contó", "copas", "copio", 
+"colon", "color", "coman", "comas", "comen", "comes", "comía", "comió", "compa", "conde", "conga", "congo", "conos", "conté", "contó", "copas", "copio", "ávara", "mesan", "mesar", 
 "copie", "copio", "coral", "coraz", "corra", "corre", "corro", "corta", "corte", "corto", "cosas", "coser", "coses", "cosía", "cosió", "costa", "coste", "costo", "creas", "crear",
 "creen", "creer", "crees", "creía", "crema", "creme", "cremo", "criar", "crias", "crien", "cries", "críos", "cruce", "cruzo", "cuajo", "cuajo", "cuate", "cubos", "cubra", "cubre",
 "cubri", "cubro", "cucar", "cucas", "cudan", "cudas", "cuden", "cudes", "cuece", "cueza", "cuezo", "cuero", "cuida", "cuide", "cuido", "cuñas", "cuñad", "cuñan", "cuñar", "cuñas",
