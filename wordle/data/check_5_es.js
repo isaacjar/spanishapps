@@ -109,7 +109,7 @@ export default [
 "salón", "salsa", "salta", "salte", "salto", "salud", "salva", "salve", "salvo", "samba", "sambo", "sanas", "sanco", "sanea", "sanee", "saneo", "sanos", "santa", "santo", "sapos",
 "sarda", "sardo", "sarta", "sarte", "sarto", "sauce", "sauco", "sauna", "savia", "secar", "secas", "secen", "seces", "secos", "sedar", "sedas", "sedes", "sedes", "según", "señal",
 "señor", "sepan", "sepas", "sepia", "seres", "serio", "seria", "serán", "serás", "sería", "serví", "setas", "sexos", "sexta", "sexto", "shock", "siega", "siego", "siema", "muros", 
-"siete", "sigla", "signo", "sigue", "silla", "silos", "simas", "simio", "sinar", "sinar", "sines", "singa", "singo", "sinos", "sinti", "siria", "sirio", "sirva", "sirve",
+"siete", "sigla", "signo", "sigue", "silla", "silos", "simas", "simio", "sinar", "sinar", "sines", "singa", "singo", "sinos", "sinti", "siria", "sirio", "sirva", "sirve", "amara", 
 "sirvo", "sismo", "sitio", "sobar", "sobas", "sobeo", "sobro", "sobra", "sobre", "sobro", "socar", "socas", "socia", "socio", "sodas", "sodio", "sofas", "soñar", "soñas", "soñen",
 "soñes", "solar", "solas", "soles", "solía", "solio", "solos", "solta", "solte", "solto", "somos", "sonar", "sonas", "sonda", "sonde", "sondo", "sones", "sonre", "sonro", "sopas",
 "sopla", "sople", "soplo", "sopón", "sopas", "sorna", "sorte", "sorto", "sosas", "sosos", "sotar", "sotas", "soten", "sotes", "sotos", "suave", "suban", "subas", "suben", "subes",
