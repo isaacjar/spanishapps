@@ -153,32 +153,26 @@ const UI = {
         const back = cell.querySelector(".cell-back");
         back.textContent = cell.querySelector(".cell-front").textContent;
         back.className = "cell-face cell-back " + result[i];
-        setTimeout(() => inner.classList.add("flip"), i * 300); // 300ms por letra
+        setTimeout(() => inner.classList.add("flip"), i * 300);
       });
   
       // Esperar a que termine la animación antes de continuar
       setTimeout(() => {
-        // Victoria
         if (normalize(Game.grid[rowIndex].join("")) === normalize(Game.solution)) {
           UI.toast(UI.randomMessage("success"));
           UI.celebrate();
           return;
         }
-  
-        // Último intento fallido
         if (Game.row >= Game.attempts && !Game.finished) {
           UI.toast(UI.randomMessage("fail") + " → " + Game.solution);
           return;
         }
-  
-        // Avanzar fila
         Game.row++;
         Game.col = 0;
-      }, result.length * 300 + 100); // espera total según número de letras
+      }, result.length * 300 + 100);
       return;
     }
   
-    // Letras
     if (/^[A-ZÑ]$/.test(input)) {
       Game.inputLetter(input);
       UI.updateBoard();
@@ -269,6 +263,40 @@ const UI = {
     if (!popup) return;
     popup.innerHTML = "";
     popup.classList.add("hidden");
+  },
+
+  /* =========================
+     POPUP CONFIRMACIÓN
+  ========================= */
+  showConfirmPopup(message, onConfirm, onCancel) {
+    UI._clearPopup();
+
+    const popup = document.getElementById("popup");
+    const card = document.createElement("div");
+    card.className = "popup-card";
+
+    const p = document.createElement("p");
+    p.textContent = message;
+    p.style.textAlign = "center";
+    card.appendChild(p);
+
+    const btnDiv = document.createElement("div");
+    btnDiv.className = "popup-actions";
+
+    const yesBtn = document.createElement("button");
+    yesBtn.textContent = window.i18n.yes || "✅";
+    yesBtn.onclick = () => { popup.classList.add("hidden"); if(onConfirm) onConfirm(); };
+
+    const noBtn = document.createElement("button");
+    noBtn.textContent = window.i18n.no || "❌";
+    noBtn.onclick = () => { popup.classList.add("hidden"); if(onCancel) onCancel(); };
+
+    btnDiv.appendChild(yesBtn);
+    btnDiv.appendChild(noBtn);
+    card.appendChild(btnDiv);
+
+    popup.appendChild(card);
+    popup.classList.remove("hidden");
   }
 
 };
@@ -277,7 +305,7 @@ const UI = {
    POPUP VOCABULARIO
 ========================= */
 UI.showVocabPopup = function(lists, onSelect) {
-  UI._clearPopup(); // limpia cualquier popup activo
+  UI._clearPopup();
 
   const popup = document.getElementById("popup");
   const card = document.createElement("div");
@@ -309,7 +337,7 @@ UI.showVocabPopup = function(lists, onSelect) {
    POPUP SETTINGS CON ESTADÍSTICAS
 ========================= */
 UI.showSettingsPopup = function(currentSettings, onUpdate) {
-  UI._clearPopup(); // limpia cualquier popup activo
+  UI._clearPopup();
 
   const popup = document.getElementById("popup");
   const card = document.createElement("div");
