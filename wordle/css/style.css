@@ -39,3 +39,6 @@ footer{margin-top:auto;text-align:center;padding:10px;font-size:14px;}
 .stats{font-size:14px;color:#444;}
 #messageBox {position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:var(--card);padding:12px 20px;border-radius:var(--radius);box-shadow:var(--shadow);font-weight:600;font-size:16px;text-align:center;z-index:1000;opacity:0;transition:opacity .3s ease,transform .3s ease;}
 #messageBox.show {opacity:1;transform:translate(-50%,-50%) scale(1);}
+.confirm-btn{padding:14px 28px;border-radius:var(--radius);font-size:18px;font-weight:600;cursor:pointer;box-shadow:var(--shadow);transition:transform .15s ease,background .15s ease;margin:8px;}.confirm-btn:hover{transform:translateY(-2px);}.confirm-yes{background:var(--success);color:#fff;border:none;}.confirm-no{background:var(--fail);color:#fff;border:none;}
+
+
