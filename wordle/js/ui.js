@@ -145,12 +145,14 @@ const UI = {
 
       UI.paintRow(result);
 
+      // Victoria
       if (normalize(Game.grid[Game.row - 1].join("")) === normalize(Game.solution)) {
         UI.toast(UI.randomMessage("success"));
         UI.celebrate();
         return;
       }
 
+      // Último intento fallido
       if (Game.row >= Game.attempts) {
         UI.toast(UI.randomMessage("fail") + " → " + Game.solution);
       }
@@ -158,6 +160,7 @@ const UI = {
       return;
     }
 
+    // Letras
     if (/^[A-ZÑ]$/.test(input)) {
       Game.inputLetter(input);
       UI.updateBoard();
@@ -238,6 +241,16 @@ const UI = {
       cancelAnimationFrame(confettiAnim);
       canvas.remove();
     }, 4000);
+  },
+
+  /* =========================
+     POPUP HELP: limpiar antes de mostrar
+  ========================= */
+  _clearPopup() {
+    const popup = document.getElementById("popup");
+    if (!popup) return;
+    popup.innerHTML = "";
+    popup.classList.add("hidden");
   }
 
 };
@@ -246,9 +259,9 @@ const UI = {
    POPUP VOCABULARIO
 ========================= */
 UI.showVocabPopup = function(lists, onSelect) {
-  const popup = document.getElementById("popup");
-  popup.innerHTML = "";
+  UI._clearPopup(); // limpia cualquier popup activo
 
+  const popup = document.getElementById("popup");
   const card = document.createElement("div");
   card.className = "popup-card";
 
@@ -278,9 +291,9 @@ UI.showVocabPopup = function(lists, onSelect) {
    POPUP SETTINGS CON ESTADÍSTICAS
 ========================= */
 UI.showSettingsPopup = function(currentSettings, onUpdate) {
-  const popup = document.getElementById("popup");
-  popup.innerHTML = "";
+  UI._clearPopup(); // limpia cualquier popup activo
 
+  const popup = document.getElementById("popup");
   const card = document.createElement("div");
   card.className = "popup-card";
 
@@ -322,7 +335,7 @@ UI.showSettingsPopup = function(currentSettings, onUpdate) {
   const statsDiv = document.createElement("div");
   statsDiv.style.marginTop = "12px";
   function updateStats() {
-    const stats = JSON.parse(localStorage.getItem("stats") || '{"played":0,"won":0}');
+    const stats = JSON.parse(localStorage.getItem("stats")||'{"played":0,"won":0}');
     statsDiv.innerHTML = `Palabras jugadas: ${stats.played}<br>Palabras acertadas: ${stats.won}`;
   }
   updateStats();
@@ -333,10 +346,10 @@ UI.showSettingsPopup = function(currentSettings, onUpdate) {
   btnSave.textContent = "💾 Guardar";
   btnSave.style.marginRight = "6px";
   btnSave.onclick = () => {
-    const updated = { lang: langSelect.value, numint: Number(attemptsInput.value) };
+    const updated = { lang: langSelect.value, numint: attemptsInput.value };
     Settings.save(updated);
-    popup.classList.add("hidden");
     if (onUpdate) onUpdate(updated);
+    popup.classList.add("hidden");
   };
 
   const btnReset = document.createElement("button");
@@ -344,8 +357,7 @@ UI.showSettingsPopup = function(currentSettings, onUpdate) {
   btnReset.style.marginRight = "6px";
   btnReset.onclick = () => {
     localStorage.clear();
-    popup.classList.add("hidden");
-    if (onUpdate) onUpdate(Settings.defaults);
+    location.reload();
   };
 
   const btnCancel = document.createElement("button");
