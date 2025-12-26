@@ -30,7 +30,7 @@
      TECLADO FÍSICO
   ========================= */
   window.addEventListener("keydown", e => {
-    if (!window.Game || Game.finished) return;
+    if (!window.Game || Game.finished || UI.animating) return;
 
     if (/^[a-zñ]$/i.test(e.key)) { UI.handleInput(normalize(e.key)); return; }
     if (e.key === "Backspace") { e.preventDefault(); UI.handleInput("BACK"); return; }
@@ -38,21 +38,56 @@
   });
 
   /* =========================
+     POOL SIN REPETICIÓN
+  ========================= */
+  Game._usedWords = new Set();
+  const originalReset = Game.resetWord.bind(Game);
+  Game.resetWord = function() {
+    if (!this.words?.length) return;
+
+    // reiniciar pool si se acaban
+    if (this._usedWords.size >= this.words.length) {
+      this._usedWords.clear();
+    }
+
+    // elegir palabra nueva diferente a usadas
+    let candidate;
+    do {
+      candidate = this.words[Math.floor(Math.random() * this.words.length)];
+    } while (this._usedWords.has(candidate) && this.words.length > 1);
+
+    this.solution = candidate;
+    this._usedWords.add(candidate);
+    this.last = this.solution;
+
+    this.row = 0;
+    this.col = 0;
+    this.finished = false;
+    this.grid = Array.from({ length: this.attempts }, () => Array(this.numLetters).fill(""));
+
+    if (window.UI) {
+      UI.renderBoard(this.attempts, this.numLetters);
+      UI.updateBoard();
+    }
+    console.log("📝 Palabra nueva (pool sin repetir):", this.solution);
+  };
+
+  /* =========================
      BOTONES SUPERIORES
   ========================= */
-  document.getElementById("btnNew")?.addEventListener("click", () => {
+  const btnNew = document.getElementById("btnNew");
+  btnNew?.addEventListener("click", () => {
     if (!Game.words?.length) {
       UI.toast(window.i18n.noVocabulary || "No vocabulary loaded");
       return;
     }
-  
+
     const startNew = () => {
       Game.resetWord();
       UI.focusOkKey(); // mueve foco al botón OK
-      // UI.toast("📝 " + Game.solution); // opcional
     };
-  
-    // Si hay una partida en curso
+
+    // Solo preguntar si ya hay intentos
     if (!Game.finished && Game.row > 0) {
       UI.showConfirmPopup(
         window.i18n.confirmNewWord || "¿Desea terminar la partida en curso?",
@@ -60,9 +95,23 @@
         () => {}   // Cancelar → no hace nada
       );
     } else {
-      startNew(); // empieza directamente
+      startNew();
     }
   });
+
+  // Animar/deshabilitar btnNew según animaciones
+  const observer = new MutationObserver(() => {
+    if (UI.animating) {
+      btnNew.classList.add("disabled");
+      btnNew.style.opacity = "0.5";
+      btnNew.style.cursor = "not-allowed";
+    } else {
+      btnNew.classList.remove("disabled");
+      btnNew.style.opacity = "1";
+      btnNew.style.cursor = "pointer";
+    }
+  });
+  observer.observe(document.body, { attributes: true, subtree: true });
 
   document.getElementById("btnSettings")?.addEventListener("click", () => {
     UI.showSettingsPopup(settings, updated => {
