@@ -41,16 +41,12 @@
      POOL SIN REPETICIÓN
   ========================= */
   Game._usedWords = new Set();
-  const originalReset = Game.resetWord.bind(Game);
+  const originalResetWord = Game.resetWord.bind(Game);
   Game.resetWord = function() {
     if (!this.words?.length) return;
 
-    // reiniciar pool si se acaban
-    if (this._usedWords.size >= this.words.length) {
-      this._usedWords.clear();
-    }
+    if (this._usedWords.size >= this.words.length) this._usedWords.clear();
 
-    // elegir palabra nueva diferente a usadas
     let candidate;
     do {
       candidate = this.words[Math.floor(Math.random() * this.words.length)];
@@ -91,8 +87,8 @@
     if (!Game.finished && Game.row > 0) {
       UI.showConfirmPopup(
         window.i18n.confirmNewWord || "¿Desea terminar la partida en curso?",
-        startNew,  // Confirmar
-        () => {}   // Cancelar → no hace nada
+        startNew,
+        () => {}
       );
     } else {
       startNew();
@@ -117,7 +113,6 @@
     UI.showSettingsPopup(settings, updated => {
       Settings.save(updated);
 
-      // Si cambió algo relevante (idioma, numint), reiniciar juego
       if (Game.words?.length) {
         Game.reset();
         UI.renderBoard(Game.attempts, Game.numLetters);
@@ -129,18 +124,30 @@
   /* =========================
      FLUJO PRINCIPAL
   ========================= */
+  if (!window.voclists || !voclists.length) {
+    console.error("voclists no disponible");
+    return;
+  }
+
+  let started = false;
+
   if (settings.voclist) {
     const direct = voclists.find(v => v.filename === settings.voclist);
     if (direct) {
-      startGame(direct, settings);
-      return;
+      try {
+        await startGame(direct, settings);
+        started = true;
+      } catch(e) {
+        console.error("Error iniciando voclist directo", e);
+      }
     }
   }
 
-  // Si no hay voclist → popup de selección
-  UI.showVocabPopup(voclists, selected => {
-    startGame(selected, settings);
-  });
+  if (!started) {
+    UI.showVocabPopup(voclists, selected => {
+      startGame(selected, settings);
+    });
+  }
 
 })();
 
@@ -169,7 +176,6 @@ async function startGame(voc, settings) {
     return;
   }
 
-  // Inicializa juego
   Game.init(
     vocModule.default,
     valModule.default,
@@ -177,7 +183,6 @@ async function startGame(voc, settings) {
     Number(settings.numint)
   );
 
-  // Renderiza tablero y teclado
   UI.renderBoard(Game.attempts, Game.numLetters);
   UI.renderKeyboard(settings.lang);
   UI.updateBoard();
