@@ -43,7 +43,6 @@
   Game.resetWord = function() {
     if (!this.words?.length) return;
 
-    // reiniciar pool si se acaban
     if (this._usedWords.size >= this.words.length) this._usedWords.clear();
 
     let candidate;
@@ -124,19 +123,26 @@
   /* =========================
      FLUJO PRINCIPAL
   ========================= */
-  function loadVocabOrPopup() {
-    if (settings.voclist) {
-      const direct = voclists.find(v => v.filename === settings.voclist);
+  document.addEventListener("DOMContentLoaded", () => {
+    function loadVocabOrPopup() {
+      let direct;
+      if (settings.voclist) {
+        direct = voclists.find(v => v.filename === settings.voclist);
+      }
+
       if (direct) {
-        startGame(direct, settings);
-        return;
+        startGame(direct, settings).catch(err => {
+          console.error(err);
+          UI.toast("❌ Error cargando vocabulario");
+          UI.showVocabPopup(window.voclists, selected => startGame(selected, settings));
+        });
+      } else {
+        UI.showVocabPopup(window.voclists, selected => startGame(selected, settings));
       }
     }
-    // fallback → popup
-    UI.showVocabPopup(voclists, selected => startGame(selected, settings));
-  }
 
-  loadVocabOrPopup();
+    loadVocabOrPopup();
+  });
 
 })();
 
