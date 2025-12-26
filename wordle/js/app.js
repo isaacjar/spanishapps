@@ -16,11 +16,9 @@
     console.error("Error cargando lang.json", e);
     return;
   }
-
   const t = langData[settings.lang] || langData.es;
   window.i18n = t;
 
-  // Textos dinámicos
   document.querySelectorAll("[data-i18n]").forEach(el => {
     const key = el.dataset.i18n;
     if (t[key]) el.textContent = t[key];
@@ -41,10 +39,11 @@
      POOL SIN REPETICIÓN
   ========================= */
   Game._usedWords = new Set();
-  const originalResetWord = Game.resetWord.bind(Game);
+  const originalReset = Game.resetWord.bind(Game);
   Game.resetWord = function() {
     if (!this.words?.length) return;
 
+    // reiniciar pool si se acaban
     if (this._usedWords.size >= this.words.length) this._usedWords.clear();
 
     let candidate;
@@ -69,7 +68,7 @@
   };
 
   /* =========================
-     BOTONES SUPERIORES
+     BOTÓN NUEVA PALABRA
   ========================= */
   const btnNew = document.getElementById("btnNew");
   btnNew?.addEventListener("click", () => {
@@ -80,10 +79,9 @@
 
     const startNew = () => {
       Game.resetWord();
-      UI.focusOkKey(); // mueve foco al botón OK
+      UI.focusOkKey();
     };
 
-    // Solo preguntar si ya hay intentos
     if (!Game.finished && Game.row > 0) {
       UI.showConfirmPopup(
         window.i18n.confirmNewWord || "¿Desea terminar la partida en curso?",
@@ -95,7 +93,7 @@
     }
   });
 
-  // Animar/deshabilitar btnNew según animaciones
+  // Animación/deshabilitado btnNew
   const observer = new MutationObserver(() => {
     if (UI.animating) {
       btnNew.classList.add("disabled");
@@ -109,10 +107,12 @@
   });
   observer.observe(document.body, { attributes: true, subtree: true });
 
+  /* =========================
+     BOTÓN SETTINGS
+  ========================= */
   document.getElementById("btnSettings")?.addEventListener("click", () => {
     UI.showSettingsPopup(settings, updated => {
       Settings.save(updated);
-
       if (Game.words?.length) {
         Game.reset();
         UI.renderBoard(Game.attempts, Game.numLetters);
@@ -124,35 +124,24 @@
   /* =========================
      FLUJO PRINCIPAL
   ========================= */
-  if (!window.voclists || !voclists.length) {
-    console.error("voclists no disponible");
-    return;
-  }
-
-  let started = false;
-
-  if (settings.voclist) {
-    const direct = voclists.find(v => v.filename === settings.voclist);
-    if (direct) {
-      try {
-        await startGame(direct, settings);
-        started = true;
-      } catch(e) {
-        console.error("Error iniciando voclist directo", e);
+  function loadVocabOrPopup() {
+    if (settings.voclist) {
+      const direct = voclists.find(v => v.filename === settings.voclist);
+      if (direct) {
+        startGame(direct, settings);
+        return;
       }
     }
+    // fallback → popup
+    UI.showVocabPopup(voclists, selected => startGame(selected, settings));
   }
 
-  if (!started) {
-    UI.showVocabPopup(voclists, selected => {
-      startGame(selected, settings);
-    });
-  }
+  loadVocabOrPopup();
 
 })();
 
 /* =========================
-   FUNCIÓN ÚNICA DE ARRANQUE
+   FUNCION ÚNICA DE ARRANQUE
 ========================= */
 async function startGame(voc, settings) {
 
@@ -164,15 +153,18 @@ async function startGame(voc, settings) {
   } catch (e) {
     console.error(e);
     UI.toast(window.i18n.vocabError || "❌ Error cargando vocabulario");
+    UI.showVocabPopup(window.voclists, selected => startGame(selected, settings));
     return;
   }
 
   if (!vocModule.default?.length) {
     UI.toast(window.i18n.vocabEmpty || "📭 Vocabulario vacío");
+    UI.showVocabPopup(window.voclists, selected => startGame(selected, settings));
     return;
   }
   if (!valModule.default?.length) {
     UI.toast(window.i18n.validationEmpty || "📭 Validación vacía");
+    UI.showVocabPopup(window.voclists, selected => startGame(selected, settings));
     return;
   }
 
