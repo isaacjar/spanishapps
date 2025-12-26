@@ -4,6 +4,7 @@
    UI & ANIMACIONES
 ========================= */
 const UI = {
+  animating: false, // controla estado de animación
 
   renderBoard(rows, cols) {
     const board = document.getElementById("board");
@@ -50,6 +51,10 @@ const UI = {
     const row = document.querySelectorAll(".row")[rowIndex];
     if (!row) return;
 
+    UI.animating = true;
+    const btnNew = document.getElementById("btnNew");
+    if (btnNew) { btnNew.classList.add("disabled"); btnNew.style.opacity = "0.5"; btnNew.style.cursor="not-allowed"; }
+
     [...row.children].forEach((cell, i) => {
       const inner = cell.querySelector(".cell-inner");
       const back = cell.querySelector(".cell-back");
@@ -67,6 +72,12 @@ const UI = {
       void cell.offsetWidth; // fuerza reflow
       setTimeout(() => cell.classList.add("flip"), i * 300);
     });
+
+    // espera total animación para desbloquear
+    setTimeout(() => {
+      UI.animating = false;
+      if (btnNew) { btnNew.classList.remove("disabled"); btnNew.style.opacity = "1"; btnNew.style.cursor="pointer"; }
+    }, result.length * 300 + 400);
   },
 
   shakeRow() {
@@ -110,7 +121,9 @@ const UI = {
     key.textContent = label;
     key.dataset.key = value;
 
-    key.addEventListener("click", () => UI.handleInput(value));
+    key.addEventListener("click", () => {
+      if (!UI.animating) UI.handleInput(value);
+    });
     return key;
   },
 
