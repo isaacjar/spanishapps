@@ -39,10 +39,11 @@
      POOL SIN REPETICIÓN
   ========================= */
   Game._usedWords = new Set();
-  const originalReset = Game.resetWord.bind(Game);
+  const originalResetWord = Game.resetWord.bind(Game);
   Game.resetWord = function() {
     if (!this.words?.length) return;
 
+    // reiniciar pool si se acaban
     if (this._usedWords.size >= this.words.length) this._usedWords.clear();
 
     let candidate;
@@ -123,26 +124,24 @@
   /* =========================
      FLUJO PRINCIPAL
   ========================= */
-  document.addEventListener("DOMContentLoaded", () => {
-    function loadVocabOrPopup() {
-      let direct;
-      if (settings.voclist) {
-        direct = voclists.find(v => v.filename === settings.voclist);
-      }
-
+  function loadVocabOrPopup() {
+    if (settings.voclist) {
+      const direct = voclists.find(v => v.filename === settings.voclist);
       if (direct) {
         startGame(direct, settings).catch(err => {
           console.error(err);
-          UI.toast("❌ Error cargando vocabulario");
-          UI.showVocabPopup(window.voclists, selected => startGame(selected, settings));
+          UI.toast(window.i18n.vocabError || "❌ Error cargando vocabulario");
+          // fallback: popup si falla la carga
+          UI.showVocabPopup(voclists, selected => startGame(selected, settings));
         });
-      } else {
-        UI.showVocabPopup(window.voclists, selected => startGame(selected, settings));
+        return;
       }
     }
+    // fallback → popup
+    UI.showVocabPopup(voclists, selected => startGame(selected, settings));
+  }
 
-    loadVocabOrPopup();
-  });
+  loadVocabOrPopup();
 
 })();
 
