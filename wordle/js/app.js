@@ -19,6 +19,7 @@
   const t = langData[settings.lang] || langData.es;
   window.i18n = t;
 
+  // Textos dinámicos
   document.querySelectorAll("[data-i18n]").forEach(el => {
     const key = el.dataset.i18n;
     if (t[key]) el.textContent = t[key];
@@ -43,7 +44,6 @@
   Game.resetWord = function() {
     if (!this.words?.length) return;
 
-    // reiniciar pool si se acaban
     if (this._usedWords.size >= this.words.length) this._usedWords.clear();
 
     let candidate;
@@ -122,65 +122,38 @@
   });
 
   /* =========================
+     FUNCIÓN SEGURA DE CARGA DE VOCABULARIO
+  ========================= */
+  async function loadVocab(voc, settings) {
+    try {
+      const vocModule = await import(`../data/${voc.filename}.js`);
+      const valModule = await import(`../data/${voc.val}.js`);
+
+      if (!vocModule.default?.length || !valModule.default?.length) throw new Error("Vocabulario vacío");
+
+      Game.init(vocModule.default, valModule.default, Number(voc.num), Number(settings.numint));
+      UI.renderBoard(Game.attempts, Game.numLetters);
+      UI.renderKeyboard(settings.lang);
+      UI.updateBoard();
+    } catch (e) {
+      console.error(e);
+      UI.toast(window.i18n.vocabError || "❌ Error cargando vocabulario");
+      UI.showVocabPopup(voclists, selected => loadVocab(selected, settings));
+    }
+  }
+
+  /* =========================
      FLUJO PRINCIPAL
   ========================= */
-  function loadVocabOrPopup() {
-    if (settings.voclist) {
-      const direct = voclists.find(v => v.filename === settings.voclist);
-      if (direct) {
-        startGame(direct, settings).catch(err => {
-          console.error(err);
-          UI.toast(window.i18n.vocabError || "❌ Error cargando vocabulario");
-          // fallback: popup si falla la carga
-          UI.showVocabPopup(voclists, selected => startGame(selected, settings));
-        });
-        return;
-      }
+  if (settings.voclist) {
+    const direct = voclists.find(v => v.filename === settings.voclist);
+    if (direct) {
+      loadVocab(direct, settings);
+    } else {
+      UI.showVocabPopup(voclists, selected => loadVocab(selected, settings));
     }
-    // fallback → popup
-    UI.showVocabPopup(voclists, selected => startGame(selected, settings));
+  } else {
+    UI.showVocabPopup(voclists, selected => loadVocab(selected, settings));
   }
-
-  loadVocabOrPopup();
 
 })();
-
-/* =========================
-   FUNCION ÚNICA DE ARRANQUE
-========================= */
-async function startGame(voc, settings) {
-
-  let vocModule, valModule;
-
-  try {
-    vocModule = await import(`../data/${voc.filename}.js`);
-    valModule = await import(`../data/${voc.val}.js`);
-  } catch (e) {
-    console.error(e);
-    UI.toast(window.i18n.vocabError || "❌ Error cargando vocabulario");
-    UI.showVocabPopup(window.voclists, selected => startGame(selected, settings));
-    return;
-  }
-
-  if (!vocModule.default?.length) {
-    UI.toast(window.i18n.vocabEmpty || "📭 Vocabulario vacío");
-    UI.showVocabPopup(window.voclists, selected => startGame(selected, settings));
-    return;
-  }
-  if (!valModule.default?.length) {
-    UI.toast(window.i18n.validationEmpty || "📭 Validación vacía");
-    UI.showVocabPopup(window.voclists, selected => startGame(selected, settings));
-    return;
-  }
-
-  Game.init(
-    vocModule.default,
-    valModule.default,
-    Number(voc.num),
-    Number(settings.numint)
-  );
-
-  UI.renderBoard(Game.attempts, Game.numLetters);
-  UI.renderKeyboard(settings.lang);
-  UI.updateBoard();
-}
