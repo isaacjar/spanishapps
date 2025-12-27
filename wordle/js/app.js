@@ -1,4 +1,8 @@
 // app.js
+
+console.log("voclists:", window.voclists);
+console.log("UI:", window.UI);
+
 (async function () {
 
   /* =========================
