@@ -2,6 +2,33 @@
 (async function () {
 
   /* =========================
+     ESPERAR A DEPENDENCIAS
+  ========================= */
+  async function waitForGlobals() {
+    const max = 100; // ~2s
+    let i = 0;
+    while (
+      (!window.voclists || !window.UI || !window.Game) &&
+      i < max
+    ) {
+      await new Promise(r => setTimeout(r, 20));
+      i++;
+    }
+
+    if (!window.voclists || !window.UI || !window.Game) {
+      console.error("❌ Dependencias no cargadas", {
+        voclists: !!window.voclists,
+        UI: !!window.UI,
+        Game: !!window.Game
+      });
+      return false;
+    }
+    return true;
+  }
+
+  if (!(await waitForGlobals())) return;
+
+  /* =========================
      CARGA SETTINGS
   ========================= */
   const settings = Settings.load();
@@ -29,7 +56,7 @@
      TECLADO FÍSICO
   ========================= */
   window.addEventListener("keydown", e => {
-    if (!window.Game || Game.finished || UI.animating) return;
+    if (!Game || Game.finished || UI.animating) return;
 
     if (/^[a-zñ]$/i.test(e.key)) UI.handleInput(normalize(e.key));
     if (e.key === "Backspace") {
@@ -40,39 +67,7 @@
   });
 
   /* =========================
-     POOL SIN REPETICIÓN
-  ========================= */
-  Game._usedWords = new Set();
-  Game.resetWord = function () {
-    if (!this.words?.length) return;
-
-    if (this._usedWords.size >= this.words.length) {
-      this._usedWords.clear();
-    }
-
-    let candidate;
-    do {
-      candidate = this.words[Math.floor(Math.random() * this.words.length)];
-    } while (this._usedWords.has(candidate) && this.words.length > 1);
-
-    this.solution = candidate;
-    this._usedWords.add(candidate);
-    this.last = candidate;
-
-    this.row = 0;
-    this.col = 0;
-    this.finished = false;
-    this.grid = Array.from(
-      { length: this.attempts },
-      () => Array(this.numLetters).fill("")
-    );
-
-    UI.renderBoard(this.attempts, this.numLetters);
-    UI.updateBoard();
-  };
-
-  /* =========================
-     BOTÓN NUEVA PALABRA
+     BOTONES
   ========================= */
   document.getElementById("btnNew")?.addEventListener("click", () => {
     if (!Game.words?.length) return;
@@ -93,9 +88,6 @@
     }
   });
 
-  /* =========================
-     SETTINGS
-  ========================= */
   document.getElementById("btnSettings")?.addEventListener("click", () => {
     UI.showSettingsPopup(settings, updated => {
       Settings.save(updated);
@@ -108,7 +100,7 @@
   });
 
   /* =========================
-     FLUJO PRINCIPAL (CLAVE)
+     FLUJO PRINCIPAL (ROBUSTO)
   ========================= */
   if (settings.voclist) {
     const direct = voclists.find(v => v.filename === settings.voclist);
@@ -118,7 +110,8 @@
     }
   }
 
-  // ⬅️ SIEMPRE se llega aquí si algo falla
+  // ⬅️ AQUÍ YA ES IMPOSIBLE QUE NO APAREZCA
+  console.log("📂 Mostrando popup de vocabulario");
   UI.showVocabPopup(voclists, selected => {
     startGame(selected, settings);
   });
@@ -126,7 +119,7 @@
 })();
 
 /* =========================
-   ARRANQUE REAL DEL JUEGO
+   ARRANQUE DEL JUEGO
 ========================= */
 async function startGame(voc, settings) {
 
@@ -141,13 +134,8 @@ async function startGame(voc, settings) {
     return false;
   }
 
-  if (!vocModule.default?.length) {
+  if (!vocModule.default?.length || !valModule.default?.length) {
     UI.toast(window.i18n.vocabEmpty || "📭 Vocabulario vacío");
-    return false;
-  }
-
-  if (!valModule.default?.length) {
-    UI.toast(window.i18n.validationEmpty || "📭 Validación vacía");
     return false;
   }
 
