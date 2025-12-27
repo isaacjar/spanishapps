@@ -78,7 +78,7 @@
       UI.focusOkKey();
     };
 
-    if (!Game.finished && Game.row > 0) {
+    if (Game.inProgress && !Game.finished) {
       UI.showConfirmPopup(
         window.i18n.confirmNewWord || "¿Desea terminar la partida en curso?",
         startNew,
