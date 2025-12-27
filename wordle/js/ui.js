@@ -145,7 +145,7 @@ const UI = {
                ${window.i18n.playAgain || "¿Otra partida?"}`,
               () => {
                 Game.resetWord();
-                UI.focusOkKey();
+                setTimeout(() => UI.focusOkKey(), 50);
               },
               () => {}
             );
@@ -165,7 +165,7 @@ const UI = {
                ${window.i18n.playAgain || "¿Otra partida?"}`,
               () => {
                 Game.resetWord();
-                UI.focusOkKey();
+                setTimeout(() => UI.focusOkKey(), 50);
               },
               () => {}
             );
@@ -211,7 +211,7 @@ const UI = {
     card.className = "popup-card";
 
     const p = document.createElement("p");
-    p.innerHTML = message; // ⭐ CLAVE
+    p.innerHTML = message;  
     p.style.textAlign = "center";
     p.style.fontSize = "18px";
     p.style.fontWeight = "600";
