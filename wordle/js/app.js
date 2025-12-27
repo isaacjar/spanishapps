@@ -7,16 +7,17 @@
   async function waitForGlobals() {
     const max = 100; // ~2s
     let i = 0;
-    while ((!window.voclists || !window.UI || !window.Game) && i < max) {
+    while ((!window.voclists || !window.UI || !window.Game || !window.Settings) && i < max) {
       await new Promise(r => setTimeout(r, 20));
       i++;
     }
 
-    if (!window.voclists || !window.UI || !window.Game) {
+    if (!window.voclists || !window.UI || !window.Game || !window.Settings) {
       console.error("❌ Dependencias no cargadas", {
         voclists: !!window.voclists,
         UI: !!window.UI,
-        Game: !!window.Game
+        Game: !!window.Game,
+        Settings: !!window.Settings
       });
       return false;
     }
@@ -55,7 +56,8 @@
   window.addEventListener("keydown", e => {
     if (!Game || Game.finished || UI.animating) return;
 
-    if (/^[a-zñ]$/i.test(e.key)) UI.handleInput(normalize(e.key));
+    const key = e.key.toUpperCase();
+    if (/^[A-ZÑ]$/.test(key)) UI.handleInput(key);
     if (e.key === "Backspace") {
       e.preventDefault();
       UI.handleInput("BACK");
@@ -71,7 +73,7 @@
 
     const startNew = () => {
       Game.resetWord();
-      Game.inProgress = true; // marca partida activa
+      Game.inProgress = true;
       setTimeout(() => UI.focusOkKey(), 50);
     };
 
@@ -101,104 +103,54 @@
   });
 
   /* =========================
-     FLUJO PRINCIPAL
+     ARRANQUE DEL JUEGO
+  ========================= */
+  async function startGame(voc) {
+    let vocModule, valModule;
+
+    try {
+      vocModule = await import(`../data/${voc.filename}.js`);
+      valModule = await import(`../data/${voc.val}.js`);
+    } catch (e) {
+      console.error(e);
+      UI.toast(window.i18n.vocabError || "❌ Error cargando vocabulario");
+      return false;
+    }
+
+    if (!vocModule.default?.length || !valModule.default?.length) {
+      UI.toast(window.i18n.vocabEmpty || "📭 Vocabulario vacío");
+      return false;
+    }
+
+    Game.init(
+      vocModule.default,
+      valModule.default,
+      Number(voc.num),
+      Number(settings.numint)
+    );
+
+    Game.inProgress = true;
+    UI.renderBoard(Game.attempts, Game.numLetters);
+    UI.renderKeyboard(settings.lang);
+    UI.updateBoard();
+
+    return true;
+  }
+
+  /* =========================
+     FLUJO PRINCIPAL: VOCABULARIO
   ========================= */
   if (settings.voclist) {
     const direct = voclists.find(v => v.filename === settings.voclist);
     if (direct) {
-      const ok = await startGame(direct, settings);
+      const ok = await startGame(direct);
       if (ok) return;
     }
   }
 
   // Popup de selección de vocabulario
-  UI.showVocabPopup(voclists, selected => {
-    startGame(selected, settings);
+  UI.showVocabPopup(voclists, async selected => {
+    await startGame(selected);
   });
 
 })();
-
-/* =========================
-   ARRANQUE DEL JUEGO
-========================= */
-async function startGame(voc, settings) {
-
-  let vocModule, valModule;
-
-  try {
-    vocModule = await import(`../data/${voc.filename}.js`);
-    valModule = await import(`../data/${voc.val}.js`);
-  } catch (e) {
-    console.error(e);
-    UI.toast(window.i18n.vocabError || "❌ Error cargando vocabulario");
-    return false;
-  }
-
-  if (!vocModule.default?.length || !valModule.default?.length) {
-    UI.toast(window.i18n.vocabEmpty || "📭 Vocabulario vacío");
-    return false;
-  }
-
-  Game.init(
-    vocModule.default,
-    valModule.default,
-    Number(voc.num),
-    Number(settings.numint)
-  );
-
-  Game.inProgress = true; // partida activa
-
-  UI.renderBoard(Game.attempts, Game.numLetters);
-  UI.renderKeyboard(settings.lang);
-  UI.updateBoard();
-
-  // =========================
-  // MONITOREO DE PARTIDA: victoria / derrota
-  // =========================
-  const originalSubmit = Game.submit.bind(Game);
-  Game.submit = function() {
-    const result = originalSubmit();
-
-    const currentWord = Game.grid[Game.row].join("");
-    const normalizedCurrent = normalize(currentWord);
-    const normalizedSolution = normalize(Game.solution);
-
-    // Victoria
-    if (normalizedCurrent === normalizedSolution) {
-      Game.finished = true;
-      Game.inProgress = false;
-      setTimeout(() => {
-        UI.showConfirmPopup(
-          UI.randomMessage("success") + " 🎉 ¿Otra partida?",
-          () => {
-            Game.resetWord();
-            Game.inProgress = true;
-            setTimeout(() => UI.focusOkKey(), 50);
-          },
-          () => {}
-        );
-      }, result.length * 300 + 100);
-    }
-
-    // Derrota
-    if (Game.row >= Game.attempts - 1 && !Game.finished) {
-      Game.finished = true;
-      Game.inProgress = false;
-      setTimeout(() => {
-        UI.showConfirmPopup(
-          `💀 La palabra era: ${Game.solution}. ¿Otra partida?`,
-          () => {
-            Game.resetWord();
-            Game.inProgress = true;
-            setTimeout(() => UI.focusOkKey(), 50);
-          },
-          () => {}
-        );
-      }, result.length * 300 + 100);
-    }
-
-    return result;
-  };
-
-  return true;
-}
