@@ -15,6 +15,7 @@ const Game={
     this.numLetters=Number(numLetters);
     this.attempts=Number(attempts);
     this.last=null;
+    this.inProgress = false;
     this.reset();
     if(!localStorage.getItem("stats")) localStorage.setItem("stats",JSON.stringify({played:0,won:0}));
   },
@@ -22,6 +23,7 @@ const Game={
     if(!this.words.length) return;
     do{this.solution=this.words[Math.floor(Math.random()*this.words.length)];}while(this.solution===this.last&&this.words.length>1);
     this.last=this.solution;
+    this.inProgress = true;
     console.log("📝 ",this.solution);
     this.row=0;
     this.col=0;
