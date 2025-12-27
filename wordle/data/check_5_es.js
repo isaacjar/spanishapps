@@ -146,7 +146,8 @@ export default [
 "túnel", "póker", "pómez", "fácil", "débil", "dócil", "tórax", "tótem", "tóner", "pesar", "pesca", "pelis", "parra", "píxel", "polen", "púgil", "remar", "rítmo", "rotan", "rotas", 
 "sanar", "sanes", "sanen", "solió", "súper", "tésis", "tibia", "tibio", "tilde", "tóner", "tórax", "verte", "verbo", "ictus", "pollo", "metas", "ceras", "telón", "cresa", "tersa",
 "lelos", "lelas", "tieso", "tiesa", "parca", "ramón", "remas", "reman", "caber", "cabía", "mirra", "bollo", "codos", "podón", "dolor", "sabor", "nabos", "caleb", "perra", "gafas",
-"lobos", "locos", "locas", "lobas", "flora", "gallo", "cejas", "mando", "cinto", "cinta", "manda", "manga", "fideo", "oreja", "mango", "cacas"
+"lobos", "locos", "locas", "lobas", "flora", "gallo", "cejas", "mando", "cinto", "cinta", "manda", "manga", "fideo", "oreja", "mango", "cacas", "cómic", "cagar", "cagan", "cagas",
+"caras", "caros"
 ];
 
 
