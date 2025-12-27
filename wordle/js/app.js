@@ -75,7 +75,7 @@
 
     const startNew = () => {
       Game.resetWord();
-      UI.focusOkKey();
+      setTimeout(() => UI.focusOkKey(), 50);
     };
 
     if (Game.inProgress && !Game.finished) {
