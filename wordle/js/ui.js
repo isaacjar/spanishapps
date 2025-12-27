@@ -4,7 +4,7 @@
    UI & ANIMACIONES
 ========================= */
 const UI = {
-  animating: false,
+  animating: false, // controla estado de animación
 
   renderBoard(rows, cols) {
     const board = document.getElementById("board");
@@ -53,11 +53,7 @@ const UI = {
 
     UI.animating = true;
     const btnNew = document.getElementById("btnNew");
-    if (btnNew) {
-      btnNew.classList.add("disabled");
-      btnNew.style.opacity = "0.5";
-      btnNew.style.cursor = "not-allowed";
-    }
+    if (btnNew) { btnNew.classList.add("disabled"); btnNew.style.opacity = "0.5"; btnNew.style.cursor="not-allowed"; }
 
     [...row.children].forEach((cell, i) => {
       const inner = cell.querySelector(".cell-inner");
@@ -65,19 +61,22 @@ const UI = {
       const front = cell.querySelector(".cell-front");
 
       back.textContent = front.textContent;
+
+      // limpiar clases anteriores
       cell.classList.remove("correct", "present", "absent", "flip");
+
+      // añadir clase de estado
       cell.classList.add(result[i]);
-      void cell.offsetWidth;
+
+      // reiniciar animación flip
+      void cell.offsetWidth; // fuerza reflow
       setTimeout(() => cell.classList.add("flip"), i * 300);
     });
 
+    // espera total animación para desbloquear
     setTimeout(() => {
       UI.animating = false;
-      if (btnNew) {
-        btnNew.classList.remove("disabled");
-        btnNew.style.opacity = "1";
-        btnNew.style.cursor = "pointer";
-      }
+      if (btnNew) { btnNew.classList.remove("disabled"); btnNew.style.opacity = "1"; btnNew.style.cursor="pointer"; }
     }, result.length * 300 + 400);
   },
 
@@ -102,8 +101,37 @@ const UI = {
     return arr[Math.floor(Math.random() * arr.length)];
   },
 
+  renderKeyboard(lang) {
+    const kb = document.getElementById("keyboard");
+    kb.innerHTML = "";
+
+    const rows = ["QWERTYUIOP", "ASDFGHJKL", "ZXCVBNMÑ"];
+    rows.forEach(row => {
+      [...row].forEach(letter => kb.appendChild(this.createKey(letter)));
+    });
+
+    kb.appendChild(this.createKey("🔙", "BACK"));
+    kb.appendChild(this.createKey("✅", "ENTER", true));
+  },
+
+  createKey(label, value = label, wide = false) {
+    const key = document.createElement("div");
+    key.className = "key";
+    if (wide) key.classList.add("ok");
+    key.textContent = label;
+    key.dataset.key = value;
+
+    key.addEventListener("click", () => {
+      if (!UI.animating) UI.handleInput(value);
+    });
+    return key;
+  },
+
   handleInput(input) {
-    if (Game.finished) return;
+    if (!Game.words || !Game.words.length) {
+      UI.toast(window.i18n.noVocabulary || "No vocabulary loaded");
+      return;
+    }
 
     if (input === "BACK") {
       if (Game.col > 0) {
@@ -129,56 +157,24 @@ const UI = {
 
       this.paintRow(result);
 
+      // esperar animación y avanzar fila
       setTimeout(() => {
         const currentWord = Game.grid[Game.row].join("");
-
-        // ⭐ VICTORIA
         if (normalize(currentWord) === normalize(Game.solution)) {
-          Game.finished = true;
-
           UI.toast(UI.randomMessage("success"));
           UI.celebrate();
-
-          setTimeout(() => {
-            UI.showConfirmPopup(
-              `<strong>${UI.randomMessage("success")}</strong><br><br>
-               ${window.i18n.playAgain || "¿Otra partida?"}`,
-              () => {
-                Game.resetWord();
-                setTimeout(() => UI.focusOkKey(), 50);
-              },
-              () => {}
-            );
-          }, 600);
-
           return;
         }
 
-        // ⭐ DERROTA
-        if (Game.row >= Game.attempts - 1) {
-          Game.finished = true;
-
-          setTimeout(() => {
-            UI.showConfirmPopup(
-              `${window.i18n.youLost || "La palabra era"}:
-               <strong>${Game.solution}</strong><br><br>
-               ${window.i18n.playAgain || "¿Otra partida?"}`,
-              () => {
-                Game.resetWord();
-                setTimeout(() => UI.focusOkKey(), 50);
-              },
-              () => {}
-            );
-          }, 600);
-
+        if (Game.row >= Game.attempts - 1 && !Game.finished) {
+          UI.toast(UI.randomMessage("fail") + " → " + Game.solution);
           return;
         }
 
         Game.row++;
         Game.col = 0;
-        Game.grid[Game.row] = Array(Game.numLetters).fill("");
+        if (!Game.grid[Game.row]) Game.grid[Game.row] = Array(Game.numLetters).fill("");
         UI.updateBoard();
-
       }, result.length * 300 + 100);
 
       return;
@@ -193,8 +189,79 @@ const UI = {
   },
 
   celebrate() {
-    /* igual que el tuyo, sin cambios */
-    /* … */
+    document.querySelectorAll(".key").forEach((k, i) => {
+      setTimeout(() => k.classList.add("jump"), i * 20);
+      setTimeout(() => k.classList.remove("jump"), 600);
+    });
+
+    const canvas = document.createElement("canvas");
+    canvas.id = "confetti";
+    canvas.style.position = "fixed";
+    canvas.style.top = 0;
+    canvas.style.left = 0;
+    canvas.style.width = "100%";
+    canvas.style.height = "100%";
+    canvas.style.pointerEvents = "none";
+    canvas.style.zIndex = 2000;
+    document.body.appendChild(canvas);
+
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const confetti = [];
+    const colors = ["#FFB6C1", "#FFD700", "#87CEFA", "#98FB98", "#FFA07A"];
+    for (let i = 0; i < 150; i++) {
+      confetti.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height - canvas.height,
+        r: Math.random() * 6 + 4,
+        d: Math.random() * 30 + 10,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        tilt: Math.random() * 10 - 10,
+        tiltAngle: 0,
+        tiltAngleIncrement: Math.random() * 0.07 + 0.05
+      });
+    }
+
+    let angle = 0;
+    const draw = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      confetti.forEach(f => {
+        ctx.beginPath();
+        ctx.lineWidth = f.r / 2;
+        ctx.strokeStyle = f.color;
+        ctx.moveTo(f.x + f.tilt + f.r / 4, f.y);
+        ctx.lineTo(f.x + f.tilt, f.y + f.tilt + f.r / 4);
+        ctx.stroke();
+      });
+      update();
+    };
+
+    const update = () => {
+      angle += 0.01;
+      confetti.forEach(f => {
+        f.tiltAngle += f.tiltAngleIncrement;
+        f.y += (Math.cos(angle + f.d) + 3 + f.r / 2) / 2;
+        f.x += Math.sin(angle);
+        f.tilt = Math.sin(f.tiltAngle) * 15;
+        if (f.y > canvas.height) f.y = -10;
+        if (f.x > canvas.width) f.x = 0;
+        if (f.x < 0) f.x = canvas.width;
+      });
+    };
+
+    let confettiAnim;
+    const animate = () => {
+      draw();
+      confettiAnim = requestAnimationFrame(animate);
+    };
+    animate();
+
+    setTimeout(() => {
+      cancelAnimationFrame(confettiAnim);
+      canvas.remove();
+    }, 4000);
   },
 
   _clearPopup() {
@@ -211,7 +278,7 @@ const UI = {
     card.className = "popup-card";
 
     const p = document.createElement("p");
-    p.innerHTML = message;  
+    p.textContent = message;
     p.style.textAlign = "center";
     p.style.fontSize = "18px";
     p.style.fontWeight = "600";
@@ -224,17 +291,19 @@ const UI = {
     btnDiv.style.marginTop = "16px";
 
     const yesBtn = document.createElement("button");
-    yesBtn.textContent = window.i18n.yes || "Sí";
+    yesBtn.textContent = window.i18n.yes || "✅";
+    yesBtn.className = "confirm-btn confirm-yes";
     yesBtn.onclick = () => {
       popup.classList.add("hidden");
-      onConfirm && onConfirm();
+      if (onConfirm) onConfirm();
     };
 
     const noBtn = document.createElement("button");
-    noBtn.textContent = window.i18n.no || "No";
+    noBtn.textContent = window.i18n.no || "❌";
+    noBtn.className = "confirm-btn confirm-no";
     noBtn.onclick = () => {
       popup.classList.add("hidden");
-      onCancel && onCancel();
+      if (onCancel) onCancel();
     };
 
     btnDiv.appendChild(yesBtn);
@@ -244,10 +313,122 @@ const UI = {
     popup.classList.remove("hidden");
   },
 
+  showVocabPopup(lists, onSelect) {
+    UI._clearPopup();
+    const popup = document.getElementById("popup");
+    const card = document.createElement("div");
+    card.className = "popup-card";
+
+    const title = document.createElement("h2");
+    title.textContent = window.i18n.selectList;
+    card.appendChild(title);
+
+    const listBox = document.createElement("div");
+    listBox.className = "popup-list";
+
+    lists.forEach(v => {
+      const btn = document.createElement("button");
+      btn.textContent = v.title;
+      btn.onclick = () => {
+        popup.classList.add("hidden");
+        onSelect(v);
+      };
+      listBox.appendChild(btn);
+    });
+
+    card.appendChild(listBox);
+    popup.appendChild(card);
+    popup.classList.remove("hidden");
+  },
+
+  showSettingsPopup(currentSettings, onUpdate) {
+    UI._clearPopup();
+    const popup = document.getElementById("popup");
+    const card = document.createElement("div");
+    card.className = "popup-card";
+
+    const title = document.createElement("h2");
+    title.textContent = "Opciones";
+    card.appendChild(title);
+
+    // Idioma
+    const langLabel = document.createElement("label");
+    langLabel.textContent = "Idioma:";
+    langLabel.style.display = "block";
+    langLabel.style.marginTop = "8px";
+    const langSelect = document.createElement("select");
+    ["es", "en"].forEach(l => {
+      const opt = document.createElement("option");
+      opt.value = l;
+      opt.textContent = l.toUpperCase();
+      if (currentSettings.lang === l) opt.selected = true;
+      langSelect.appendChild(opt);
+    });
+    card.appendChild(langLabel);
+    card.appendChild(langSelect);
+
+    // Número de intentos
+    const attemptsLabel = document.createElement("label");
+    attemptsLabel.textContent = "Intentos:";
+    attemptsLabel.style.display = "block";
+    attemptsLabel.style.marginTop = "8px";
+    const attemptsInput = document.createElement("input");
+    attemptsInput.type = "range";
+    attemptsInput.min = 4;
+    attemptsInput.max = 10;
+    attemptsInput.value = currentSettings.numint;
+    attemptsInput.style.width = "100%";
+    card.appendChild(attemptsLabel);
+    card.appendChild(attemptsInput);
+
+    // Estadísticas
+    const statsDiv = document.createElement("div");
+    statsDiv.style.marginTop = "12px";
+    function updateStats() {
+      const stats = JSON.parse(localStorage.getItem("stats") || '{"played":0,"won":0}');
+      statsDiv.innerHTML = `Palabras jugadas: ${stats.played}<br>Palabras acertadas: ${stats.won}`;
+    }
+    updateStats();
+    card.appendChild(statsDiv);
+
+    // Botones
+    const btnSave = document.createElement("button");
+    btnSave.textContent = "💾 Guardar";
+    btnSave.style.marginRight = "6px";
+    btnSave.onclick = () => {
+      const updated = { lang: langSelect.value, numint: attemptsInput.value };
+      Settings.save(updated);
+      if (onUpdate) onUpdate(updated);
+      popup.classList.add("hidden");
+    };
+
+    const btnReset = document.createElement("button");
+    btnReset.textContent = "🔄 Resetear";
+    btnReset.style.marginRight = "6px";
+    btnReset.onclick = () => {
+      localStorage.clear();
+      location.reload();
+    };
+
+    const btnCancel = document.createElement("button");
+    btnCancel.textContent = "✖ Cancelar";
+    btnCancel.onclick = () => popup.classList.add("hidden");
+
+    const btnDiv = document.createElement("div");
+    btnDiv.style.marginTop = "12px";
+    btnDiv.appendChild(btnSave);
+    btnDiv.appendChild(btnReset);
+    btnDiv.appendChild(btnCancel);
+    card.appendChild(btnDiv);
+    popup.appendChild(card);
+    popup.classList.remove("hidden");
+  },
+
   focusOkKey() {
     const ok = document.querySelector(".key.ok");
     if (ok) ok.focus();
   }
+
 };
 
 window.UI = UI;
