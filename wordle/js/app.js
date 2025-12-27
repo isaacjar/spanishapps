@@ -111,8 +111,6 @@
     }
   }
 
-  // ⬅️ AQUÍ YA ES IMPOSIBLE QUE NO APAREZCA
-  console.log("📂 Mostrando popup de vocabulario");
   UI.showVocabPopup(voclists, selected => {
     startGame(selected, settings);
   });
