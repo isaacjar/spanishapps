@@ -1,5 +1,4 @@
 // app.js
-
 (async function () {
 
   /* =========================
@@ -8,10 +7,7 @@
   async function waitForGlobals() {
     const max = 100; // ~2s
     let i = 0;
-    while (
-      (!window.voclists || !window.UI || !window.Game) &&
-      i < max
-    ) {
+    while ((!window.voclists || !window.UI || !window.Game) && i < max) {
       await new Promise(r => setTimeout(r, 20));
       i++;
     }
@@ -68,13 +64,14 @@
   });
 
   /* =========================
-     BOTONES
+     BOTÓN NUEVA PALABRA
   ========================= */
   document.getElementById("btnNew")?.addEventListener("click", () => {
     if (!Game.words?.length) return;
 
     const startNew = () => {
       Game.resetWord();
+      Game.inProgress = true; // marca partida activa
       setTimeout(() => UI.focusOkKey(), 50);
     };
 
@@ -89,6 +86,9 @@
     }
   });
 
+  /* =========================
+     BOTÓN SETTINGS
+  ========================= */
   document.getElementById("btnSettings")?.addEventListener("click", () => {
     UI.showSettingsPopup(settings, updated => {
       Settings.save(updated);
@@ -101,7 +101,7 @@
   });
 
   /* =========================
-     FLUJO PRINCIPAL (ROBUSTO)
+     FLUJO PRINCIPAL
   ========================= */
   if (settings.voclist) {
     const direct = voclists.find(v => v.filename === settings.voclist);
@@ -111,6 +111,7 @@
     }
   }
 
+  // Popup de selección de vocabulario
   UI.showVocabPopup(voclists, selected => {
     startGame(selected, settings);
   });
@@ -145,9 +146,59 @@ async function startGame(voc, settings) {
     Number(settings.numint)
   );
 
+  Game.inProgress = true; // partida activa
+
   UI.renderBoard(Game.attempts, Game.numLetters);
   UI.renderKeyboard(settings.lang);
   UI.updateBoard();
+
+  // =========================
+  // MONITOREO DE PARTIDA: victoria / derrota
+  // =========================
+  const originalSubmit = Game.submit.bind(Game);
+  Game.submit = function() {
+    const result = originalSubmit();
+
+    const currentWord = Game.grid[Game.row].join("");
+    const normalizedCurrent = normalize(currentWord);
+    const normalizedSolution = normalize(Game.solution);
+
+    // Victoria
+    if (normalizedCurrent === normalizedSolution) {
+      Game.finished = true;
+      Game.inProgress = false;
+      setTimeout(() => {
+        UI.showConfirmPopup(
+          UI.randomMessage("success") + " 🎉 ¿Otra partida?",
+          () => {
+            Game.resetWord();
+            Game.inProgress = true;
+            setTimeout(() => UI.focusOkKey(), 50);
+          },
+          () => {}
+        );
+      }, result.length * 300 + 100);
+    }
+
+    // Derrota
+    if (Game.row >= Game.attempts - 1 && !Game.finished) {
+      Game.finished = true;
+      Game.inProgress = false;
+      setTimeout(() => {
+        UI.showConfirmPopup(
+          `💀 La palabra era: ${Game.solution}. ¿Otra partida?`,
+          () => {
+            Game.resetWord();
+            Game.inProgress = true;
+            setTimeout(() => UI.focusOkKey(), 50);
+          },
+          () => {}
+        );
+      }, result.length * 300 + 100);
+    }
+
+    return result;
+  };
 
   return true;
 }
