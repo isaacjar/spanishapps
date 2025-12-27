@@ -32,7 +32,10 @@
     if (!window.Game || Game.finished || UI.animating) return;
 
     if (/^[a-zñ]$/i.test(e.key)) UI.handleInput(normalize(e.key));
-    if (e.key === "Backspace") { e.preventDefault(); UI.handleInput("BACK"); }
+    if (e.key === "Backspace") {
+      e.preventDefault();
+      UI.handleInput("BACK");
+    }
     if (e.key === "Enter") UI.handleInput("ENTER");
   });
 
@@ -59,8 +62,9 @@
     this.row = 0;
     this.col = 0;
     this.finished = false;
-    this.grid = Array.from({ length: this.attempts }, () =>
-      Array(this.numLetters).fill("")
+    this.grid = Array.from(
+      { length: this.attempts },
+      () => Array(this.numLetters).fill("")
     );
 
     UI.renderBoard(this.attempts, this.numLetters);
@@ -109,12 +113,12 @@
   if (settings.voclist) {
     const direct = voclists.find(v => v.filename === settings.voclist);
     if (direct) {
-      startGame(direct, settings);
-      return;
+      const ok = await startGame(direct, settings);
+      if (ok) return;
     }
   }
 
-  // ⬅️ SOLO AQUÍ se muestra el popup
+  // ⬅️ SIEMPRE se llega aquí si algo falla
   UI.showVocabPopup(voclists, selected => {
     startGame(selected, settings);
   });
@@ -134,12 +138,17 @@ async function startGame(voc, settings) {
   } catch (e) {
     console.error(e);
     UI.toast(window.i18n.vocabError || "❌ Error cargando vocabulario");
-    return;
+    return false;
   }
 
-  if (!vocModule.default?.length || !valModule.default?.length) {
+  if (!vocModule.default?.length) {
     UI.toast(window.i18n.vocabEmpty || "📭 Vocabulario vacío");
-    return;
+    return false;
+  }
+
+  if (!valModule.default?.length) {
+    UI.toast(window.i18n.validationEmpty || "📭 Validación vacía");
+    return false;
   }
 
   Game.init(
@@ -152,4 +161,6 @@ async function startGame(voc, settings) {
   UI.renderBoard(Game.attempts, Game.numLetters);
   UI.renderKeyboard(settings.lang);
   UI.updateBoard();
+
+  return true;
 }
