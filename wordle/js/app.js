@@ -2,66 +2,50 @@
 (async function () {
 
   /* =========================
-     ESPERAR A DEPENDENCIAS
+     ESPERAR DEPENDENCIAS
   ========================= */
   async function waitForGlobals() {
-    const max = 100; // ~2s
     let i = 0;
-    while ((!window.voclists || !window.UI || !window.Game || !window.Settings) && i < max) {
+    while (
+      (!window.voclists || !window.UI || !window.Game || !window.Settings) &&
+      i < 100
+    ) {
       await new Promise(r => setTimeout(r, 20));
       i++;
     }
-
-    if (!window.voclists || !window.UI || !window.Game || !window.Settings) {
-      console.error("❌ Dependencias no cargadas", {
-        voclists: !!window.voclists,
-        UI: !!window.UI,
-        Game: !!window.Game,
-        Settings: !!window.Settings
-      });
-      return false;
-    }
-    return true;
+    return window.voclists && window.UI && window.Game && window.Settings;
   }
 
-  if (!(await waitForGlobals())) return;
+  if (!(await waitForGlobals())) {
+    console.error("❌ Dependencias no cargadas");
+    return;
+  }
 
   /* =========================
-     CARGA SETTINGS
+     SETTINGS
   ========================= */
   const settings = Settings.load();
 
   /* =========================
-     CARGA IDIOMAS
+     I18N
   ========================= */
-  let langData;
-  try {
-    langData = await fetch("lang.json").then(r => r.json());
-  } catch (e) {
-    console.error("Error cargando lang.json", e);
-    return;
-  }
-
-  const t = langData[settings.lang] || langData.es;
-  window.i18n = t;
+  const langData = await fetch("lang.json").then(r => r.json());
+  window.i18n = langData[settings.lang] || langData.es;
 
   document.querySelectorAll("[data-i18n]").forEach(el => {
     const key = el.dataset.i18n;
-    if (t[key]) el.textContent = t[key];
+    if (window.i18n[key]) el.textContent = window.i18n[key];
   });
 
   /* =========================
      TECLADO FÍSICO
   ========================= */
   window.addEventListener("keydown", e => {
-    if (!Game || Game.finished || UI.animating) return;
+    if (Game.finished || UI.animating) return;
 
-    const key = e.key.toUpperCase();
-    if (/^[A-ZÑ]$/.test(key)) UI.handleInput(key);
-    if (e.key === "Backspace") {
-      e.preventDefault();
-      UI.handleInput("BACK");
-    }
+    const k = e.key.toUpperCase();
+    if (/^[A-ZÑ]$/.test(k)) UI.handleInput(k);
+    if (e.key === "Backspace") UI.handleInput("BACK");
     if (e.key === "Enter") UI.handleInput("ENTER");
   });
 
@@ -79,9 +63,8 @@
 
     if (Game.inProgress && !Game.finished) {
       UI.showConfirmPopup(
-        window.i18n.confirmNewWord || "¿Desea terminar la partida en curso?",
-        startNew,
-        () => {}
+        window.i18n.confirmNewWord,
+        startNew
       );
     } else {
       startNew();
@@ -106,27 +89,14 @@
      ARRANQUE DEL JUEGO
   ========================= */
   async function startGame(voc) {
-    let vocModule, valModule;
-
-    try {
-      vocModule = await import(`../data/${voc.filename}.js`);
-      valModule = await import(`../data/${voc.val}.js`);
-    } catch (e) {
-      console.error(e);
-      UI.toast(window.i18n.vocabError || "❌ Error cargando vocabulario");
-      return false;
-    }
-
-    if (!vocModule.default?.length || !valModule.default?.length) {
-      UI.toast(window.i18n.vocabEmpty || "📭 Vocabulario vacío");
-      return false;
-    }
+    const vocModule = await import(`../data/${voc.filename}.js`);
+    const valModule = await import(`../data/${voc.val}.js`);
 
     Game.init(
       vocModule.default,
       valModule.default,
-      Number(voc.num),
-      Number(settings.numint)
+      voc.num,
+      settings.numint
     );
 
     Game.inProgress = true;
@@ -134,23 +104,59 @@
     UI.renderKeyboard(settings.lang);
     UI.updateBoard();
 
+    hookEndGamePopup();
     return true;
   }
 
   /* =========================
-     FLUJO PRINCIPAL: VOCABULARIO
+     POPUP FIN DE PARTIDA
+  ========================= */
+  function hookEndGamePopup() {
+    if (Game._popupHooked) return;
+    Game._popupHooked = true;
+
+    const originalSubmit = Game.submit.bind(Game);
+
+    Game.submit = function () {
+      const result = originalSubmit();
+
+      if (!Game.finished || result === "short" || result === "invalid") {
+        return result;
+      }
+
+      const delay = Game.numLetters * 300 + 500;
+
+      setTimeout(() => {
+        const win =
+          normalize(Game.grid[Game.row].join("")) ===
+          normalize(Game.solution);
+
+        const message = win
+          ? window.i18n.playAgain
+          : `${window.i18n.youLost} ${Game.solution}\n\n${window.i18n.playAgain}`;
+
+        UI.showConfirmPopup(
+          message,
+          () => {
+            Game.resetWord();
+            Game.inProgress = true;
+            setTimeout(() => UI.focusOkKey(), 50);
+          }
+        );
+      }, delay);
+
+      return result;
+    };
+  }
+
+  /* =========================
+     SELECCIÓN DE VOCABULARIO
   ========================= */
   if (settings.voclist) {
     const direct = voclists.find(v => v.filename === settings.voclist);
-    if (direct) {
-      const ok = await startGame(direct);
-      if (ok) return;
-    }
+    if (direct && (await startGame(direct))) return;
   }
 
-  // Popup de selección de vocabulario
-  UI.showVocabPopup(voclists, async selected => {
-    await startGame(selected);
-  });
+  UI.showVocabPopup(voclists, startGame);
 
 })();
