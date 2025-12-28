@@ -36,6 +36,18 @@
     const key = el.dataset.i18n;
     if (window.i18n[key]) el.textContent = window.i18n[key];
   });
+  window.setLanguage = function (lang) {
+    if (!langData[lang]) return;
+  
+    Settings.save({ lang });
+    window.i18n = langData[lang];
+  
+    // Actualizar textos marcados con data-i18n
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+      const key = el.dataset.i18n;
+      if (window.i18n[key]) el.textContent = window.i18n[key];
+    });
+  };
 
   /* =========================
      TECLADO FÍSICO
