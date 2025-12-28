@@ -278,7 +278,7 @@ const UI = {
     card.className = "popup-card";
 
     const p = document.createElement("p");
-    p.textContent = message;
+    p.innerHTML = message;
     p.style.textAlign = "center";
     p.style.fontSize = "18px";
     p.style.fontWeight = "600";
