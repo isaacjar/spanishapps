@@ -356,14 +356,31 @@ const UI = {
     langLabel.textContent = i18n.language || "Idioma:";
     langLabel.style.display = "block";
     langLabel.style.marginTop = "8px";
-    const langSelect = document.createElement("select");
-    ["es", "en"].forEach(l => {
-      const opt = document.createElement("option");
-      opt.value = l;
-      opt.textContent = l.toUpperCase();
-      if (currentSettings.lang === l) opt.selected = true;
-      langSelect.appendChild(opt);
-    });
+    
+     const langSelect = document.createElement("select");
+     langSelect.addEventListener("change", () => {
+        const updated = {
+          ...currentSettings,
+          lang: langSelect.value
+        };
+        Settings.save({ lang: updated.lang });
+        window.loadLang?.(updated.lang);
+        UI.showSettingsPopup(updated, onUpdate);
+      });
+
+    const langNames = {
+        es: "Español",
+        en: "English"
+      };
+      
+      ["es", "en"].forEach(l => {
+        const opt = document.createElement("option");
+        opt.value = l;
+        opt.textContent = langNames[l] || l.toUpperCase();
+        if (currentSettings.lang === l) opt.selected = true;
+        langSelect.appendChild(opt);
+      });
+
     card.appendChild(langLabel);
     card.appendChild(langSelect);
 
