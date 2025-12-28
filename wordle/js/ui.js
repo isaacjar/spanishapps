@@ -341,19 +341,19 @@ const UI = {
     popup.classList.remove("hidden");
   },
 
-  showSettingsPopup(currentSettings, onUpdate) {
+  showSettingsPopup(currentSettings, onUpdate, i18n = window.i18n) {
     UI._clearPopup();
     const popup = document.getElementById("popup");
     const card = document.createElement("div");
     card.className = "popup-card";
 
     const title = document.createElement("h2");
-    title.textContent = "Opciones";
+    title.textContent = i18n.settings || "Opciones";
     card.appendChild(title);
 
     // Idioma
     const langLabel = document.createElement("label");
-    langLabel.textContent = "Idioma:";
+    langLabel.textContent = i18n.language || "Idioma:";
     langLabel.style.display = "block";
     langLabel.style.marginTop = "8px";
     const langSelect = document.createElement("select");
@@ -369,7 +369,7 @@ const UI = {
 
     // Número de intentos
     const attemptsLabel = document.createElement("label");
-    attemptsLabel.textContent = "Intentos:";
+    attemptsLabel.textContent = i18n.attempts || "Intentos:";
     attemptsLabel.style.display = "block";
     attemptsLabel.style.marginTop = "8px";
     const attemptsInput = document.createElement("input");
@@ -386,14 +386,17 @@ const UI = {
     statsDiv.style.marginTop = "12px";
     function updateStats() {
       const stats = JSON.parse(localStorage.getItem("stats") || '{"played":0,"won":0}');
-      statsDiv.innerHTML = `Palabras jugadas: ${stats.played}<br>Palabras acertadas: ${stats.won}`;
+      statsDiv.innerHTML = `
+        ${(i18n.played || "Palabras jugadas")}: ${stats.played}<br>
+        ${(i18n.won || "Palabras acertadas")}: ${stats.won}
+      `;
     }
     updateStats();
     card.appendChild(statsDiv);
 
     // Botones
     const btnSave = document.createElement("button");
-    btnSave.textContent = "💾 Guardar";
+    btnSave.textContent = i18n.save || "💾 Guardar";
     btnSave.style.marginRight = "6px";
     btnSave.onclick = () => {
       const updated = { lang: langSelect.value, numint: attemptsInput.value };
@@ -403,7 +406,7 @@ const UI = {
     };
 
     const btnReset = document.createElement("button");
-    btnReset.textContent = "🔄 Resetear";
+    btnReset.textContent = i18n.reset || "🔄 Reset";
     btnReset.style.marginRight = "6px";
     btnReset.onclick = () => {
       localStorage.clear();
@@ -411,7 +414,7 @@ const UI = {
     };
 
     const btnCancel = document.createElement("button");
-    btnCancel.textContent = "✖ Cancelar";
+    btnCancel.textContent = i18n.cancel || "✖ Cancelar";
     btnCancel.onclick = () => popup.classList.add("hidden");
 
     const btnDiv = document.createElement("div");
