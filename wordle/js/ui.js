@@ -282,6 +282,7 @@ const UI = {
     p.style.textAlign = "center";
     p.style.fontSize = "18px";
     p.style.fontWeight = "600";
+    p.style.whiteSpace = "pre-line";
     card.appendChild(p);
 
     const btnDiv = document.createElement("div");
