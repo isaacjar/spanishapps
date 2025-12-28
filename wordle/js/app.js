@@ -143,9 +143,9 @@
           normalize(Game.grid[Game.row].join("")) ===
           normalize(Game.solution);
 
-        const message = win
-          ? window.i18n.playAgain
-          : `${window.i18n.youLost} ${Game.solution}\n\n${window.i18n.playAgain}`;
+       const message = win
+        ? window.i18n.playAgain
+        : `${window.i18n.youLost} <strong>${Game.solution}</strong>\n\n${window.i18n.playAgain}`;
 
         UI.showConfirmPopup(
           message,
