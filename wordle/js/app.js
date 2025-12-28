@@ -74,7 +74,7 @@
   /* =========================
      BOTÓN SETTINGS
   ========================= */
-  document.getElementById("btnSettings")?.addEventListener("click", () => {
+ document.getElementById("btnSettings")?.addEventListener("click", () => {
     UI.showSettingsPopup(settings, updated => {
       Settings.save(updated);
       if (Game.words?.length) {
@@ -82,7 +82,7 @@
         UI.renderBoard(Game.attempts, Game.numLetters);
         UI.updateBoard();
       }
-    });
+    }, window.i18n);
   });
 
   /* =========================
