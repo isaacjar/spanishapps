@@ -201,7 +201,7 @@ export default [
   "soñar", "Sudán", "sueño", "suiza", "Suiza", "sushi", "súper", "tabla", "tacos", "Tania", 
   "tapas", "tapar", "tazas", "telón", "tener", "tejer", "tenis", "terco", "terca", "terso", 
   "tersa", "Texas", "tipos", "tiras", "Tirso", "todas", "todos", "tomar", "Tomás", "tonos", 
-  "tonto", "tonta", "toque", "torpe", "trote", "talar", "telar", "tarde", "temer", "tenia", 
+  "tonto", "tonta", "toque", "torpe", "trote", "talar", "telar", "tarde", "temer",  
   "topar", "tocar", "tomar", "toser", "tóner", "traer", "tumba", "Túnez", "uñoso", "uñosa", 
   "untes", "urbes", "Uribe", "urnas", "valer", "vacas", "vagos", "vagas", "valor", "veces", 
   "vedas", "velas", "velar", "vemos", "verse", "verso", "venir", "verde", "vigor", "vivir", 
