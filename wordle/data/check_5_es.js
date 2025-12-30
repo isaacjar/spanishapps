@@ -149,7 +149,7 @@ export default [
 "lobos", "locos", "locas", "lobas", "flora", "gallo", "cejas", "mando", "cinto", "cinta", "manda", "manga", "fideo", "oreja", "mango", "cacas", "cómic", "cagar", "cagan", "cagas",
 "caros", "choco", "tosas", "losas", "mojón", "molón", "copla", "mopas", "moras", "coros", "roían", "yerre", "yerra", "caída", "tuyos", "tuyas", "calla", "barre", "barra", "Qatar", 
 "asido", "asida", "roída", "roído", "caído", "pesos", "pasan", "mazas", "cazos", "sudar", "sudas", "érase", "parta", "penca", "motas", "lamen", "saben", "soben", "mores", "rompa", 
-"parco", "sobón", "robos", "zocos", "yedra", "medra", "musas", 
+"parco", "sobón", "robos", "zocos", "yedra", "medra", "musas", "jamón", 
   "abeto", "actor", "aguas", "agudo", "alado", "albas", "altar", "Antón", "atizo", "avala", 
   "avión", "azul", "abaco", "abate", "abeja", "aboya", "abran", "abras", "abría", "acoja", 
   "acojo", "acres", "actas", "actos", "actúo", "acuna", "acune", "acuso", "acusó", "acuña", 
