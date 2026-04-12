@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Antiguo Egipto — Síntesis para Memoria</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C96D;
+    --gold-pale: #F5E8C0;
+    --sand: #F2E8D0;
+    --sand-dark: #D4C09A;
+    --brown: #6B4C2A;
+    --brown-dark: #3D2A15;
+    --lapis: #1A3A5C;
+    --lapis-mid: #2E5480;
+    --lapis-light: #4A7BAA;
+    --turquoise: #1A7A6E;
+    --turquoise-light: #2BA898;
+    --papyrus: #FAF3E0;
+    --papyrus-dark: #EDE0C0;
+    --text-main: #2C1F0E;
+    --text-muted: #6B5A3E;
+    --red-nile: #8B2020;
+    --green-life: #2D6A4F;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Crimson Pro', Georgia, serif;
+    background: var(--papyrus);
+    color: var(--text-main);
+    line-height: 1.65;
+    font-size: 16px;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(139,100,40,0.04) 28px, rgba(139,100,40,0.04) 29px),
+      repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(139,100,40,0.025) 60px, rgba(139,100,40,0.025) 61px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 3rem 2rem 5rem;
+  }
+
+  .header {
+    text-align: center;
+    border-bottom: 3px double var(--gold);
+    padding-bottom: 2.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .header-badge {
+    display: inline-block;
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+    border: 1px solid var(--gold);
+    padding: 4px 16px;
+    margin-bottom: 1rem;
+    border-radius: 2px;
+  }
+
+  h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 2.6rem;
+    font-weight: 700;
+    color: var(--brown-dark);
+    letter-spacing: 2px;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+
+  .subtitle {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    font-style: italic;
+    font-weight: 300;
+  }
+
+  section { margin-bottom: 3.5rem; }
+
+  h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--lapis);
+    border-left: 4px solid var(--gold);
+    padding-left: 1rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 1px;
+  }
+
+  /* ── 10 IDEAS CLAVE ── */
+  .ideas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+
+  .idea-card {
+    background: white;
+    border: 1px solid var(--sand-dark);
+    border-radius: 6px;
+    padding: 1.1rem;
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    gap: 0.75rem;
+    align-items: start;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+
+  .idea-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(139,100,40,0.12);
+  }
+
+  .idea-number {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--lapis);
+    color: var(--gold-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+
+  .idea-content {}
+
+  .idea-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--brown-dark);
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+
+  .idea-text {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  .idea-card.highlight {
+    border-top: 3px solid var(--gold);
+    background: var(--papyrus-dark);
+  }
+
+  /* ── MOMENTOS DECISIVOS ── */
+  .moments {}
+
+  .moment {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 0 1.5rem;
+    margin-bottom: 1.2rem;
+    align-items: start;
+  }
+
+  .moment-year {
+    background: var(--lapis);
+    color: var(--gold-light);
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-align: center;
+    padding: 0.55rem 0.3rem;
+    border-radius: 4px;
+    line-height: 1.3;
+    margin-top: 2px;
+  }
+
+  .moment-body {}
+
+  .moment-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--brown-dark);
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  .moment-desc {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 0.3rem;
+  }
+
+  .moment-impact {
+    display: inline-block;
+    font-size: 0.78rem;
+    background: var(--gold-pale);
+    color: var(--brown);
+    border: 1px solid var(--sand-dark);
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-family: 'Cinzel', serif;
+    letter-spacing: 0.3px;
+  }
+
+  /* ── PERSONAJES ── */
+  .persons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.8rem;
+    margin: 1rem 0;
+  }
+
+  .person-card {
+    background: var(--papyrus-dark);
+    border: 1px solid var(--sand-dark);
+    border-radius: 4px;
+    padding: 0.85rem;
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+
+  .person-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    border: 1.5px solid var(--sand-dark);
+    background: white;
+  }
+
+  .person-name {
+    font-family: 'Cinzel', serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--lapis);
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+
+  .person-dates {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    display: block;
+    margin-bottom: 0.25rem;
+    font-family: 'Cinzel', serif;
+  }
+
+  .person-desc {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    line-height: 1.45;
+  }
+
+  /* ── ANALOGÍAS ── */
+  .analogies {
+    display: grid;
+    gap: 0.9rem;
+  }
+
+  .analogy {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 0 1rem;
+    align-items: center;
+    background: white;
+    border: 1px solid var(--sand-dark);
+    border-radius: 6px;
+    padding: 0.85rem 1rem;
+  }
+
+  .analogy-ancient {
+    border-right: 1px solid var(--sand-dark);
+    padding-right: 1rem;
+  }
+
+  .analogy-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 0.2rem;
+  }
+
+  .analogy-content {
+    font-size: 0.88rem;
+    color: var(--text-main);
+    line-height: 1.45;
+  }
+
+  .analogy-arrow {
+    font-size: 1.5rem;
+    color: var(--gold);
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .analogy-modern {}
+
+  /* ── ESQUEMAS VISUALES ── */
+  .schema-block {
+    background: white;
+    border: 1px solid var(--sand-dark);
+    border-radius: 6px;
+    padding: 1.2rem;
+    margin: 1rem 0;
+  }
+
+  .schema-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--lapis);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .schema-title::before {
+    content: '';
+    display: inline-block;
+    width: 3px;
+    height: 16px;
+    background: var(--gold);
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  /* Ciclo del Nilo */
+  .cycle-nile {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    margin: 0.5rem 0;
+    border-radius: 4px;
+    overflow: hidden;
+    text-align: center;
+    font-size: 0.82rem;
+  }
+
+  .cn-step {
+    flex: 1;
+    padding: 0.7rem 0.4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .cn-step .icon { font-size: 1.3rem; }
+  .cn-step .name { font-family: 'Cinzel', serif; font-size: 0.75rem; font-weight: 600; }
+  .cn-step .desc { font-size: 0.72rem; color: rgba(0,0,0,0.6); line-height: 1.3; }
+  .cn-arrow { display: flex; align-items: center; color: #aaa; font-size: 1rem; }
+
+  .cn1 { background: #BDE4F0; }
+  .cn2 { background: #D4E8BB; }
+  .cn3 { background: #F0D870; }
+  .cn4 { background: #E8C870; }
+
+  /* Estructura del universo egipcio */
+  .cosmos {
+    display: grid;
+    grid-template-rows: auto auto auto auto;
+    gap: 3px;
+    margin: 0.5rem 0;
+  }
+
+  .cosmos-layer {
+    padding: 0.55rem 1rem;
+    border-radius: 3px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+  }
+
+  .cosmos-name {
+    font-family: 'Cinzel', serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+  }
+
+  .cosmos-desc { font-size: 0.8rem; font-style: italic; }
+
+  .c-sky { background: #C8DEF5; color: #0D3558; }
+  .c-earth { background: #D4E8BB; color: #1A4A1A; }
+  .c-nile { background: #A8D8EA; color: #0D2D3D; }
+  .c-under { background: #3D2A15; color: #E8C870; }
+
+  /* Flujo de poder */
+  .power-flow {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 0.5rem 0;
+  }
+
+  .pf-node {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .pf-box {
+    flex: 1;
+    padding: 0.55rem 1rem;
+    border-radius: 3px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .pf-arrow {
+    text-align: center;
+    color: var(--gold);
+    font-size: 1rem;
+    padding: 0 0 0 1rem;
+    font-weight: bold;
+    line-height: 1;
+  }
+
+  .pf0 { background: var(--gold); color: var(--brown-dark); }
+  .pf1 { background: var(--lapis); color: var(--gold-light); }
+  .pf2 { background: var(--lapis-mid); color: #E0E8F0; }
+  .pf3 { background: var(--lapis-light); color: white; }
+  .pf4 { background: var(--turquoise); color: white; }
+  .pf5 { background: var(--brown); color: var(--gold-pale); }
+
+  .pf-side {
+    width: 160px;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-style: italic;
+    line-height: 1.35;
+    flex-shrink: 0;
+  }
+
+  /* ── TABLA DE REPASO ── */
+  .table-wrap {
+    overflow-x: auto;
+    margin: 1rem 0;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+  }
+
+  thead th {
+    background: var(--lapis);
+    color: var(--gold-light);
+    font-family: 'Cinzel', serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    padding: 0.65rem 0.9rem;
+    text-align: left;
+  }
+
+  tbody tr:nth-child(even) { background: var(--papyrus-dark); }
+  tbody tr:nth-child(odd) { background: var(--papyrus); }
+  tbody tr:hover { background: #EBD9A8; }
+
+  td {
+    padding: 0.55rem 0.9rem;
+    border-bottom: 1px solid var(--sand-dark);
+    vertical-align: top;
+  }
+
+  td:first-child {
+    font-weight: 600;
+    color: var(--lapis-mid);
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+
+  /* ── CALLOUT ── */
+  .callout {
+    background: var(--papyrus-dark);
+    border: 1px solid var(--sand-dark);
+    border-left: 4px solid var(--gold);
+    border-radius: 0 4px 4px 0;
+    padding: 0.9rem 1.1rem;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  .callout strong {
+    color: var(--brown);
+    font-style: normal;
+    font-family: 'Cinzel', serif;
+    font-size: 0.82rem;
+  }
+
+  .divider {
+    text-align: center;
+    margin: 2.5rem 0;
+    color: var(--gold);
+    font-size: 1.5rem;
+    letter-spacing: 12px;
+  }
+
+  .divider::before { content: '⋯⋯ '; }
+  .divider::after { content: ' ⋯⋯'; }
+
+  footer {
+    text-align: center;
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--sand-dark);
+    font-size: 0.8rem;
+    color: #aaa;
+    font-style: italic;
+  }
+
+  @media (max-width: 640px) {
+    h1 { font-size: 1.8rem; }
+    .analogy { grid-template-columns: 1fr; }
+    .analogy-arrow { transform: rotate(90deg); text-align: left; }
+    .analogy-ancient { border-right: none; border-bottom: 1px solid var(--sand-dark); padding-right: 0; padding-bottom: 0.75rem; }
+    .persons-grid { grid-template-columns: 1fr; }
+    .pf-side { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <header class="header">
+    <div class="header-badge">Documento II</div>
+    <h1>Síntesis para Memoria</h1>
+    <p class="subtitle">10 ideas clave · 5 momentos decisivos · Personajes · Analogías · Esquemas</p>
+  </header>
+
+  <!-- ═══════════════════════════════════════════
+       BLOQUE 1 — 10 IDEAS CLAVE
+  ═══════════════════════════════════════════ -->
+  <section>
+    <h2>I. 10 Ideas Clave</h2>
+
+    <div class="ideas-grid">
+
+      <div class="idea-card highlight">
+        <div class="idea-number">1</div>
+        <div class="idea-content">
+          <span class="idea-title">El Nilo lo es todo</span>
+          <p class="idea-text">Sin la inundación anual del Nilo no hay Egipto. La fertilidad predecible creó estabilidad y permitió al Estado planificar, controlar y prosperar durante 3.000 años.</p>
+        </div>
+      </div>
+
+      <div class="idea-card">
+        <div class="idea-number">2</div>
+        <div class="idea-content">
+          <span class="idea-title">El faraón es dios y rey a la vez</span>
+          <p class="idea-text">No existe separación entre religión y política. El faraón es la encarnación de Horus. Si las cosechas fallan, el rey pierde su legitimidad divina.</p>
+        </div>
+      </div>
+
+      <div class="idea-card">
+        <div class="idea-number">3</div>
+        <div class="idea-content">
+          <span class="idea-title">La muerte no es el fin</span>
+          <p class="idea-text">Los egipcios organizaron su sociedad y su economía en torno a la vida tras la muerte. Las pirámides, las momias y los papiros funerarios son consecuencias directas de esta creencia.</p>
+        </div>
+      </div>
+
+      <div class="idea-card">
+        <div class="idea-number">4</div>
+        <div class="idea-content">
+          <span class="idea-title">La escritura = control del Estado</span>
+          <p class="idea-text">Los escribas eran el sistema nervioso de Egipto. Sin ellos no hay recaudación de impuestos, ni control de inventarios, ni comunicación a largas distancias.</p>
+        </div>
+      </div>
+
+      <div class="idea-card highlight">
+        <div class="idea-number">5</div>
+        <div class="idea-content">
+          <span class="idea-title">Patrón de auge y colapso</span>
+          <p class="idea-text">Egipto siguió siempre el mismo ciclo: unificación → apogeo → crisis (sequía, poder provincial excesivo, invasión) → fragmentación → nueva unificación. Se repitió al menos 3 veces.</p>
+        </div>
+      </div>
+
+      <div class="idea-card">
+        <div class="idea-number">6</div>
+        <div class="idea-content">
+          <span class="idea-title">La geografía como escudo</span>
+          <p class="idea-text">Desiertos al este y oeste, mar al norte, cataratas al sur. Egipto era naturalmente defendible. Esto explica su longevidad: los invasores tardaron siglos en llegar.</p>
+        </div>
+      </div>
+
+      <div class="idea-card">
+        <div class="idea-number">7</div>
+        <div class="idea-content">
+          <span class="idea-title">La pirámide no era solo una tumba</span>
+          <p class="idea-text">Era una máquina de propaganda. Decía: "nuestro rey es tan poderoso que puede mover millones de toneladas de piedra". Era un proyecto económico que empleaba a decenas de miles.</p>
+        </div>
+      </div>
+
+      <div class="idea-card">
+        <div class="idea-number">8</div>
+        <div class="idea-content">
+          <span class="idea-title">Los templos = bancos y universidades</span>
+          <p class="idea-text">Los templos no solo servían para rezar. Controlaban tierras, guardaban grano, financiaban expediciones y albergaban escuelas de medicina, matemáticas y escritura.</p>
+        </div>
+      </div>
+
+      <div class="idea-card">
+        <div class="idea-number">9</div>
+        <div class="idea-content">
+          <span class="idea-title">Politeísmo funcional, no caótico</span>
+          <p class="idea-text">Los dioses tenían roles específicos y complementarios. El sistema religioso era coherente y útil: explicaba el cosmos, justificaba el poder y daba sentido a la muerte.</p>
+        </div>
+      </div>
+
+      <div class="idea-card highlight">
+        <div class="idea-number">10</div>
+        <div class="idea-content">
+          <span class="idea-title">Egipto influyó en todo Occidente</span>
+          <p class="idea-text">El calendario de 365 días, la geometría, la medicina clínica, los conceptos de alma y juicio final, la arquitectura monumental. Todo pasó a Grecia, luego a Roma, luego a nosotros.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider">☥</div>
+
+  <!-- ═══════════════════════════════════════════
+       BLOQUE 2 — 5 MOMENTOS DECISIVOS
+  ═══════════════════════════════════════════ -->
+  <section>
+    <h2>II. 5 Momentos Históricos Decisivos</h2>
+
+    <div class="moments">
+
+      <div class="moment">
+        <div class="moment-year">c. 3100<br>a.C.</div>
+        <div class="moment-body">
+          <span class="moment-title">La Unificación de Narmer</span>
+          <p class="moment-desc">El rey del Alto Egipto (sur) conquista el Bajo Egipto (norte). Por primera vez, el Nilo entero está bajo un solo mando. Nace el Estado egipcio y la corona doble. Sin este momento, nada de lo demás existe.</p>
+          <span class="moment-impact">Causa: rivalidad entre reinos → Efecto: nace el Estado más duradero de la historia</span>
+        </div>
+      </div>
+
+      <div class="moment">
+        <div class="moment-year">c. 2560<br>a.C.</div>
+        <div class="moment-body">
+          <span class="moment-title">Construcción de la Gran Pirámide</span>
+          <p class="moment-desc">Keops ordena levantar la estructura más alta del mundo durante 3.800 años. 20.000 trabajadores. 23 años de obra. Demuestra la capacidad organizativa del Estado egipcio en su cénit. No fue obra de esclavos: los obreros recibían salarios, atención médica y cerveza.</p>
+          <span class="moment-impact">Causa: teología funeraria + poder absoluto → Efecto: la maravilla más duradera del mundo antiguo</span>
+        </div>
+      </div>
+
+      <div class="moment">
+        <div class="moment-year">c. 1650<br>a.C.</div>
+        <div class="moment-body">
+          <span class="moment-title">Invasión Hicsa</span>
+          <p class="moment-desc">Un pueblo asiático conquista el Delta usando caballos y carros de guerra que Egipto no conocía. El trauma fue enorme. Pero los egipcios aprendieron: adoptaron la tecnología militar hicsa y la usaron para expulsarlos un siglo después y crear el ejército más poderoso de su historia.</p>
+          <span class="moment-impact">Causa: tecnología bélica superior → Efecto: Egipto moderniza su ejército y conquista el Oriente Próximo</span>
+        </div>
+      </div>
+
+      <div class="moment">
+        <div class="moment-year">c. 1353<br>a.C.</div>
+        <div class="moment-body">
+          <span class="moment-title">La Revolución Religiosa de Akenatón</span>
+          <p class="moment-desc">El faraón Amenhotep IV se cambia el nombre a Akenatón y declara que solo existe un dios: Atón (el disco solar). Prohíbe todos los demás cultos y destruye el poder sacerdotal. Muere sin sucesor y su reforma colapsa. Tutankamón restaura el politeísmo. Pero el experimento monoteísta dejó huella y fascinó a los estudiosos modernos.</p>
+          <span class="moment-impact">Causa: pugna faraón-sacerdotes → Efecto: primer monoteísmo conocido de la historia (efímero)</span>
+        </div>
+      </div>
+
+      <div class="moment">
+        <div class="moment-year">30 a.C.</div>
+        <div class="moment-body">
+          <span class="moment-title">Muerte de Cleopatra y fin del Egipto Faraónico</span>
+          <p class="moment-desc">Cleopatra VII, última de la dinastía ptolemaica, pierde la guerra contra Roma junto a Marco Antonio. Antes que rendirse a Octavio Augusto, se suicida. Egipto se convierte en provincia romana. Tres mil años de civilización faraónica terminan no con una derrota militar masiva, sino con la muerte de una reina.</p>
+          <span class="moment-impact">Causa: rivalidades romanas → Efecto: Egipto se convierte en el granero de Roma; cultura asimilada</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider">☥</div>
+
+  <!-- ═══════════════════════════════════════════
+       BLOQUE 3 — PERSONAJES PRINCIPALES
+  ═══════════════════════════════════════════ -->
+  <section>
+    <h2>III. Personajes Principales</h2>
+
+    <div class="persons-grid">
+
+      <div class="person-card">
+        <div class="person-avatar">👑</div>
+        <div>
+          <span class="person-name">Narmer / Menes</span>
+          <span class="person-dates">c. 3100 a.C.</span>
+          <p class="person-desc">Primer faraón que unificó Egipto. La paleta de Narmer lo muestra conquistando el Bajo Egipto.</p>
+        </div>
+      </div>
+
+      <div class="person-card">
+        <div class="person-avatar">📐</div>
+        <div>
+          <span class="person-name">Imhotep</span>
+          <span class="person-dates">c. 2650 a.C.</span>
+          <p class="person-desc">Arquitecto del faraón Zoser. Diseñó la primera pirámide escalonada. Fue deificado como dios de la medicina y la sabiduría.</p>
+        </div>
+      </div>
+
+      <div class="person-card">
+        <div class="person-avatar">🏛</div>
+        <div>
+          <span class="person-name">Keops (Jufu)</span>
+          <span class="person-dates">c. 2589–2566</span>
+          <p class="person-desc">Faraón que ordenó construir la Gran Pirámide de Giza. Símbolo máximo del poder absoluto del Imperio Antiguo.</p>
+        </div>
+      </div>
+
+      <div class="person-card">
+        <div class="person-avatar">👸</div>
+        <div>
+          <span class="person-name">Hatshepsut</span>
+          <span class="person-dates">c. 1507–1458</span>
+          <p class="person-desc">Faraona que gobernó durante 20 años disfrazada de hombre. Impulsó el comercio con el Punt y construyó el templo de Deir el-Bahari.</p>
+        </div>
+      </div>
+
+      <div class="person-card">
+        <div class="person-avatar">☀</div>
+        <div>
+          <span class="person-name">Akenatón</span>
+          <span class="person-dates">c. 1353–1336</span>
+          <p class="person-desc">Primer monoteísta conocido. Abolió los dioses tradicionales e instituyó el culto exclusivo a Atón. Su reforma fue borrada tras su muerte.</p>
+        </div>
+      </div>
+
+      <div class="person-card">
+        <div class="person-avatar">🦅</div>
+        <div>
+          <span class="person-name">Tutankamón</span>
+          <span class="person-dates">c. 1332–1323</span>
+          <p class="person-desc">Murió a los 18 años. Famoso por su tumba intacta descubierta en 1922. Restauró la religión tradicional tras Akenatón.</p>
+        </div>
+      </div>
+
+      <div class="person-card">
+        <div class="person-avatar">⚔</div>
+        <div>
+          <span class="person-name">Ramsés II "El Grande"</span>
+          <span class="person-dates">c. 1279–1213</span>
+          <p class="person-desc">El faraón más longevo y prolífico. Abu Simbel, Kadesh, tratado de paz con los hititas. Gobernó 66 años.</p>
+        </div>
+      </div>
+
+      <div class="person-card">
+        <div class="person-avatar">🌹</div>
+        <div>
+          <span class="person-name">Cleopatra VII</span>
+          <span class="person-dates">69–30 a.C.</span>
+          <p class="person-desc">Última faraona. Habló 9 idiomas. Aliada de César y Marco Antonio. Su muerte marcó el fin de 3.000 años de civilización faraónica.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider">☥</div>
+
+  <!-- ═══════════════════════════════════════════
+       BLOQUE 4 — ANALOGÍAS MODERNAS
+  ═══════════════════════════════════════════ -->
+  <section>
+    <h2>IV. Analogías Modernas para Entender Mejor</h2>
+
+    <div class="analogies">
+
+      <div class="analogy">
+        <div class="analogy-ancient">
+          <span class="analogy-label">Antiguo Egipto</span>
+          <p class="analogy-content">El faraón era rey, papa, juez supremo y general en jefe, todo en una sola persona.</p>
+        </div>
+        <div class="analogy-arrow">≈</div>
+        <div class="analogy-modern">
+          <span class="analogy-label">Analogía actual</span>
+          <p class="analogy-content">Como si el presidente, el papa, el juez del Tribunal Supremo y el jefe del ejército fueran la misma persona, elegida por dios.</p>
+        </div>
+      </div>
+
+      <div class="analogy">
+        <div class="analogy-ancient">
+          <span class="analogy-label">Antiguo Egipto</span>
+          <p class="analogy-content">Los templos controlaban tierras, grano, artesanos y escuelas. Eran instituciones totales.</p>
+        </div>
+        <div class="analogy-arrow">≈</div>
+        <div class="analogy-modern">
+          <span class="analogy-label">Analogía actual</span>
+          <p class="analogy-content">Como una multinacional que fuera a la vez iglesia, banco, universidad y ONG. Tenían más poder económico que el Estado en algunos períodos.</p>
+        </div>
+      </div>
+
+      <div class="analogy">
+        <div class="analogy-ancient">
+          <span class="analogy-label">Antiguo Egipto</span>
+          <p class="analogy-content">Los escribas eran el único grupo con acceso total a la información. Controlaban el Estado real.</p>
+        </div>
+        <div class="analogy-arrow">≈</div>
+        <div class="analogy-modern">
+          <span class="analogy-label">Analogía actual</span>
+          <p class="analogy-content">Como los programadores de hoy: quien controla el código (la escritura) controla los sistemas. Una pequeña élite técnica con enorme poder invisible.</p>
+        </div>
+      </div>
+
+      <div class="analogy">
+        <div class="analogy-ancient">
+          <span class="analogy-label">Antiguo Egipto</span>
+          <p class="analogy-content">La inundación anual predecible del Nilo era la base de toda planificación económica.</p>
+        </div>
+        <div class="analogy-arrow">≈</div>
+        <div class="analogy-modern">
+          <span class="analogy-label">Analogía actual</span>
+          <p class="analogy-content">Como tener el petróleo que se renueva solo cada año. Una riqueza natural previsible que financia al Estado sin necesidad de innovar constantemente.</p>
+        </div>
+      </div>
+
+      <div class="analogy">
+        <div class="analogy-ancient">
+          <span class="analogy-label">Antiguo Egipto</span>
+          <p class="analogy-content">Las pirámides no eran solo tumbas: eran propaganda estatal, inversión pública y proyecto de cohesión nacional.</p>
+        </div>
+        <div class="analogy-arrow">≈</div>
+        <div class="analogy-modern">
+          <span class="analogy-label">Analogía actual</span>
+          <p class="analogy-content">Como la carrera espacial o los Juegos Olímpicos: un megaproyecto que dice "somos poderosos", da trabajo a miles y une a la población bajo un orgullo común.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider">☥</div>
+
+  <!-- ═══════════════════════════════════════════
+       BLOQUE 5 — ESQUEMAS VISUALES
+  ═══════════════════════════════════════════ -->
+  <section>
+    <h2>V. Esquemas Visuales Simplificados</h2>
+
+    <!-- ESQUEMA 1: CICLO DEL NILO -->
+    <div class="schema-block">
+      <div class="schema-title">El ciclo del Nilo = el ciclo de Egipto</div>
+      <div class="cycle-nile">
+        <div class="cn-step cn1">
+          <span class="icon">🌊</span>
+          <span class="name">AKHET</span>
+          <span class="desc">Jul–Oct<br>Inundación<br>El limo fertiliza</span>
+        </div>
+        <div class="cn-arrow">→</div>
+        <div class="cn-step cn2">
+          <span class="icon">🌱</span>
+          <span class="name">PERET</span>
+          <span class="desc">Nov–Feb<br>Siembra<br>Aguas retroceden</span>
+        </div>
+        <div class="cn-arrow">→</div>
+        <div class="cn-step cn3">
+          <span class="icon">🌾</span>
+          <span class="name">SHEMU</span>
+          <span class="desc">Mar–Jun<br>Cosecha<br>Calor seco</span>
+        </div>
+        <div class="cn-arrow">→</div>
+        <div class="cn-step cn4">
+          <span class="icon">💧</span>
+          <span class="name">VUELTA</span>
+          <span class="desc">Sirio reaparece<br>Anuncia nueva<br>inundación</span>
+        </div>
+      </div>
+      <p style="font-size:0.8rem; color:var(--text-muted); margin-top:0.6rem; font-style:italic;">Este ciclo predecible de 3 estaciones duró 3.000 años sin cambiar. Era el reloj del Estado egipcio.</p>
+    </div>
+
+    <!-- ESQUEMA 2: COSMOS EGIPCIO -->
+    <div class="schema-block">
+      <div class="schema-title">El universo según los egipcios</div>
+      <div class="cosmos">
+        <div class="cosmos-layer c-sky">
+          <span class="cosmos-name">NUT — La bóveda celeste</span>
+          <span class="cosmos-desc">Diosa que traga al sol cada noche y lo da a luz cada mañana</span>
+        </div>
+        <div class="cosmos-layer c-earth">
+          <span class="cosmos-name">GEB — La tierra</span>
+          <span class="cosmos-desc">El mundo de los vivos. Donde reina el faraón (Horus)</span>
+        </div>
+        <div class="cosmos-layer c-nile">
+          <span class="cosmos-name">EL NILO — Arteria de vida</span>
+          <span class="cosmos-desc">Divide Egipto: orilla este (vida, ciudades) / orilla oeste (muertos, tumbas)</span>
+        </div>
+        <div class="cosmos-layer c-under">
+          <span class="cosmos-name">DUAT — El inframundo</span>
+          <span class="cosmos-desc">Reino de Osiris. El sol recorre el inframundo de noche. Las almas son juzgadas aquí.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ESQUEMA 3: FLUJO DE PODER -->
+    <div class="schema-block">
+      <div class="schema-title">Flujo de poder y legitimidad</div>
+      <div class="power-flow">
+
+        <div class="pf-node">
+          <div class="pf-side">Origen divino: Ra / Amón concede el poder</div>
+          <div class="pf-box pf0">DIOSES</div>
+        </div>
+        <div style="text-align:center; color:var(--gold); font-size:1.1rem; padding:2px 0 2px 160px;">↓ delegan en</div>
+
+        <div class="pf-node">
+          <div class="pf-side">Faraón: dios viviente. Maat = su obligación</div>
+          <div class="pf-box pf1">FARAÓN</div>
+        </div>
+        <div style="text-align:center; color:var(--gold); font-size:1.1rem; padding:2px 0 2px 160px;">↓ nombra a</div>
+
+        <div class="pf-node">
+          <div class="pf-side">Visir + Sumos Sacerdotes: poder civil y religioso</div>
+          <div class="pf-box pf2">ÉLITE ADMINISTRATIVA</div>
+        </div>
+        <div style="text-align:center; color:var(--gold); font-size:1.1rem; padding:2px 0 2px 160px;">↓ supervisa a</div>
+
+        <div class="pf-node">
+          <div class="pf-side">42 provincias. Si se vuelven muy fuertes → crisis</div>
+          <div class="pf-box pf3">NOMARCAS</div>
+        </div>
+        <div style="text-align:center; color:var(--gold); font-size:1.1rem; padding:2px 0 2px 160px;">↓ controlan a</div>
+
+        <div class="pf-node">
+          <div class="pf-side">Escribas: nervio del Estado, recaudan impuestos</div>
+          <div class="pf-box pf4">ESCRIBAS Y FUNCIONARIOS</div>
+        </div>
+        <div style="text-align:center; color:var(--gold); font-size:1.1rem; padding:2px 0 2px 160px;">↓ gravan a</div>
+
+        <div class="pf-node">
+          <div class="pf-side">Pagan en grano y trabajo. Sostienen todo lo anterior</div>
+          <div class="pf-box pf5">CAMPESINOS Y ARTESANOS</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TABLA DE REPASO RÁPIDO -->
+    <div class="schema-block">
+      <div class="schema-title">Tabla de repaso rápido: preguntas clave</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Si te preguntan sobre…</th><th>La respuesta corta es</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>¿Por qué duró tanto?</td><td>Geografía protegida + Nilo predecible + Estado centralizado con legitimidad divina</td></tr>
+            <tr><td>¿Por qué colapsó?</td><td>Siempre: sequía, poder excesivo de gobernadores locales o invasión exterior</td></tr>
+            <tr><td>¿Para qué servían las pirámides?</td><td>Tumba real + propaganda de poder + proyecto económico estatal</td></tr>
+            <tr><td>¿Quién construyó las pirámides?</td><td>Trabajadores pagados organizados por el Estado, no esclavos</td></tr>
+            <tr><td>¿Qué era la Maat?</td><td>El orden cósmico: verdad, justicia, equilibrio. El faraón existía para mantenerla</td></tr>
+            <tr><td>¿Qué aportó al mundo?</td><td>Calendario, geometría, medicina clínica, escritura, arquitectura monumental, conceptos del alma</td></tr>
+            <tr><td>¿Cuándo terminó exactamente?</td><td>30 a.C. con la muerte de Cleopatra VII y la conquista romana</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </section>
+
+  <div class="divider">☥</div>
+
+  <div class="callout">
+    <strong>Para explicarlo a alguien en 30 segundos:</strong> "Egipto fue una civilización de 3.000 años construida alrededor del río Nilo, gobernada por reyes-dioses llamados faraones, obsesionada con la vida tras la muerte, que dejó pirámides, momias y escritura jeroglífica como legado al mundo. Vivió ciclos de esplendor y colapso, y terminó cuando Roma la absorbió en el 30 a.C."
+  </div>
+
+  <footer>
+    Documento II de II · Historia del Antiguo Egipto · Síntesis para Memoria
+  </footer>
+</div>
+</body>
+</html>
