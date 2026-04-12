@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Antiguo Egipto — Mapa Estructural</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C96D;
+    --gold-pale: #F5E8C0;
+    --sand: #F2E8D0;
+    --sand-dark: #D4C09A;
+    --brown: #6B4C2A;
+    --brown-dark: #3D2A15;
+    --lapis: #1A3A5C;
+    --lapis-mid: #2E5480;
+    --lapis-light: #4A7BAA;
+    --turquoise: #1A7A6E;
+    --turquoise-light: #2BA898;
+    --papyrus: #FAF3E0;
+    --papyrus-dark: #EDE0C0;
+    --text-main: #2C1F0E;
+    --text-muted: #6B5A3E;
+    --red-nile: #8B2020;
+    --red-light: #C44040;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Crimson Pro', Georgia, serif;
+    background: var(--papyrus);
+    color: var(--text-main);
+    line-height: 1.65;
+    font-size: 16px;
+  }
+
+  /* Textura de papiro */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 28px, rgba(139,100,40,0.04) 28px, rgba(139,100,40,0.04) 29px),
+      repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(139,100,40,0.025) 60px, rgba(139,100,40,0.025) 61px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 3rem 2rem 5rem;
+  }
+
+  /* ── CABECERA ── */
+  .header {
+    text-align: center;
+    border-bottom: 3px double var(--gold);
+    padding-bottom: 2.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .header-badge {
+    display: inline-block;
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+    border: 1px solid var(--gold);
+    padding: 4px 16px;
+    margin-bottom: 1rem;
+    border-radius: 2px;
+  }
+
+  h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--brown-dark);
+    letter-spacing: 2px;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+
+  .subtitle {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    font-style: italic;
+    font-weight: 300;
+  }
+
+  /* ── SECCIONES ── */
+  section {
+    margin-bottom: 3.5rem;
+  }
+
+  h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--lapis);
+    border-left: 4px solid var(--gold);
+    padding-left: 1rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 1px;
+  }
+
+  h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--brown);
+    margin: 1.2rem 0 0.6rem;
+    letter-spacing: 0.5px;
+  }
+
+  p { margin-bottom: 0.8rem; }
+
+  /* ── LÍNEA TEMPORAL ── */
+  .timeline {
+    position: relative;
+    padding-left: 0;
+  }
+
+  .timeline-axis {
+    position: absolute;
+    left: 140px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(to bottom, var(--gold-light), var(--sand-dark), var(--gold-light));
+    border-radius: 2px;
+  }
+
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 0 2rem;
+    margin-bottom: 0.5rem;
+    position: relative;
+  }
+
+  .timeline-date {
+    text-align: right;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    padding-top: 0.7rem;
+    font-family: 'Cinzel', serif;
+  }
+
+  .timeline-node {
+    position: relative;
+    padding: 0.65rem 1rem 0.65rem 1.2rem;
+    border-left: none;
+    margin-left: 10px;
+  }
+
+  .timeline-node::before {
+    content: '';
+    position: absolute;
+    left: -13px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 2px solid var(--gold);
+    background: var(--papyrus);
+  }
+
+  .timeline-node.period {
+    background: var(--papyrus-dark);
+    border-radius: 4px;
+    border-left: 3px solid var(--gold);
+  }
+
+  .timeline-node.event {
+    background: transparent;
+  }
+
+  .timeline-node.event::before {
+    width: 7px;
+    height: 7px;
+    background: var(--sand-dark);
+    border-color: var(--text-muted);
+  }
+
+  .period-name {
+    font-family: 'Cinzel', serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--lapis);
+    display: block;
+  }
+
+  .period-note {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  /* Tags de período */
+  .tag {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-family: 'Cinzel', serif;
+    padding: 1px 8px;
+    border-radius: 3px;
+    margin-left: 8px;
+    vertical-align: middle;
+    letter-spacing: 0.5px;
+  }
+  .tag-unif { background: var(--gold-pale); color: var(--brown); border: 1px solid var(--sand-dark); }
+  .tag-crisis { background: #f0e0e0; color: var(--red-nile); border: 1px solid #dbb0b0; }
+  .tag-apex { background: #ddeef8; color: var(--lapis); border: 1px solid #aacce0; }
+
+  /* ── TABLAS ── */
+  .table-wrap {
+    overflow-x: auto;
+    margin: 1rem 0 1.5rem;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+  }
+
+  thead th {
+    background: var(--lapis);
+    color: var(--gold-light);
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    padding: 0.7rem 1rem;
+    text-align: left;
+  }
+
+  tbody tr:nth-child(even) { background: var(--papyrus-dark); }
+  tbody tr:nth-child(odd) { background: var(--papyrus); }
+  tbody tr:hover { background: #EBD9A8; }
+
+  td {
+    padding: 0.6rem 1rem;
+    border-bottom: 1px solid var(--sand-dark);
+    vertical-align: top;
+  }
+
+  td:first-child {
+    font-weight: 600;
+    color: var(--lapis-mid);
+    white-space: nowrap;
+    font-family: 'Cinzel', serif;
+    font-size: 0.82rem;
+  }
+
+  /* ── PIRÁMIDE SOCIAL ── */
+  .pyramid-social {
+    max-width: 560px;
+    margin: 1rem auto 1.5rem;
+  }
+
+  .pyramid-level {
+    display: flex;
+    align-items: stretch;
+    margin-bottom: 3px;
+  }
+
+  .pyramid-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: 'Cinzel', serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: white;
+    padding: 0.55rem 0.5rem;
+    border-radius: 2px;
+    transition: filter 0.2s;
+  }
+
+  .pyramid-label {
+    display: flex;
+    align-items: center;
+    padding-left: 1rem;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    font-style: italic;
+    min-width: 200px;
+  }
+
+  .lv1 { width: 120px; background: var(--gold); color: var(--brown-dark); margin: 0 auto; }
+  .lv2 { width: 220px; background: var(--lapis); margin: 0 auto; }
+  .lv3 { width: 320px; background: var(--lapis-mid); margin: 0 auto; }
+  .lv4 { width: 420px; background: var(--turquoise); margin: 0 auto; }
+  .lv5 { width: 520px; background: var(--brown); margin: 0 auto; }
+
+  /* ── GRID DE CARDS ── */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0 1.5rem;
+  }
+
+  .card {
+    background: white;
+    border: 1px solid var(--sand-dark);
+    border-top: 3px solid var(--gold);
+    border-radius: 4px;
+    padding: 1rem;
+  }
+
+  .card-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--lapis);
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .card-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--gold-pale);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+
+  .card p {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    margin: 0;
+    line-height: 1.55;
+  }
+
+  /* ── DIAGRAMA RELIGIOSO ── */
+  .religion-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.8rem;
+    margin: 1rem 0;
+  }
+
+  .deity-card {
+    text-align: center;
+    padding: 0.8rem;
+    background: var(--papyrus-dark);
+    border-radius: 4px;
+    border: 1px solid var(--sand-dark);
+  }
+
+  .deity-symbol {
+    font-size: 1.8rem;
+    margin-bottom: 0.3rem;
+    display: block;
+  }
+
+  .deity-name {
+    font-family: 'Cinzel', serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--lapis);
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+
+  .deity-role {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  /* ── ESQUEMA NILO ── */
+  .nile-scheme {
+    display: flex;
+    gap: 0;
+    margin: 1rem 0;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid var(--sand-dark);
+  }
+
+  .nile-col {
+    flex: 1;
+    padding: 1rem;
+  }
+
+  .nile-col:first-child { background: #E8F4E8; border-right: 2px solid var(--sand-dark); }
+  .nile-col:last-child { background: #FBF0D8; }
+
+  .nile-col-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+    display: block;
+  }
+
+  .nile-col:first-child .nile-col-title { color: var(--turquoise); }
+  .nile-col:last-child .nile-col-title { color: var(--brown); }
+
+  .nile-col ul {
+    list-style: none;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  .nile-col ul li { padding: 2px 0; }
+  .nile-col ul li::before { content: '→ '; color: var(--gold); }
+
+  /* ── ARQUITECTURA VISUAL ── */
+  .arch-timeline {
+    display: flex;
+    gap: 0;
+    margin: 1rem 0;
+    align-items: flex-end;
+  }
+
+  .arch-item {
+    flex: 1;
+    text-align: center;
+    padding: 0 4px;
+  }
+
+  .arch-bar {
+    background: linear-gradient(to top, var(--lapis), var(--lapis-light));
+    border-radius: 3px 3px 0 0;
+    margin: 0 auto 4px;
+    width: 80%;
+    transition: filter 0.2s;
+  }
+
+  .arch-name {
+    font-size: 0.7rem;
+    font-family: 'Cinzel', serif;
+    color: var(--text-muted);
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    line-height: 1.3;
+    display: block;
+  }
+
+  .arch-date {
+    font-size: 0.65rem;
+    color: #aaa;
+  }
+
+  /* ── CAUSA-EFECTO ── */
+  .cause-effect {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0.5rem 0;
+    font-size: 0.88rem;
+  }
+
+  .ce-box {
+    flex: 1;
+    padding: 0.5rem 0.75rem;
+    border-radius: 3px;
+    line-height: 1.4;
+  }
+
+  .ce-cause { background: #fff0d8; border-left: 3px solid var(--gold); }
+  .ce-arrow { color: var(--gold); font-weight: bold; font-size: 1.2rem; flex-shrink: 0; }
+  .ce-effect { background: #e8f0f8; border-left: 3px solid var(--lapis-light); }
+
+  /* ── DIVIDER ── */
+  .divider {
+    text-align: center;
+    margin: 2.5rem 0;
+    color: var(--gold);
+    font-size: 1.5rem;
+    letter-spacing: 12px;
+  }
+
+  .divider::before { content: '⋯⋯ '; }
+  .divider::after { content: ' ⋯⋯'; }
+
+  /* ── CALLOUT ── */
+  .callout {
+    background: var(--papyrus-dark);
+    border: 1px solid var(--sand-dark);
+    border-left: 4px solid var(--gold);
+    border-radius: 0 4px 4px 0;
+    padding: 0.9rem 1.1rem;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  .callout strong {
+    color: var(--brown);
+    font-style: normal;
+    font-family: 'Cinzel', serif;
+    font-size: 0.82rem;
+  }
+
+  /* ── PIE ── */
+  footer {
+    text-align: center;
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--sand-dark);
+    font-size: 0.8rem;
+    color: #aaa;
+    font-style: italic;
+  }
+
+  @media (max-width: 640px) {
+    h1 { font-size: 1.9rem; }
+    .timeline-item { grid-template-columns: 90px 1fr; }
+    .religion-grid { grid-template-columns: 1fr 1fr; }
+    .nile-scheme { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <header class="header">
+    <div class="header-badge">Documento I</div>
+    <h1>Antiguo Egipto<br>Mapa Estructural</h1>
+    <p class="subtitle">Línea temporal · Sistema político · Sociedad · Religión · Economía · Cultura</p>
+  </header>
+
+  <!-- ═══════════════════════════════════════════
+       BLOQUE 1 — LÍNEA TEMPORAL
+  ═══════════════════════════════════════════ -->
+  <section>
+    <h2>I. Línea Temporal</h2>
+    <p>La historia del Antiguo Egipto se divide en <strong>períodos de unificación</strong> (reinos) separados por <strong>períodos intermedios</strong> de fragmentación interna o invasión exterior.</p>
+
+    <div class="timeline" style="margin-top: 1.5rem;">
+      <div class="timeline-axis"></div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">c. 3100 a.C.</div>
+        <div class="timeline-node event">
+          <span class="period-note">Unificación del Alto y Bajo Egipto por el rey Narmer / Menes. Inicio del Estado egipcio.</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">3100–2686</div>
+        <div class="timeline-node period">
+          <span class="period-name">Período Protodinástico <span class="tag tag-unif">Dinástias I–II</span></span>
+          <span class="period-note">Consolidación del Estado. Capital en Tinis. Las primeras escrituras jeroglíficas.</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">2686–2181</div>
+        <div class="timeline-node period">
+          <span class="period-name">Imperio Antiguo <span class="tag tag-apex">Apogeo I</span></span>
+          <span class="period-note">Esplendor de las pirámides. Faraón como dios vivo. Pirámide de Giza (Keops, Kefrén, Micerinos). Capital: Menfis.</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">2181–2055</div>
+        <div class="timeline-node period">
+          <span class="period-name">Primer Período Intermedio <span class="tag tag-crisis">Fragmentación</span></span>
+          <span class="period-note">Sequías, hambrunas, rebeliones de los nomos (provincias). El poder central colapsa.</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">2055–1650</div>
+        <div class="timeline-node period">
+          <span class="period-name">Imperio Medio <span class="tag tag-unif">Reunificación</span></span>
+          <span class="period-note">Renacimiento cultural y literario. Conquista de Nubia. Irrigación del Fayum. Capital: Tebas.</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">1650–1550</div>
+        <div class="timeline-node period">
+          <span class="period-name">Segundo Período Intermedio <span class="tag tag-crisis">Invasión Hicsa</span></span>
+          <span class="period-note">Los hicsos (pueblo asiático) conquistan el Delta. Introducen el caballo, el carro de guerra y armas de bronce.</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">1550–1070</div>
+        <div class="timeline-node period">
+          <span class="period-name">Imperio Nuevo <span class="tag tag-apex">Apogeo II</span></span>
+          <span class="period-note">Máxima expansión territorial. Ramsés II, Tutankamón, Hatshepsut, Akenatón. Karnak, Abu Simbel. Valle de los Reyes.</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">1070–664</div>
+        <div class="timeline-node period">
+          <span class="period-name">Tercer Período Intermedio <span class="tag tag-crisis">Declive</span></span>
+          <span class="period-note">Fragmentación política. Faraones libios y nubios. Invasión asiria (671 a.C.).</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">664–332</div>
+        <div class="timeline-node period">
+          <span class="period-name">Período Tardío</span>
+          <span class="period-note">Últimos faraones nativos. Invasión persa (525 a.C.). Renacimiento efímero.</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">332–30</div>
+        <div class="timeline-node period">
+          <span class="period-name">Período Ptolemaico <span class="tag tag-crisis">Helenización</span></span>
+          <span class="period-note">Alejandro Magno conquista Egipto. Dinastía greco-egipcia. Cleopatra VII es la última. Alexandria, capital del saber.</span>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-date">30 a.C.</div>
+        <div class="timeline-node event">
+          <span class="period-note">Egipto se convierte en provincia del Imperio Romano. Fin del Egipto faraónico.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>Patrón de fondo:</strong> Cada período de esplendor fue seguido por un colapso. Las causas recurrentes: sequías, subida del poder de gobernadores locales, invasiones externas. Egipto siempre se recuperó gracias a la geográfica del Nilo, que aislaba y nutría.
+    </div>
+  </section>
+
+  <div class="divider">☥</div>
+
+  <!-- ═══════════════════════════════════════════
+       BLOQUE 2 — SISTEMA POLÍTICO
+  ═══════════════════════════════════════════ -->
+  <section>
+    <h2>II. Sistema Político</h2>
+
+    <h3>El Faraón: dios-rey absoluto</h3>
+    <p>El faraón no era solo un rey: era la <strong>encarnación del dios Horus</strong> en vida y de Osiris tras la muerte. Esto le otorgaba poder religioso, legal y militar absoluto. Sin faraón, el orden cósmico (<em>Maat</em>) colapsaba.</p>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-title"><div class="card-icon">⚖</div> Maat</div>
+        <p>Concepto de verdad, justicia y orden cósmico. El faraón existía para mantener la Maat. Si el país prosperaba, el rey cumplía su función divina.</p>
+      </div>
+      <div class="card">
+        <div class="card-title"><div class="card-icon">📜</div> Visir</div>
+        <p>Principal administrador del Estado. Equivalente a un primer ministro. Supervisaba justicia, tributos, obras públicas e informaba al faraón diariamente.</p>
+      </div>
+      <div class="card">
+        <div class="card-title"><div class="card-icon">🏛</div> Nomos</div>
+        <p>42 provincias administrativas gobernadas por los <em>nomarcas</em>. Cuando su poder era excesivo, fragmentaban el país (causa de los períodos intermedios).</p>
+      </div>
+    </div>
+
+    <h3>Estructura de gobierno</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Nivel</th><th>Cargo</th><th>Función principal</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1.º Divino</td><td>Faraón</td><td>Legislar, liderar ejércitos, mediar entre dioses y humanos</td></tr>
+          <tr><td>2.º Civil</td><td>Visir (Chaty)</td><td>Administración general del reino</td></tr>
+          <tr><td>3.º Religioso</td><td>Sumo Sacerdote</td><td>Control de templos, tierras y recursos sagrados</td></tr>
+          <tr><td>4.º Militar</td><td>Generales del ejército</td><td>Expansión territorial, control de fronteras</td></tr>
+          <tr><td>5.º Local</td><td>Nomarcas</td><td>Gobernar provincias, recaudar impuestos locales</td></tr>
+          <tr><td>6.º Técnico</td><td>Escribas</td><td>Registro, burocracia, comunicación oficial</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="cause-effect">
+      <div class="ce-box ce-cause">Sequía prolongada reduce las cosechas del Nilo</div>
+      <div class="ce-arrow">→</div>
+      <div class="ce-box ce-effect">El faraón pierde legitimidad divina → Nomarcas ganan poder → Fragmentación del Estado</div>
+    </div>
+  </section>
+
+  <div class="divider">☥</div>
+
+  <!-- ═══════════════════════════════════════════
+       BLOQUE 3 — ESTRUCTURA SOCIAL
+  ═══════════════════════════════════════════ -->
+  <section>
+    <h2>III. Estructura Social</h2>
+
+    <p>La sociedad egipcia era jerárquica pero más permeable que la medieval europea. Era posible ascender socialmente a través de la educación y el servicio al faraón.</p>
+
+    <div class="pyramid-social" style="margin: 1.5rem auto;">
+      <div class="pyramid-level" style="justify-content: center;">
+        <div class="pyramid-bar lv1">Faraón</div>
+        <div class="pyramid-label" style="font-size:0.75rem;">Dios viviente</div>
+      </div>
+      <div class="pyramid-level" style="justify-content: center;">
+        <div class="pyramid-bar lv2">Sacerdotes · Nobleza</div>
+        <div class="pyramid-label" style="font-size:0.75rem;">Control religioso y provincial</div>
+      </div>
+      <div class="pyramid-level" style="justify-content: center;">
+        <div class="pyramid-bar lv3">Escribas · Militares · Funcionarios</div>
+        <div class="pyramid-label" style="font-size:0.75rem;">Burocracia del Estado</div>
+      </div>
+      <div class="pyramid-level" style="justify-content: center;">
+        <div class="pyramid-bar lv4">Artesanos · Comerciantes · Médicos</div>
+        <div class="pyramid-label" style="font-size:0.75rem;">Clase media productiva</div>
+      </div>
+      <div class="pyramid-level" style="justify-content: center;">
+        <div class="pyramid-bar lv5" style="font-size:0.75rem;">Campesinos (la gran mayoría) · Esclavos</div>
+        <div class="pyramid-label" style="font-size:0.75rem;">Base productiva del reino</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>Dato clave:</strong> Los "esclavos" en Egipto no eran como los romanos los concibieron. La mayoría eran prisioneros de guerra o deudores con derechos limitados. Los campesinos libres cultivaban tierras del templo o del faraón pagando tributo en grano.
+    </div>
+
+    <h3>La mujer en Egipto</h3>
+    <p>Singularmente avanzado para la época: las mujeres podían poseer tierras, firmar contratos, divorciarse e iniciar juicios legales. Hatshepsut llegó a ser faraona. Las esposas de sacerdotes tenían roles rituales activos.</p>
+  </section>
+
+  <div class="divider">☥</div>
+
+  <!-- ═══════════════════════════════════════════
+       BLOQUE 4 — RELIGIÓN
+  ═══════════════════════════════════════════ -->
+  <section>
+    <h2>IV. Sistema Religioso</h2>
+
+    <p>La religión no era opcional: era el <strong>esqueleto del Estado</strong>. Los templos controlaban tierras, artesanos, graneros y escuelas. Cada ciudad tenía su dios tutelar.</p>
+
+    <h3>Dioses principales</h3>
+    <div class="religion-grid">
+      <div class="deity-card">
+        <span class="deity-symbol">☀</span>
+        <span class="deity-name">Ra / Amón-Ra</span>
+        <span class="deity-role">Dios del sol. Creador del universo. Dios supremo del Imperio Nuevo.</span>
+      </div>
+      <div class="deity-card">
+        <span class="deity-symbol">⚖</span>
+        <span class="deity-name">Osiris</span>
+        <span class="deity-role">Dios de los muertos y la resurrección. El faraón fallecido se convierte en Osiris.</span>
+      </div>
+      <div class="deity-card">
+        <span class="deity-symbol">🌙</span>
+        <span class="deity-name">Isis</span>
+        <span class="deity-role">Diosa madre, magia y curación. Esposa de Osiris.</span>
+      </div>
+      <div class="deity-card">
+        <span class="deity-symbol">🦅</span>
+        <span class="deity-name">Horus</span>
+        <span class="deity-role">Dios del cielo. El faraón vivo es su encarnación en la tierra.</span>
+      </div>
+      <div class="deity-card">
+        <span class="deity-symbol">🐊</span>
+        <span class="deity-name">Anubis</span>
+        <span class="deity-role">Guía de las almas al más allá. Preside la momificación.</span>
+      </div>
+      <div class="deity-card">
+        <span class="deity-symbol">📏</span>
+        <span class="deity-name">Thot</span>
+        <span class="deity-role">Dios de la sabiduría y la escritura. Protector de los escribas.</span>
+      </div>
+    </div>
+
+    <h3>El ciclo de la vida tras la muerte</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Paso</th><th>Ritual / Elemento</th><th>Significado</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1. Muerte</td><td>Cierre de ojos por Anubis</td><td>Inicio del viaje al Duat (inframundo)</td></tr>
+          <tr><td>2. Momificación</td><td>70 días de proceso ritual</td><td>Preservar el cuerpo para que el alma (Ka) vuelva a él</td></tr>
+          <tr><td>3. Juicio</td><td>Pesada del corazón vs. la pluma de Maat</td><td>Si el corazón es ligero (vida virtuosa), el alma pasa</td></tr>
+          <tr><td>4. Paraíso</td><td>Campo de juncos (Aaru)</td><td>Vida eterna para los justos</td></tr>
+          <tr><td>5. Condena</td><td>Devorado por Ammit</td><td>Destrucción total del alma si era culpable</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="cause-effect">
+      <div class="ce-box ce-cause">Creencia en la vida tras la muerte</div>
+      <div class="ce-arrow">→</div>
+      <div class="ce-box ce-effect">Inversión masiva en tumbas, momificación y textos funerarios → Pirámides, papiros, arte</div>
+    </div>
+  </section>
+
+  <div class="divider">☥</div>
+
+  <!-- ═══════════════════════════════════════════
+       BLOQUE 5 — ECONOMÍA Y VIDA COTIDIANA
+  ═══════════════════════════════════════════ -->
+  <section>
+    <h2>V. Economía y Vida Cotidiana</h2>
+
+    <h3>El Nilo: motor de todo</h3>
+    <div class="nile-scheme">
+      <div class="nile-col">
+        <span class="nile-col-title">🌊 La inundación anual (Akhet)</span>
+        <ul>
+          <li>Julio – octubre: el Nilo desborda</li>
+          <li>Deposita limo negro fertilísimo</li>
+          <li>Predecible → permite planificar</li>
+          <li>Los nilómetros medían el nivel</li>
+          <li>Inundación escasa = hambre</li>
+          <li>Inundación excesiva = destrucción</li>
+        </ul>
+      </div>
+      <div class="nile-col">
+        <span class="nile-col-title">🌾 Las estaciones agrícolas</span>
+        <ul>
+          <li><strong>Akhet</strong>: inundación (julio–oct)</li>
+          <li><strong>Peret</strong>: siembra (nov–feb)</li>
+          <li><strong>Shemu</strong>: cosecha (mar–jun)</li>
+          <li>Cultivos: trigo, cebada, lino, papiro</li>
+          <li>Ganadería: vacas, cerdos, aves</li>
+          <li>Pesca: fuente proteica básica</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Sistema económico</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Aspecto</th><th>Detalle</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Moneda</td><td>No usaron monedas hasta el Período Tardío. Economía de trueque y redistribución estatal.</td></tr>
+          <tr><td>Unidad de valor</td><td>El <em>deben</em> (peso en cobre o plata). El grano también funcionaba como dinero.</td></tr>
+          <tr><td>Impuestos</td><td>Pagados en especie: porcentaje del grano cosechado, trabajo forzado (<em>corvée</em>) en obras públicas.</td></tr>
+          <tr><td>Comercio</td><td>Expediciones al Punt (especias, mirra), Nubia (oro, marfil), Canaán (madera). El Nilo era la autopista.</td></tr>
+          <tr><td>Propiedad</td><td>El faraón poseía toda la tierra en teoría; en práctica, sacerdotes y nobles gestionaban grandes extensiones.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Vida cotidiana del pueblo</h3>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-title"><div class="card-icon">🏠</div> Vivienda</div>
+        <p>Casas de adobe (barro seco). Azotea usada para dormir en verano. Las casas nobles tenían jardines y estanques.</p>
+      </div>
+      <div class="card">
+        <div class="card-title"><div class="card-icon">🍞</div> Alimentación</div>
+        <p>Pan y cerveza eran la base. Cebolla, ajo, legumbres. Carne solo en ocasiones festivas. Vino para la élite.</p>
+      </div>
+      <div class="card">
+        <div class="card-title"><div class="card-icon">👗</div> Vestimenta</div>
+        <p>Lino blanco liviano por el calor. Hombres con faldellín (<em>shendyt</em>). Mujeres con vestido largo. Pelucas y cosméticos comunes en ambos sexos.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider">☥</div>
+
+  <!-- ═══════════════════════════════════════════
+       BLOQUE 6 — CULTURA Y AVANCES
+  ═══════════════════════════════════════════ -->
+  <section>
+    <h2>VI. Cultura, Avances y Arquitectura</h2>
+
+    <h3>Sistema de escritura</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Sistema</th><th>Uso</th><th>Descripción</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Jeroglíficos</td><td>Monumentos, templos, tumbas</td><td>~700 signos pictóricos. Escritura sagrada y formal.</td></tr>
+          <tr><td>Hierático</td><td>Documentos administrativos</td><td>Versión cursiva de los jeroglíficos. Para escribas.</td></tr>
+          <tr><td>Demótico</td><td>Uso cotidiano tardío</td><td>Simplificación extrema. Período Tardío y ptolemaico.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Avances científicos y técnicos</h3>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-title"><div class="card-icon">📅</div> Calendario</div>
+        <p>365 días divididos en 3 estaciones de 4 meses. Base del calendario juliano y, por tanto, del nuestro.</p>
+      </div>
+      <div class="card">
+        <div class="card-title"><div class="card-icon">🏥</div> Medicina</div>
+        <p>Papiro Edwin Smith (c. 1600 a.C.): primeros registros de diagnóstico clínico racional, sin recurrir a la magia.</p>
+      </div>
+      <div class="card">
+        <div class="card-title"><div class="card-icon">📐</div> Matemáticas</div>
+        <p>Sistema decimal sin cero. Papiro Rhind: fracciones, álgebra básica, cálculo de áreas y volúmenes.</p>
+      </div>
+      <div class="card">
+        <div class="card-title"><div class="card-icon">⭐</div> Astronomía</div>
+        <p>Mapearon constelaciones. La estrella Sirio indicaba la inundación del Nilo. Orientación precisa de monumentos.</p>
+      </div>
+    </div>
+
+    <h3>Arquitectura: evolución visual</h3>
+    <div class="arch-timeline">
+      <div class="arch-item">
+        <div class="arch-bar" style="height:60px; background: var(--sand-dark);"></div>
+        <span class="arch-name">Mastaba</span>
+        <span class="arch-date">3100 a.C.</span>
+      </div>
+      <div class="arch-item">
+        <div class="arch-bar" style="height:90px; background: var(--brown);"></div>
+        <span class="arch-name">Pirámide Escalonada</span>
+        <span class="arch-date">2650 a.C.</span>
+      </div>
+      <div class="arch-item">
+        <div class="arch-bar" style="height:130px; background: var(--lapis-mid);"></div>
+        <span class="arch-name">Pirámide Roja / Romboidal</span>
+        <span class="arch-date">2600 a.C.</span>
+      </div>
+      <div class="arch-item">
+        <div class="arch-bar" style="height:170px; background: var(--lapis);"></div>
+        <span class="arch-name">Gran Pirámide (Keops)</span>
+        <span class="arch-date">2560 a.C.</span>
+      </div>
+      <div class="arch-item">
+        <div class="arch-bar" style="height:110px; background: var(--turquoise);"></div>
+        <span class="arch-name">Templo en roca</span>
+        <span class="arch-date">1250 a.C.</span>
+      </div>
+      <div class="arch-item">
+        <div class="arch-bar" style="height:95px; background: var(--turquoise-light);"></div>
+        <span class="arch-name">Complejo de Karnak</span>
+        <span class="arch-date">1400 a.C.</span>
+      </div>
+    </div>
+
+    <h3>Obras arquitectónicas clave</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Obra</th><th>Período</th><th>Significado</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Pirámide de Zoser</td><td>Imperio Antiguo, c. 2650</td><td>Primera pirámide. Diseñada por el genio Imhotep.</td></tr>
+          <tr><td>Gran Pirámide de Giza</td><td>Imperio Antiguo, c. 2560</td><td>Tumba de Keops. 140 m de altura. 2,3 millones de bloques.</td></tr>
+          <tr><td>Gran Esfinge</td><td>Imperio Antiguo, c. 2530</td><td>Guardián del recinto funerario. Rostro de Kefrén.</td></tr>
+          <tr><td>Templos de Karnak</td><td>Imperio Medio-Nuevo, 2055–1070</td><td>El complejo religioso más grande del mundo antiguo. Construido durante siglos.</td></tr>
+          <tr><td>Abu Simbel</td><td>Imperio Nuevo, c. 1264</td><td>Templo tallado en la roca por Ramsés II. Propaganda del faraón dios.</td></tr>
+          <tr><td>Valle de los Reyes</td><td>Imperio Nuevo, 1550–1070</td><td>Necrópolis real excavada en acantilados. Sustituyó a las pirámides.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer>
+    Documento I de II · Historia del Antiguo Egipto · Mapa Estructural completo
+  </footer>
+</div>
+</body>
+</html>
